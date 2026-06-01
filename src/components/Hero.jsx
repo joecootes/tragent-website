@@ -135,8 +135,8 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <a href="#" className="bg-white text-brand-navy font-bold text-base px-8 py-4 rounded-xl hover:bg-brand-gray transition-all hover:shadow-navy text-center">
-                Start Free Trial
+              <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" className="bg-white text-brand-navy font-bold text-base px-8 py-4 rounded-xl hover:bg-brand-gray transition-all hover:shadow-navy text-center">
+                Join early access
               </a>
               <a href="#how-it-works" className="flex items-center justify-center gap-2 bg-white/8 border border-white/15 text-white font-semibold text-base px-8 py-4 rounded-xl hover:bg-white/12 transition-colors text-center">
                 <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">

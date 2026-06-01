@@ -11,8 +11,9 @@ import MidCTA from './components/MidCTA'
 import Testimonials from './components/Testimonials'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
+import { PrivacyPolicy, TermsOfService } from './components/LegalPage'
 
-export default function App() {
+function LandingPage() {
   return (
     <div className="font-sans antialiased">
       <Navbar />
@@ -29,4 +30,13 @@ export default function App() {
       <Footer />
     </div>
   )
+}
+
+export default function App() {
+  const path = window.location.pathname
+
+  if (path === '/privacy') return <PrivacyPolicy />
+  if (path === '/terms') return <TermsOfService />
+
+  return <LandingPage />
 }

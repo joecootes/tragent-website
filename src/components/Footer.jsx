@@ -1,5 +1,20 @@
 import React from 'react'
 
+const productLinks = [
+  ['How It Works', '/#how-it-works'],
+  ['Features', '/#features'],
+  ['Customer stories', '/#testimonials'],
+]
+
+const companyLinks = [
+  ['Contact', 'mailto:hello@trytragent.com'],
+]
+
+const legalLinks = [
+  ['Privacy Policy', '/privacy'],
+  ['Terms of Service', '/terms'],
+]
+
 export default function Footer() {
   return (
     <footer className="bg-brand-navy-dark text-white/50" style={{ backgroundColor: '#1A2038' }}>
@@ -7,7 +22,7 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="#" className="flex items-center gap-2.5 mb-5">
+            <a href="/" className="flex items-center gap-2.5 mb-5">
               <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center flex-shrink-0">
                 <span className="text-brand-navy font-black text-sm leading-none">T</span>
               </div>
@@ -22,10 +37,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-sm font-bold mb-5 tracking-wide">Product</h4>
             <ul className="space-y-3">
-              {['How It Works', 'Features', 'Pricing', 'Integrations', 'Changelog'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm text-white/40 hover:text-white transition-colors">
-                    {item}
+              {productLinks.map(([label, href]) => (
+                <li key={label}>
+                  <a href={href} className="text-sm text-white/40 hover:text-white transition-colors">
+                    {label}
                   </a>
                 </li>
               ))}
@@ -36,10 +51,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-sm font-bold mb-5 tracking-wide">Company</h4>
             <ul className="space-y-3">
-              {['About', 'Blog', 'Careers', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm text-white/40 hover:text-white transition-colors">
-                    {item}
+              {companyLinks.map(([label, href]) => (
+                <li key={label}>
+                  <a href={href} className="text-sm text-white/40 hover:text-white transition-colors">
+                    {label}
                   </a>
                 </li>
               ))}
@@ -50,20 +65,20 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-sm font-bold mb-5 tracking-wide">Legal</h4>
             <ul className="space-y-3">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm text-white/40 hover:text-white transition-colors">
-                    {item}
+              {legalLinks.map(([label, href]) => (
+                <li key={label}>
+                  <a href={href} className="text-sm text-white/40 hover:text-white transition-colors">
+                    {label}
                   </a>
                 </li>
               ))}
             </ul>
             <div className="mt-8">
               <a
-                href="#"
+                href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
                 className="inline-block bg-white text-brand-navy text-xs font-bold px-4 py-2.5 rounded-md hover:bg-brand-gray transition-colors"
               >
-                Start Free Trial
+                Join early access
               </a>
             </div>
           </div>

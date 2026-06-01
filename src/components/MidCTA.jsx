@@ -26,10 +26,10 @@ export default function MidCTA() {
           {/* Right CTA */}
           <div className="flex flex-col items-center lg:items-end gap-3 flex-shrink-0">
             <a
-              href="#"
+              href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
               className="bg-white text-brand-navy font-bold text-base px-10 py-4 rounded-xl hover:bg-brand-gray transition-all hover:shadow-navy whitespace-nowrap"
             >
-              Start Free Trial
+              Join early access
             </a>
             <span className="text-white/35 text-sm">No contracts. Cancel anytime.</span>
           </div>

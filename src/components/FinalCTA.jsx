@@ -18,13 +18,13 @@ export default function FinalCTA() {
         </h2>
 
         <p className="text-lg text-white/50 leading-relaxed mb-10 max-w-xl mx-auto">
-          Join thousands of tradespeople who've won more work, cut their evening admin,
+          Built for tradespeople who want to win more work, cut their evening admin,
           and actually switched off at the end of the day.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-9">
-          <a href="#" className="bg-white text-brand-navy font-bold text-base px-10 py-4 rounded-xl hover:bg-brand-gray transition-all hover:shadow-navy">
-            Start Free Trial
+          <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" className="bg-white text-brand-navy font-bold text-base px-10 py-4 rounded-xl hover:bg-brand-gray transition-all hover:shadow-navy">
+            Join early access
           </a>
           <a href="#how-it-works" className="bg-white/8 border border-white/15 text-white font-semibold text-base px-10 py-4 rounded-xl hover:bg-white/12 transition-colors">
             See How It Works

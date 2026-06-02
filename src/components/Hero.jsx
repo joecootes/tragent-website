@@ -34,7 +34,7 @@ function MockPanel() {
                 { i: 'JP', name: 'James Patel', msg: 'Following up on the quote...', t: '1h', tag: 'Follow-up', c: 'bg-amber-100 text-amber-700', active: false },
                 { i: 'LR', name: 'Lisa Roberts', msg: 'When can you start the bathroom?', t: '3h', tag: 'Booked', c: 'bg-blue-100 text-blue-700', active: false },
               ].map((item, idx) => (
-                <div key={idx} className={`px-3 py-2.5 cursor-pointer ${item.active ? 'bg-brand-navy/5 border-l-[3px] border-brand-navy' : 'hover:bg-gray-50/80'}`}>
+                <div key={idx} className={`px-3 py-2.5 cursor-default ${item.active ? 'bg-brand-navy/5 border-l-[3px] border-brand-navy' : ''}`}>
                   <div className="flex items-start gap-2">
                     <div className="w-6 h-6 rounded-full bg-brand-navy flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-white text-[9px] font-bold">{item.i}</span>
@@ -88,9 +88,9 @@ function MockPanel() {
                   <p className="text-[11px] text-gray-700 leading-relaxed">Hi Mark, thanks for getting in touch! We'd love to help with your rewiring. I'll pass your details to the team — someone will call shortly to arrange a free site visit. Best number to reach you?</p>
                 </div>
               </div>
-              <div className="flex gap-2 mt-auto">
-                <button className="flex-1 bg-brand-navy text-white text-[11px] font-bold py-2 rounded-lg">Send Reply</button>
-                <button className="px-3 border border-gray-200 text-gray-500 text-[11px] py-2 rounded-lg">Edit</button>
+              <div className="flex gap-2 mt-auto" aria-hidden="true">
+                <div className="flex-1 bg-brand-navy text-white text-[11px] font-bold py-2 rounded-lg text-center select-none">Send Reply</div>
+                <div className="px-3 border border-gray-200 text-gray-500 text-[11px] py-2 rounded-lg text-center select-none">Edit</div>
               </div>
             </div>
           </div>

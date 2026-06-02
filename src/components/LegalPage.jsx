@@ -16,7 +16,7 @@ function Section({ title, children }) {
 function LegalShell({ title, intro, children }) {
   return (
     <div className="font-sans antialiased bg-white min-h-screen">
-      <Navbar />
+      <Navbar variant="solid" />
       <main className="pt-32 pb-20">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <a href="/" className="inline-flex text-sm font-semibold text-brand-navy/70 hover:text-brand-navy mb-8">

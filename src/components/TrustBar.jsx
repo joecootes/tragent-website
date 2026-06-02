@@ -1,10 +1,10 @@
 import React from 'react'
 
-const stats = [
-  { value: '2,400+', label: 'Tradespeople using Tragent' },
-  { value: '<5 min', label: 'Average reply time' },
-  { value: '94%', label: 'Report fewer missed leads' },
-  { value: '3+ hrs', label: 'Saved on admin per week' },
+const trustPoints = [
+  { value: 'Early access', label: 'Built for working tradespeople' },
+  { value: 'Gmail first', label: 'Designed around real enquiry inboxes' },
+  { value: 'Human control', label: 'Draft, edit, approve, or send yourself' },
+  { value: 'Privacy-aware', label: 'Clear disconnect and account deletion flows' },
 ]
 
 export default function TrustBar() {
@@ -12,7 +12,7 @@ export default function TrustBar() {
     <section className="bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
         <div className="flex flex-wrap justify-center lg:justify-between items-center gap-8">
-          {stats.map((s, i) => (
+          {trustPoints.map((s, i) => (
             <div key={i} className="flex items-center gap-4">
               {i > 0 && <div className="hidden lg:block w-px h-8 bg-gray-150" style={{ backgroundColor: '#e8eaed' }} />}
               <div className="text-center lg:text-left">

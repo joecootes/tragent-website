@@ -91,7 +91,7 @@ export default function HowItWorks() {
         {/* CTA */}
         <div className="text-center">
           <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" className="inline-flex items-center gap-2 bg-brand-navy text-white font-bold px-8 py-4 rounded-xl hover:bg-brand-navy-dark transition-colors shadow-navy">
-            Get Started Free
+            Join early access
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

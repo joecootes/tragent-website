@@ -22,7 +22,7 @@ function InboxPanel() {
       </div>
       <div className="divide-y divide-gray-50">
         {items.map((item, i) => (
-          <div key={i} className={`px-4 py-3 flex items-center gap-3 hover:bg-brand-gray/40 transition-colors cursor-pointer ${i < 2 ? 'bg-brand-navy/3' : ''}`}>
+          <div key={i} className={`px-4 py-3 flex items-center gap-3 transition-colors cursor-default ${i < 2 ? 'bg-brand-navy/3' : ''}`}>
             <div className="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center flex-shrink-0">
               <span className="text-white text-[10px] font-bold">{item.initials}</span>
             </div>
@@ -76,13 +76,13 @@ function ReplyPanel() {
             Hi Sarah, thanks for getting in touch! A boiler replacement sounds straightforward — we can definitely help. I'll have someone call you in the next hour to get a few more details and get you booked in for a free survey. What's the best number?
           </p>
         </div>
-        <div className="flex gap-2">
-          <button className="flex-1 bg-brand-navy text-white text-[11px] font-bold py-2 rounded-md">
+        <div className="flex gap-2" aria-hidden="true">
+          <div className="flex-1 bg-brand-navy text-white text-[11px] font-bold py-2 rounded-md text-center select-none">
             Send Reply
-          </button>
-          <button className="px-3 border border-gray-200 text-gray-500 text-[11px] py-2 rounded-md">
+          </div>
+          <div className="px-3 border border-gray-200 text-gray-500 text-[11px] py-2 rounded-md text-center select-none">
             Edit
-          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@ function JobBoard() {
       </div>
       <div className="divide-y divide-gray-50">
         {jobs.map((job, i) => (
-          <div key={i} className="px-4 py-3 flex items-center gap-3 hover:bg-brand-gray/40 cursor-pointer transition-colors">
+          <div key={i} className="px-4 py-3 flex items-center gap-3 transition-colors cursor-default">
             <div className="flex-1 min-w-0">
               <div className="text-xs font-semibold text-brand-text mb-0.5">{job.name}</div>
               <div className="text-[11px] text-gray-500 truncate">{job.job}</div>

@@ -45,7 +45,7 @@ const solutions = [
 
 export default function Solution() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: 'linear-gradient(160deg, #2B3252 0%, #1E2440 100%)' }}>
+    <section className="relative py-24 lg:py-32 overflow-hidden bg-[#F3F5F8]">
       <div className="absolute inset-0 bg-grid-white pointer-events-none" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(74,84,120,0.5) 0%, transparent 70%)' }} />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(30,36,64,0.8) 0%, transparent 70%)' }} />
@@ -53,14 +53,14 @@ export default function Solution() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="max-w-2xl mb-14">
-          <div className="inline-flex items-center gap-2 text-white/40 text-xs font-bold uppercase tracking-widest mb-5">
-            <div className="w-5 h-px bg-white/30" />
+          <div className="inline-flex items-center gap-2 text-brand-navy/45 text-xs font-bold uppercase tracking-widest mb-5">
+            <div className="w-5 h-px bg-brand-navy/35" />
             How Tragent fixes it
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-4">
+          <h2 className="text-3xl lg:text-4xl font-black text-brand-text leading-tight mb-4">
             Handles the stuff<br />that's costing you jobs.
           </h2>
-          <p className="text-white/50 text-lg leading-relaxed">
+          <p className="text-brand-text/55 text-lg leading-relaxed">
             No complicated setup. No AI jargon. Just a system that replies fast,
             keeps things organised, and follows up so you don't have to.
           </p>
@@ -69,15 +69,15 @@ export default function Solution() {
         {/* Grid */}
         <div className="grid lg:grid-cols-2 gap-5">
           {solutions.map((s, i) => (
-            <div key={i} className="group bg-white/5 border border-white/8 rounded-2xl p-8 hover:bg-white/8 hover:border-white/12 transition-all duration-200">
-              <div className="w-11 h-11 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center text-white mb-6 group-hover:bg-white/15 transition-colors">
+            <div key={i} className="group bg-white/70 border border-brand-navy/10 rounded-3xl p-8 hover:bg-white hover:border-brand-navy/15 transition-all duration-200">
+              <div className="w-11 h-11 bg-brand-navy border border-brand-navy/10 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:bg-brand-navy transition-colors">
                 {s.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 leading-snug">{s.headline}</h3>
-              <p className="text-white/45 text-sm leading-relaxed mb-5">{s.body}</p>
-              <div className="flex items-center gap-2 pt-4 border-t border-white/8">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
-                <span className="text-white/60 text-sm font-semibold">{s.stat}</span>
+              <h3 className="text-xl font-bold text-brand-text mb-3 leading-snug">{s.headline}</h3>
+              <p className="text-brand-text/55 text-sm leading-relaxed mb-5">{s.body}</p>
+              <div className="flex items-center gap-2 pt-4 border-t border-brand-navy/10">
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-navy/40 flex-shrink-0" />
+                <span className="text-brand-text/60 text-sm font-semibold">{s.stat}</span>
               </div>
             </div>
           ))}

@@ -13,7 +13,7 @@ export default {
           'navy-mid': '#353D5F',
           'navy-light': '#4A5478',
           gray: '#F4F5F8',
-          text: '#111111',
+          text: '#1E2440',
         }
       },
       fontFamily: {

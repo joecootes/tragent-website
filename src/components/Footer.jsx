@@ -1,4 +1,5 @@
 import React from 'react'
+import LogoMark from './LogoMark'
 
 const productLinks = [
   ['How It Works', '/#how-it-works'],
@@ -23,8 +24,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-                <span className="text-brand-navy font-black text-sm leading-none">T</span>
+              <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                <LogoMark className="w-10 h-10" variant="white" />
               </div>
               <span className="text-white font-extrabold text-xl tracking-tight">Tragent</span>
             </a>

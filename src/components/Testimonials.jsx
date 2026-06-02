@@ -77,7 +77,7 @@ export default function Testimonials() {
         </div>
 
         {/* Trust strip */}
-        <div className="bg-white rounded-2xl px-8 py-7 shadow-card border border-black/[0.04] flex flex-wrap justify-center gap-x-0 gap-y-6 lg:divide-x divide-gray-100">
+        <div className="bg-white rounded-2xl px-8 py-7 shadow-card border border-brand-navy/5 flex flex-wrap justify-center gap-x-0 gap-y-6 lg:divide-x divide-gray-100">
           {[
             { value: 'Early access', label: 'Private beta in progress' },
             { value: 'Trade-first', label: 'Built for enquiries and follow-ups' },

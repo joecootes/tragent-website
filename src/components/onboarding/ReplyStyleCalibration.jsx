@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import LogoMark from '../LogoMark'
 import { getCalibrationData, saveStylePreference } from '../../logic/onboardingCalibration'
 
 /**
@@ -44,8 +45,8 @@ export default function ReplyStyleCalibration({ trade = 'electrician', onComplet
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-8 h-8 bg-brand-navy rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-black text-sm">T</span>
+            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+              <LogoMark className="w-10 h-10" />
             </div>
             <span className="text-brand-navy font-extrabold text-lg tracking-tight">Tragent</span>
           </div>

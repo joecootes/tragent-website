@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import LogoMark from './LogoMark'
 
-export default function Navbar({ variant = 'transparent' }) {
+export default function Navbar({ variant = 'light' }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -10,52 +11,45 @@ export default function Navbar({ variant = 'transparent' }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isSolid = variant === 'solid' || scrolled
+  const isSolid = variant === 'solid'
+  const useDarkText = !isSolid
+  const navShell = isSolid
+    ? 'bg-brand-navy/95 backdrop-blur-md shadow-lg shadow-black/20'
+    : scrolled
+      ? 'bg-[#F3F5F8]/92 backdrop-blur-md border-b border-brand-navy/10'
+      : 'bg-transparent'
+  const navText = useDarkText ? 'text-brand-text/60 hover:text-brand-text' : 'text-white/60 hover:text-white'
+  const logoBox = ''
+  const logoText = useDarkText ? 'text-brand-text' : 'text-white'
+  const ctaClass = useDarkText
+    ? 'bg-brand-navy text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-navy transition-colors'
+    : 'bg-white text-brand-navy text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-gray transition-colors'
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isSolid
-          ? 'bg-brand-navy/95 backdrop-blur-md shadow-lg shadow-black/20'
-          : 'bg-transparent'
-      }`}
-    >
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navShell}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <a href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center flex-shrink-0">
-              <span className="text-brand-navy font-black text-sm leading-none">T</span>
+            <div className={`w-10 h-10 flex items-center justify-center flex-shrink-0 ${logoBox}`}>
+              <LogoMark className="w-10 h-10" />
             </div>
-            <span className="text-white font-extrabold text-xl tracking-tight">Tragent</span>
+            <span className={`${logoText} font-extrabold text-xl tracking-tight`}>Tragent</span>
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="/#how-it-works" className="text-white/60 hover:text-white text-sm font-medium transition-colors">
-              How It Works
-            </a>
-            <a href="/#features" className="text-white/60 hover:text-white text-sm font-medium transition-colors">
-              Features
-            </a>
-            <a href="/#testimonials" className="text-white/60 hover:text-white text-sm font-medium transition-colors">
-              Reviews
-            </a>
+            <a href="/#how-it-works" className={`${navText} text-sm font-medium transition-colors`}>How It Works</a>
+            <a href="/#features" className={`${navText} text-sm font-medium transition-colors`}>Features</a>
+            <a href="/#testimonials" className={`${navText} text-sm font-medium transition-colors`}>Reviews</a>
           </div>
 
-          {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-5">
-            <a
-              href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
-              className="bg-white text-brand-navy text-sm font-bold px-5 py-2.5 rounded-md hover:bg-brand-gray transition-colors"
-            >
+            <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" className={ctaClass}>
               Join early access
             </a>
           </div>
 
-          {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white p-1.5 -mr-1.5"
+            className={`md:hidden p-1.5 -mr-1.5 ${useDarkText ? 'text-brand-text' : 'text-white'}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -73,35 +67,27 @@ export default function Navbar({ variant = 'transparent' }) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-brand-navy-mid border-t border-white/10">
+        <div className={`${isSolid ? 'bg-brand-navy-mid border-white/10' : 'bg-[#F3F5F8] border-brand-navy/10'} md:hidden border-t`}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
-            <a
-              href="/#how-it-works"
-              className="text-white/70 hover:text-white text-sm font-medium py-2.5 px-3 rounded-md hover:bg-white/5 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              How It Works
-            </a>
-            <a
-              href="/#features"
-              className="text-white/70 hover:text-white text-sm font-medium py-2.5 px-3 rounded-md hover:bg-white/5 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href="/#testimonials"
-              className="text-white/70 hover:text-white text-sm font-medium py-2.5 px-3 rounded-md hover:bg-white/5 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Reviews
-            </a>
-            <div className="pt-3 mt-1 border-t border-white/10">
+            {[
+              ['How It Works', '/#how-it-works'],
+              ['Features', '/#features'],
+              ['Reviews', '/#testimonials'],
+            ].map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                className={`${isSolid ? 'text-white/70 hover:text-white hover:bg-white/5' : 'text-brand-text/70 hover:text-brand-text hover:bg-brand-navy/5'} text-sm font-medium py-2.5 px-3 rounded-md transition-colors`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <div className={`${isSolid ? 'border-white/10' : 'border-brand-navy/10'} pt-3 mt-1 border-t`}>
               <a
                 href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
-                className="block bg-white text-brand-navy text-sm font-bold px-5 py-3 rounded-md text-center hover:bg-brand-gray transition-colors"
+                className={`${isSolid ? 'bg-white text-brand-navy hover:bg-brand-gray' : 'bg-brand-navy text-white hover:bg-brand-navy'} block text-sm font-bold px-5 py-3 rounded-full text-center transition-colors`}
               >
                 Join early access
               </a>

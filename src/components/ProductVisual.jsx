@@ -1,12 +1,13 @@
 import React from 'react'
+import LogoMark from './LogoMark'
 
 function InboxPanel() {
   const items = [
-    { initials: 'MT', name: 'Mark Thompson', msg: 'Thanks, looking forward to the visit', time: '2m', status: 'Replied', statusColor: 'text-emerald-600 bg-emerald-50' },
+    { initials: 'MT', name: 'Mark Thompson', msg: 'Thanks, looking forward to the visit', time: '2m', status: 'Replied', statusColor: 'text-brand-navy bg-brand-navy/10' },
     { initials: 'SW', name: 'Sarah Williams', msg: "Hi, need a quote for a new boiler...", time: '11m', status: 'New', statusColor: 'text-brand-navy bg-brand-navy/8' },
     { initials: 'RB', name: 'Rob Baker', msg: 'Can you fit me in this week?', time: '34m', status: 'New', statusColor: 'text-brand-navy bg-brand-navy/8' },
-    { initials: 'CL', name: 'Carol Lawson', msg: 'Quote accepted — when can you start?', time: '1h', status: 'Confirmed', statusColor: 'text-purple-600 bg-purple-50' },
-    { initials: 'DH', name: 'David Hughes', msg: 'Just following up on the estimate...', time: '2h', status: 'Chasing', statusColor: 'text-amber-600 bg-amber-50' },
+    { initials: 'CL', name: 'Carol Lawson', msg: 'Quote accepted — when can you start?', time: '1h', status: 'Confirmed', statusColor: 'text-brand-navy bg-brand-navy/10' },
+    { initials: 'DH', name: 'David Hughes', msg: 'Just following up on the estimate...', time: '2h', status: 'Chasing', statusColor: 'text-brand-navy bg-brand-navy/10' },
   ]
 
   return (
@@ -47,12 +48,12 @@ function ReplyPanel() {
   return (
     <div className="bg-white rounded-xl border border-gray-150 shadow-lg overflow-hidden">
       <div className="px-4 py-3 border-b border-gray-100 bg-brand-gray/60 flex items-center gap-2">
-        <div className="w-5 h-5 bg-brand-navy rounded flex items-center justify-center">
-          <span className="text-white text-[9px] font-black">T</span>
+        <div className="w-6 h-6 flex items-center justify-center">
+          <LogoMark className="w-6 h-6" />
         </div>
         <span className="text-xs font-bold text-brand-text">AI Suggested Reply</span>
         <div className="ml-auto flex items-center gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-brand-navy/60 animate-pulse" />
           <span className="text-[10px] text-gray-400">Live</span>
         </div>
       </div>
@@ -91,10 +92,10 @@ function ReplyPanel() {
 
 function JobBoard() {
   const jobs = [
-    { name: 'Mark Thompson', job: 'Full rewire — 3 bed semi', date: 'Mon 27 Jan', status: 'Confirmed', color: 'bg-emerald-100 text-emerald-700' },
-    { name: 'Carol Lawson', job: 'Consumer unit upgrade', date: 'Tue 28 Jan', status: 'Confirmed', color: 'bg-emerald-100 text-emerald-700' },
+    { name: 'Mark Thompson', job: 'Full rewire — 3 bed semi', date: 'Mon 27 Jan', status: 'Confirmed', color: 'bg-brand-navy/10 text-brand-navy' },
+    { name: 'Carol Lawson', job: 'Consumer unit upgrade', date: 'Tue 28 Jan', status: 'Confirmed', color: 'bg-brand-navy/10 text-brand-navy' },
     { name: 'James Patel', job: 'Boiler service + flush', date: 'Wed 29 Jan', status: 'Quoted', color: 'bg-brand-navy/10 text-brand-navy' },
-    { name: 'Lisa Roberts', job: 'Bathroom rewire', date: 'Thu 30 Jan', status: 'Pending', color: 'bg-amber-100 text-amber-700' },
+    { name: 'Lisa Roberts', job: 'Bathroom rewire', date: 'Thu 30 Jan', status: 'Pending', color: 'bg-brand-navy/10 text-brand-navy' },
     { name: 'David Hughes', job: 'EV charger installation', date: 'Fri 31 Jan', status: 'Quoted', color: 'bg-brand-navy/10 text-brand-navy' },
   ]
 
@@ -126,9 +127,9 @@ function JobBoard() {
       <div className="px-4 py-3 border-t border-gray-100 bg-brand-gray/30 flex items-center justify-between">
         <span className="text-[11px] text-gray-500">5 jobs this week</span>
         <div className="flex items-center gap-3 text-[10px] text-gray-400">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />2 confirmed</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy/60 inline-block" />2 confirmed</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy inline-block" />2 quoted</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />1 pending</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy/50 inline-block" />1 pending</span>
         </div>
       </div>
     </div>

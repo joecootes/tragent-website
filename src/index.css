@@ -11,7 +11,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #ffffff;
+    background-color: #F3F5F8;
   }
 }
 
@@ -19,11 +19,20 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .dot-text {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 @layer components {
-  /* Shared premium card — uses built-in Tailwind shadows so @apply resolves cleanly */
   .card-premium {
-    @apply bg-white rounded-2xl p-8 shadow-sm border border-black/[0.04] hover:shadow-lg transition-all duration-200;
+    @apply bg-white/80 rounded-3xl p-8 shadow-sm border border-brand-navy/10 transition-all duration-200;
+  }
+
+  .quiet-card {
+    @apply bg-[#FFFFFF]/80 border border-brand-navy/10 rounded-3xl shadow-sm;
   }
 }

@@ -29,11 +29,11 @@ export default function Navbar({ variant = 'light' }) {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navShell}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="/" className="flex items-center gap-2.5">
-            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
-              <LogoMark className="w-10 h-10" variant={logoVariant} />
+          <a href="/" className="flex items-center gap-[10px]">
+            <div className="h-7 flex items-center justify-center flex-shrink-0 translate-y-[-1px]">
+              <LogoMark className="h-7 w-auto" variant={logoVariant} />
             </div>
-            <LogoWordmark className="h-[22px] w-auto" variant={logoVariant} />
+            <LogoWordmark className="h-6 w-auto" variant={logoVariant} />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

@@ -29,7 +29,7 @@ export default function Navbar({ variant = 'light' }) {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navShell}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="/" className="flex items-center gap-[7px]">
+          <a href="/" className="flex items-center gap-[5px]">
             <div className="h-[31px] flex items-center justify-center flex-shrink-0 translate-y-[-1px]">
               <LogoMark className="h-[31px] w-auto" variant={logoVariant} />
             </div>

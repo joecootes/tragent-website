@@ -33,7 +33,7 @@ export default function Navbar({ variant = 'light' }) {
             <div className="h-[31px] flex items-center justify-center flex-shrink-0 translate-y-[-1px]">
               <LogoMark className="h-[31px] w-auto" variant={logoVariant} />
             </div>
-            <LogoWordmark className="h-6 w-auto" variant={logoVariant} />
+            <LogoWordmark className="h-[22.5px] w-auto" variant={logoVariant} />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

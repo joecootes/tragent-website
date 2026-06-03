@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import LogoMark from '../LogoMark'
+import LogoWordmark from '../LogoWordmark'
 import { getCalibrationData, saveStylePreference } from '../../logic/onboardingCalibration'
 
 /**
@@ -48,7 +49,7 @@ export default function ReplyStyleCalibration({ trade = 'electrician', onComplet
             <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
               <LogoMark className="w-10 h-10" />
             </div>
-            <span className="text-brand-navy font-extrabold text-lg tracking-tight">Tragent</span>
+            <LogoWordmark className="h-5 w-auto" />
           </div>
 
           <h1 className="text-2xl font-black text-brand-text leading-tight mb-2">

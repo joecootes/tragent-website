@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import LogoMark from './LogoMark'
+import LogoWordmark from './LogoWordmark'
 
 export default function Navbar({ variant = 'light' }) {
   const [scrolled, setScrolled] = useState(false)
@@ -19,8 +20,7 @@ export default function Navbar({ variant = 'light' }) {
       ? 'bg-[#F3F5F8]/92 backdrop-blur-md border-b border-brand-navy/10'
       : 'bg-transparent'
   const navText = useDarkText ? 'text-brand-text/60 hover:text-brand-text' : 'text-white/60 hover:text-white'
-  const logoBox = ''
-  const logoText = useDarkText ? 'text-brand-text' : 'text-white'
+  const logoVariant = useDarkText ? 'navy' : 'white'
   const ctaClass = useDarkText
     ? 'bg-brand-navy text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-navy transition-colors'
     : 'bg-white text-brand-navy text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-gray transition-colors'
@@ -30,10 +30,10 @@ export default function Navbar({ variant = 'light' }) {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a href="/" className="flex items-center gap-2.5">
-            <div className={`w-10 h-10 flex items-center justify-center flex-shrink-0 ${logoBox}`}>
-              <LogoMark className="w-10 h-10" />
+            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+              <LogoMark className="w-10 h-10" variant={logoVariant} />
             </div>
-            <span className={`${logoText} font-extrabold text-xl tracking-tight`}>Tragent</span>
+            <LogoWordmark className="h-[22px] w-auto" variant={logoVariant} />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

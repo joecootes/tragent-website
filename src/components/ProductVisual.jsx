@@ -138,23 +138,21 @@ function JobBoard() {
 
 export default function ProductVisual() {
   return (
-    <section className="bg-brand-navy-dark py-24 lg:py-32 relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
+    <section id="product" className="bg-brand-navy-dark py-20 lg:py-24 relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
       <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-navy/60 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 text-white/40 text-xs font-bold uppercase tracking-widest mb-4">
             <div className="w-6 h-px bg-white/30" />
-            The Dashboard
+            Product preview
             <div className="w-6 h-px bg-white/30" />
           </div>
           <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-4">
-            Everything in one place.
+            Enquiries replied to. Quotes followed up.
           </h2>
           <p className="text-white/50 text-lg leading-relaxed">
-            Your enquiries, replies, jobs, and follow-ups — all organised and under control.
-            No more switching between apps wondering what you've missed.
+            Tragent keeps the customer conversation moving while you focus on the job in front of you.
           </p>
         </div>
 

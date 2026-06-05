@@ -3,9 +3,9 @@ import LogoMark from './LogoMark'
 import LogoWordmark from './LogoWordmark'
 
 const productLinks = [
-  ['How It Works', '/#how-it-works'],
-  ['Features', '/#features'],
-  ['Customer stories', '/#testimonials'],
+  ['Product preview', '/#product'],
+  ['How it helps', '/#how-it-helps'],
+  ['Early access', '/#early-access'],
 ]
 
 const companyLinks = [
@@ -31,7 +31,7 @@ export default function Footer() {
               <LogoWordmark className="h-[22px] w-auto" />
             </a>
             <p className="text-sm leading-relaxed text-brand-text/60 max-w-xs">
-              The AI admin assistant that handles your enquiries so you stop losing jobs and get your evenings back.
+              Tragent replies to enquiries and follows up on quotes so more jobs keep moving.
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export default function Footer() {
             </ul>
             <div className="mt-8">
               <a
-                href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
+                href="/#early-access"
                 className="inline-block bg-brand-navy text-white text-xs font-bold px-4 py-2.5 rounded-md hover:bg-brand-navy-dark transition-colors"
               >
                 Join early access

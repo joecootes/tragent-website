@@ -8,6 +8,7 @@ export default function Navbar({ variant = 'light' }) {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24)
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -17,7 +18,7 @@ export default function Navbar({ variant = 'light' }) {
   const navShell = isSolid
     ? 'bg-brand-navy/95 backdrop-blur-md shadow-lg shadow-black/20'
     : scrolled
-      ? 'bg-[#F3F5F8]/92 backdrop-blur-md border-b border-brand-navy/10'
+      ? 'bg-[#F3F5F8]/98 border-b border-brand-navy/10'
       : 'bg-transparent'
   const navText = useDarkText ? 'text-brand-text/60 hover:text-brand-text' : 'text-white/60 hover:text-white'
   const logoVariant = useDarkText ? 'navy' : 'white'
@@ -37,13 +38,13 @@ export default function Navbar({ variant = 'light' }) {
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            <a href="/#how-it-works" className={`${navText} text-sm font-medium transition-colors`}>How It Works</a>
-            <a href="/#features" className={`${navText} text-sm font-medium transition-colors`}>Features</a>
-            <a href="/#testimonials" className={`${navText} text-sm font-medium transition-colors`}>Reviews</a>
+            <a href="/#product" className={`${navText} text-sm font-medium transition-colors`}>Product</a>
+            <a href="/#how-it-helps" className={`${navText} text-sm font-medium transition-colors`}>How it helps</a>
+            <a href="/#early-access" className={`${navText} text-sm font-medium transition-colors`}>Early access</a>
           </div>
 
           <div className="hidden md:flex items-center gap-5">
-            <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" className={ctaClass}>
+            <a href="/#early-access" className={ctaClass}>
               Join early access
             </a>
           </div>
@@ -71,9 +72,9 @@ export default function Navbar({ variant = 'light' }) {
         <div className={`${isSolid ? 'bg-brand-navy-mid border-white/10' : 'bg-[#F3F5F8] border-brand-navy/10'} md:hidden border-t`}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
             {[
-              ['How It Works', '/#how-it-works'],
-              ['Features', '/#features'],
-              ['Reviews', '/#testimonials'],
+              ['Product', '/#product'],
+              ['How it helps', '/#how-it-helps'],
+              ['Early access', '/#early-access'],
             ].map(([label, href]) => (
               <a
                 key={label}
@@ -86,7 +87,7 @@ export default function Navbar({ variant = 'light' }) {
             ))}
             <div className={`${isSolid ? 'border-white/10' : 'border-brand-navy/10'} pt-3 mt-1 border-t`}>
               <a
-                href="mailto:hello@trytragent.com?subject=Tragent%20early%20access"
+                href="/#early-access"
                 className={`${isSolid ? 'bg-white text-brand-navy hover:bg-brand-gray' : 'bg-brand-navy text-white hover:bg-brand-navy'} block text-sm font-bold px-5 py-3 rounded-full text-center transition-colors`}
               >
                 Join early access

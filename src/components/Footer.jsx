@@ -90,9 +90,6 @@ export default function Footer() {
           <p className="text-xs text-brand-text/45">
             &copy; {new Date().getFullYear()} Tragent. All rights reserved.
           </p>
-          <p className="text-xs text-brand-text/45">
-            Built for electricians, plumbers, builders, and every trade in between.
-          </p>
         </div>
       </div>
     </footer>

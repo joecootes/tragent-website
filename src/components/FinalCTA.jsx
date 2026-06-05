@@ -18,6 +18,8 @@ export default function FinalCTA() {
   return (
     <section id="early-access" className="relative py-20 lg:py-24 overflow-hidden bg-brand-navy">
       <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-70" />
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#F3F5F8]/75 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-brand-gray/75 to-transparent pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center relative z-10">
         <div className="inline-flex items-center gap-2 bg-white/8 border border-white/12 rounded-full px-4 py-1.5 mb-8">

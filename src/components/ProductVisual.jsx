@@ -140,6 +140,8 @@ export default function ProductVisual() {
   return (
     <section id="product" className="bg-brand-navy-dark py-20 lg:py-24 relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
       <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-50" />
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#F3F5F8]/75 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F3F5F8]/75 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">

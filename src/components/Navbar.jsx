@@ -50,20 +50,21 @@ export default function Navbar({ variant = 'light' }) {
           </div>
 
           <button
-            className={`md:hidden p-1.5 -mr-1.5 ${useDarkText ? 'text-brand-text' : 'text-white'}`}
+            className={`md:hidden relative w-11 h-11 -mr-2 ${useDarkText ? 'text-brand-text' : 'text-white'}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 16h14" />
-              </svg>
-            )}
+            <span
+              className={`absolute left-1/2 top-1/2 h-[2px] w-8 origin-center rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                menuOpen ? '-translate-x-1/2 -translate-y-1/2 rotate-45' : '-translate-x-1/2 -translate-y-[6px]'
+              }`}
+            />
+            <span
+              className={`absolute left-1/2 top-1/2 h-[2px] w-8 origin-center rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                menuOpen ? '-translate-x-1/2 -translate-y-1/2 -rotate-45' : '-translate-x-1/2 translate-y-[6px]'
+              }`}
+            />
           </button>
         </div>
       </div>

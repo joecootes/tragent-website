@@ -10,7 +10,13 @@ const trustChips = [
 export default function Hero() {
   return (
     <section className="bg-[#F3F5F8] pt-28 pb-16 lg:pt-32 lg:pb-20 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.45]" style={{ backgroundImage: 'linear-gradient(rgba(30,36,64,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(30,36,64,0.035) 1px, transparent 1px)', backgroundSize: '64px 64px' }} />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-70"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%231E2440' stroke-opacity='.045' stroke-width='1'%3E%3Cpath d='M0 30h68c8 0 8 18 16 18h96'/%3E%3Cpath d='M0 86h42c10 0 10-18 20-18h118'/%3E%3Cpath d='M118 0v30c0 8 8 8 8 16v74'/%3E%3C/g%3E%3Cg fill='%231E2440' fill-opacity='.08'%3E%3Ccircle cx='68' cy='30' r='2'/%3E%3Ccircle cx='84' cy='48' r='2'/%3E%3Ccircle cx='62' cy='68' r='2'/%3E%3Ccircle cx='126' cy='46' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
+          backgroundSize: '180px 120px',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
         <div className="max-w-4xl">

@@ -20,7 +20,7 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'grid-white': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.045' stroke-width='1'%3E%3Cpath d='M0 30h68c8 0 8 18 16 18h96'/%3E%3Cpath d='M0 86h42c10 0 10-18 20-18h118'/%3E%3Cpath d='M118 0v30c0 8 8 8 8 16v74'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.075'%3E%3Ccircle cx='68' cy='30' r='2'/%3E%3Ccircle cx='84' cy='48' r='2'/%3E%3Ccircle cx='62' cy='68' r='2'/%3E%3Ccircle cx='126' cy='46' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
+        'grid-white': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='220' viewBox='0 0 320 220'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.04' stroke-width='1'%3E%3Cpath d='M0 62h104c12 0 12 24 24 24h192'/%3E%3Cpath d='M190 0v58c0 12 12 12 12 24v138'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.07'%3E%3Ccircle cx='128' cy='86' r='2'/%3E%3Ccircle cx='202' cy='82' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
         'gradient-subtle': 'linear-gradient(180deg, #FFFFFF 0%, #F4F5F8 100%)',
         'gradient-hero': 'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(74,84,120,0.35) 0%, transparent 70%)',
       },

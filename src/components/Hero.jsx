@@ -13,8 +13,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none opacity-70"
         style={{
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%231E2440' stroke-opacity='.045' stroke-width='1'%3E%3Cpath d='M0 30h68c8 0 8 18 16 18h96'/%3E%3Cpath d='M0 86h42c10 0 10-18 20-18h118'/%3E%3Cpath d='M118 0v30c0 8 8 8 8 16v74'/%3E%3C/g%3E%3Cg fill='%231E2440' fill-opacity='.08'%3E%3Ccircle cx='68' cy='30' r='2'/%3E%3Ccircle cx='84' cy='48' r='2'/%3E%3Ccircle cx='62' cy='68' r='2'/%3E%3Ccircle cx='126' cy='46' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
-          backgroundSize: '180px 120px',
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='220' viewBox='0 0 320 220'%3E%3Cg fill='none' stroke='%231E2440' stroke-opacity='.04' stroke-width='1'%3E%3Cpath d='M0 62h104c12 0 12 24 24 24h192'/%3E%3Cpath d='M190 0v58c0 12 12 12 12 24v138'/%3E%3C/g%3E%3Cg fill='%231E2440' fill-opacity='.07'%3E%3Ccircle cx='128' cy='86' r='2'/%3E%3Ccircle cx='202' cy='82' r='2'/%3E%3C/g%3E%3C/svg%3E\")",
+          backgroundSize: '320px 220px',
         }}
       />
 

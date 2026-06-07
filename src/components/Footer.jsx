@@ -3,7 +3,7 @@ import LogoMark from './LogoMark'
 import LogoWordmark from './LogoWordmark'
 
 const productLinks = [
-  ['Product preview', '/#product'],
+  ['The product', '/#product'],
   ['How it helps', '/#how-it-helps'],
   ['Early access', '/#early-access'],
 ]
@@ -31,7 +31,7 @@ export default function Footer() {
               <LogoWordmark className="h-[22px] w-auto" />
             </a>
             <p className="text-sm leading-relaxed text-brand-text/60 max-w-xs">
-              Tragent replies to enquiries and follows up on quotes so more jobs keep moving.
+              Tragent handles the customer conversation so you don't have to.
             </p>
           </div>
 

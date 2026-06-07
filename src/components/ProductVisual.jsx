@@ -1,25 +1,16 @@
 import React from 'react'
 
 /*
- * SCREENSHOTS REQUIRED — save these three files to /public/screenshots/
- *
+ * SCREENSHOTS — /public/screenshots/
  *   conversation.png   Dan Holloway conversation thread
- *                      (enquiry → auto-reply → customer replied → draft ready)
+ *   today.png          Today screen (Tragent Active, Today's Brief, Needs attention, New enquiries)
+ *   new-enquiry.png    Jobs list with New Enquiry bottom sheet overlay
  *
- *   today.png          Today screen
- *                      (Tragent Active, Today's Brief, Needs attention, New enquiries)
- *
- *   new-enquiry.png    Jobs list with New Enquiry bottom sheet
- *                      (Customer Name, Email, Save enquiry button)
- *
- * Crop positions below are tuned for standard iPhone screenshots (~390×844pt).
- * Adjust imgTop and containerHeight values after reviewing on screen.
+ * All at 1206×2622px (iPhone 3x retina).
+ * imgTop is negative = pan down into the image.
+ * containerHeight defines the visible crop window.
  */
 
-// Renders a cropped window into a screenshot.
-// containerWidth/containerHeight define the visible frame.
-// imgWidth controls the scale of the image inside.
-// imgTop shifts the image up (negative = scroll down into the image).
 function Crop({ src, alt, containerWidth, containerHeight, imgWidth, imgTop = 0 }) {
   return (
     <div
@@ -80,16 +71,7 @@ export default function ProductVisual() {
     <section id="product" className="relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
       <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-40" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-
-        {/* Section eyebrow */}
-        <div className="pt-20 pb-16 text-center">
-          <div className="inline-flex items-center gap-3 text-white/25 text-[11px] font-bold uppercase tracking-[0.14em]">
-            <div className="w-8 h-px bg-white/15" />
-            Product preview
-            <div className="w-8 h-px bg-white/15" />
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pt-20">
 
         {/* ── Block 1: Never miss a lead ────────────────────────── */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pb-20">
@@ -120,28 +102,28 @@ export default function ProductVisual() {
 
         <Divider />
 
-        {/* ── Block 2: Focus on what needs you ─────────────────── */}
+        {/* ── Block 2: Your daily view ──────────────────────────── */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20">
 
-          {/* Screenshot: Needs attention crop */}
+          {/* Screenshot: Today's Brief → New enquiries (combined tall crop) */}
           <div className="flex justify-center lg:justify-start order-2 lg:order-1">
             <Crop
               src="/screenshots/today.png"
-              alt="Tragent Today screen showing Needs attention — James Turner and Oliver Scott"
+              alt="Tragent Today screen showing Today's Brief, Needs attention and New enquiries"
               containerWidth={320}
-              containerHeight={215}
+              containerHeight={470}
               imgWidth={320}
-              imgTop={-295}
+              imgTop={-88}
             />
           </div>
 
           {/* Text */}
           <div className="order-1 lg:order-2">
-            <Label>Operational calm</Label>
-            <Headline>Focus on the jobs that need you.</Headline>
+            <Label>Your daily view</Label>
+            <Headline>See what needs you. Ignore the rest.</Headline>
             <Sub>
-              Tragent separates work that requires your attention
-              from conversations it's already handling.
+              Every morning, Tragent gives you a clear picture — what needs
+              your attention, and what it's already handling.
             </Sub>
           </div>
 
@@ -149,58 +131,29 @@ export default function ProductVisual() {
 
         <Divider />
 
-        {/* ── Block 3: Every enquiry captured ──────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20">
+        {/* ── Block 3: Phone calls & referrals ─────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-20 pb-20">
 
           {/* Text */}
           <div className="flex flex-col justify-center">
-            <Label>New enquiries</Label>
-            <Headline>Every enquiry captured.</Headline>
+            <Label>Phone calls &amp; referrals</Label>
+            <Headline>Someone called. Don't lose the lead.</Headline>
             <Sub>
-              New leads are acknowledged immediately and
-              organised automatically — nothing slips through.
+              Log calls, referrals and walk-ins in seconds.
+              Tragent keeps everything in one place alongside email enquiries.
             </Sub>
           </div>
 
-          {/* Screenshot: New enquiries crop */}
-          <div className="flex justify-center lg:justify-end lg:-mr-6">
-            <Crop
-              src="/screenshots/today.png"
-              alt="Tragent new enquiries list — Grace Taylor, Alexander Lewis, Natalie Wilson"
-              containerWidth={320}
-              containerHeight={215}
-              imgWidth={320}
-              imgTop={-440}
-            />
-          </div>
-
-        </div>
-
-        <Divider />
-
-        {/* ── Block 4: Add enquiries in seconds ────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-20 pb-20">
-
           {/* Screenshot: New Enquiry bottom sheet */}
-          <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+          <div className="flex justify-center lg:justify-end lg:-mr-6">
             <Crop
               src="/screenshots/new-enquiry.png"
               alt="New Enquiry form with customer name, email and phone fields"
               containerWidth={295}
               containerHeight={430}
               imgWidth={295}
-              imgTop={-205}
+              imgTop={-230}
             />
-          </div>
-
-          {/* Text */}
-          <div className="order-1 lg:order-2">
-            <Label>Manual entry</Label>
-            <Headline>Add enquiries in seconds.</Headline>
-            <Sub>
-              Phone calls, referrals and walk-ins can all
-              be tracked in one place alongside email enquiries.
-            </Sub>
           </div>
 
         </div>

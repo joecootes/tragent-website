@@ -111,9 +111,9 @@ export default function ProductVisual() {
               src="/screenshots/today.png"
               alt="Tragent Today screen showing Today's Brief, Needs attention and New enquiries"
               containerWidth={320}
-              containerHeight={470}
+              containerHeight={555}
               imgWidth={320}
-              imgTop={-88}
+              imgTop={-110}
             />
           </div>
 

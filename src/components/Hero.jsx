@@ -60,7 +60,7 @@ export default function Hero() {
               className="relative overflow-hidden flex-shrink-0 select-none"
               style={{
                 width: 255,
-                height: 490,
+                height: 450,
                 borderRadius: 28,
                 boxShadow: '0 24px 64px rgba(30,36,64,0.18), 0 4px 16px rgba(30,36,64,0.10)',
               }}
@@ -72,7 +72,7 @@ export default function Hero() {
                 style={{
                   position: 'absolute',
                   width: 255,
-                  top: -55,
+                  top: -100,
                   left: 0,
                   display: 'block',
                 }}

@@ -110,7 +110,7 @@ export default function ProductVisual() {
               src="/screenshots/conversation.png"
               alt="Tragent conversation showing enquiry, auto-reply, customer response and draft ready"
               containerWidth={295}
-              containerHeight={530}
+              containerHeight={590}
               imgWidth={295}
               imgTop={0}
             />
@@ -170,7 +170,7 @@ export default function ProductVisual() {
               containerWidth={320}
               containerHeight={215}
               imgWidth={320}
-              imgTop={-415}
+              imgTop={-440}
             />
           </div>
 
@@ -187,7 +187,7 @@ export default function ProductVisual() {
               src="/screenshots/new-enquiry.png"
               alt="New Enquiry form with customer name, email and phone fields"
               containerWidth={295}
-              containerHeight={390}
+              containerHeight={430}
               imgWidth={295}
               imgTop={-205}
             />

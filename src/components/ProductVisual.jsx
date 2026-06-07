@@ -1,166 +1,210 @@
 import React from 'react'
-import LogoMark from './LogoMark'
 
-function InboxPanel() {
-  const items = [
-    { initials: 'MT', name: 'Mark Thompson', msg: 'Thanks, looking forward to the visit', time: '2m', status: 'Replied', statusColor: 'text-brand-navy bg-brand-navy/10' },
-    { initials: 'SW', name: 'Sarah Williams', msg: "Hi, need a quote for a new boiler...", time: '11m', status: 'New', statusColor: 'text-brand-navy bg-brand-navy/8' },
-    { initials: 'RB', name: 'Rob Baker', msg: 'Can you fit me in this week?', time: '34m', status: 'New', statusColor: 'text-brand-navy bg-brand-navy/8' },
-    { initials: 'CL', name: 'Carol Lawson', msg: 'Quote accepted — when can you start?', time: '1h', status: 'Confirmed', statusColor: 'text-brand-navy bg-brand-navy/10' },
-    { initials: 'DH', name: 'David Hughes', msg: 'Just following up on the estimate...', time: '2h', status: 'Chasing', statusColor: 'text-brand-navy bg-brand-navy/10' },
-  ]
+/*
+ * SCREENSHOTS REQUIRED — save these three files to /public/screenshots/
+ *
+ *   conversation.png   Dan Holloway conversation thread
+ *                      (enquiry → auto-reply → customer replied → draft ready)
+ *
+ *   today.png          Today screen
+ *                      (Tragent Active, Today's Brief, Needs attention, New enquiries)
+ *
+ *   new-enquiry.png    Jobs list with New Enquiry bottom sheet
+ *                      (Customer Name, Email, Save enquiry button)
+ *
+ * Crop positions below are tuned for standard iPhone screenshots (~390×844pt).
+ * Adjust imgTop and containerHeight values after reviewing on screen.
+ */
 
+// Renders a cropped window into a screenshot.
+// containerWidth/containerHeight define the visible frame.
+// imgWidth controls the scale of the image inside.
+// imgTop shifts the image up (negative = scroll down into the image).
+function Crop({ src, alt, containerWidth, containerHeight, imgWidth, imgTop = 0 }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-150 shadow-lg overflow-hidden">
-      <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-brand-gray/60">
-        <div className="flex items-center gap-2">
-          <svg className="w-4 h-4 text-brand-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-          </svg>
-          <span className="text-xs font-bold text-brand-text">Enquiry Inbox</span>
-        </div>
-        <span className="bg-brand-navy text-white text-[10px] font-black px-2 py-0.5 rounded-full">2 unread</span>
-      </div>
-      <div className="divide-y divide-gray-50">
-        {items.map((item, i) => (
-          <div key={i} className={`px-4 py-3 flex items-center gap-3 transition-colors cursor-default ${i < 2 ? 'bg-brand-navy/3' : ''}`}>
-            <div className="w-8 h-8 rounded-full bg-brand-navy flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-[10px] font-bold">{item.initials}</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="text-xs font-semibold text-brand-text truncate">{item.name}</span>
-                <span className="text-[10px] text-gray-400 flex-shrink-0 ml-2">{item.time}</span>
-              </div>
-              <p className="text-[11px] text-gray-500 truncate">{item.msg}</p>
-            </div>
-            <span className={`flex-shrink-0 text-[9px] font-bold px-2 py-0.5 rounded-full ${item.statusColor}`}>
-              {item.status}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div
+      className="relative overflow-hidden flex-shrink-0 select-none"
+      style={{
+        width: containerWidth,
+        height: containerHeight,
+        borderRadius: 24,
+        boxShadow: '0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(0,0,0,0.3)',
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        style={{
+          position: 'absolute',
+          width: imgWidth ?? containerWidth,
+          top: imgTop,
+          left: 0,
+          display: 'block',
+        }}
+      />
     </div>
   )
 }
 
-function ReplyPanel() {
+function Label({ children }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-150 shadow-lg overflow-hidden">
-      <div className="px-4 py-3 border-b border-gray-100 bg-brand-gray/60 flex items-center gap-2">
-        <div className="w-6 h-6 flex items-center justify-center">
-          <LogoMark className="w-6 h-6" />
-        </div>
-        <span className="text-xs font-bold text-brand-text">AI Suggested Reply</span>
-        <div className="ml-auto flex items-center gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-brand-navy/60 animate-pulse" />
-          <span className="text-[10px] text-gray-400">Live</span>
-        </div>
-      </div>
-      <div className="p-4">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-7 h-7 rounded-full bg-brand-navy flex items-center justify-center">
-            <span className="text-white text-[10px] font-bold">SW</span>
-          </div>
-          <div>
-            <div className="text-xs font-semibold text-brand-text">Sarah Williams</div>
-            <div className="text-[10px] text-gray-400">New enquiry · via web form</div>
-          </div>
-        </div>
-        <div className="bg-brand-gray border border-gray-100 rounded-lg p-3 mb-3">
-          <p className="text-[11px] text-gray-600 leading-relaxed">
-            Hi there, I need a quote for a new boiler. 3-bed house, current one is 12 years old. Looking to get done asap.
-          </p>
-        </div>
-        <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-lg p-3 mb-3">
-          <p className="text-[11px] text-gray-700 leading-relaxed">
-            Hi Sarah, thanks for getting in touch! A boiler replacement sounds straightforward — we can definitely help. I'll have someone call you in the next hour to get a few more details and get you booked in for a free survey. What's the best number?
-          </p>
-        </div>
-        <div className="flex gap-2" aria-hidden="true">
-          <div className="flex-1 bg-brand-navy text-white text-[11px] font-bold py-2 rounded-md text-center select-none">
-            Send Reply
-          </div>
-          <div className="px-3 border border-gray-200 text-gray-500 text-[11px] py-2 rounded-md text-center select-none">
-            Edit
-          </div>
-        </div>
-      </div>
-    </div>
+    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">
+      {children}
+    </p>
   )
 }
 
-function JobBoard() {
-  const jobs = [
-    { name: 'Mark Thompson', job: 'Full rewire — 3 bed semi', date: 'Mon 27 Jan', status: 'Confirmed', color: 'bg-brand-navy/10 text-brand-navy' },
-    { name: 'Carol Lawson', job: 'Consumer unit upgrade', date: 'Tue 28 Jan', status: 'Confirmed', color: 'bg-brand-navy/10 text-brand-navy' },
-    { name: 'James Patel', job: 'Boiler service + flush', date: 'Wed 29 Jan', status: 'Quoted', color: 'bg-brand-navy/10 text-brand-navy' },
-    { name: 'Lisa Roberts', job: 'Bathroom rewire', date: 'Thu 30 Jan', status: 'Pending', color: 'bg-brand-navy/10 text-brand-navy' },
-    { name: 'David Hughes', job: 'EV charger installation', date: 'Fri 31 Jan', status: 'Quoted', color: 'bg-brand-navy/10 text-brand-navy' },
-  ]
-
+function Headline({ children }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-150 shadow-lg overflow-hidden">
-      <div className="px-4 py-3 border-b border-gray-100 bg-brand-gray/60 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <svg className="w-4 h-4 text-brand-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-          </svg>
-          <span className="text-xs font-bold text-brand-text">Job Overview</span>
-        </div>
-        <span className="text-[10px] text-gray-400 font-medium">Week of Jan 27</span>
-      </div>
-      <div className="divide-y divide-gray-50">
-        {jobs.map((job, i) => (
-          <div key={i} className="px-4 py-3 flex items-center gap-3 transition-colors cursor-default">
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-semibold text-brand-text mb-0.5">{job.name}</div>
-              <div className="text-[11px] text-gray-500 truncate">{job.job}</div>
-            </div>
-            <div className="text-[10px] text-gray-400 flex-shrink-0">{job.date}</div>
-            <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${job.color}`}>
-              {job.status}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="px-4 py-3 border-t border-gray-100 bg-brand-gray/30 flex items-center justify-between">
-        <span className="text-[11px] text-gray-500">5 jobs this week</span>
-        <div className="flex items-center gap-3 text-[10px] text-gray-400">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy/60 inline-block" />2 confirmed</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy inline-block" />2 quoted</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-brand-navy/50 inline-block" />1 pending</span>
-        </div>
-      </div>
-    </div>
+    <h3 className="text-[38px] lg:text-[48px] font-black text-white leading-[1.03] tracking-[-0.035em] mb-4 text-balance">
+      {children}
+    </h3>
   )
+}
+
+function Sub({ children }) {
+  return (
+    <p className="text-white/50 text-lg leading-relaxed max-w-[340px]">
+      {children}
+    </p>
+  )
+}
+
+function Divider() {
+  return <div className="w-full h-px bg-white/[0.07]" />
 }
 
 export default function ProductVisual() {
   return (
-    <section id="product" className="bg-brand-navy-dark py-20 lg:py-24 relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
-      <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-50" />
+    <section id="product" className="relative overflow-hidden" style={{ backgroundColor: '#1A2038' }}>
+      <div className="absolute inset-0 bg-grid-white pointer-events-none opacity-40" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 text-white/40 text-xs font-bold uppercase tracking-widest mb-4">
-            <div className="w-6 h-px bg-white/30" />
+
+        {/* Section eyebrow */}
+        <div className="pt-20 pb-16 text-center">
+          <div className="inline-flex items-center gap-3 text-white/25 text-[11px] font-bold uppercase tracking-[0.14em]">
+            <div className="w-8 h-px bg-white/15" />
             Product preview
-            <div className="w-6 h-px bg-white/30" />
+            <div className="w-8 h-px bg-white/15" />
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-4">
-            Enquiries replied to. Quotes followed up.
-          </h2>
-          <p className="text-white/50 text-lg leading-relaxed">
-            Tragent keeps the customer conversation moving while you focus on the job in front of you.
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          <InboxPanel />
-          <ReplyPanel />
-          <JobBoard />
+        {/* ── Block 1: Never miss a lead ────────────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pb-20">
+
+          {/* Text */}
+          <div className="flex flex-col justify-center">
+            <Label>AI replies instantly</Label>
+            <Headline>Never miss a lead.</Headline>
+            <Sub>
+              Tragent replies instantly, gathers the information you need,
+              and drafts the next response for your approval.
+            </Sub>
+          </div>
+
+          {/* Screenshot: conversation thread */}
+          <div className="flex justify-center lg:justify-end lg:-mr-6">
+            <Crop
+              src="/screenshots/conversation.png"
+              alt="Tragent conversation showing enquiry, auto-reply, customer response and draft ready"
+              containerWidth={295}
+              containerHeight={530}
+              imgWidth={295}
+              imgTop={0}
+            />
+          </div>
+
         </div>
+
+        <Divider />
+
+        {/* ── Block 2: Focus on what needs you ─────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20">
+
+          {/* Screenshot: Needs attention crop */}
+          <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+            <Crop
+              src="/screenshots/today.png"
+              alt="Tragent Today screen showing Needs attention — James Turner and Oliver Scott"
+              containerWidth={320}
+              containerHeight={215}
+              imgWidth={320}
+              imgTop={-295}
+            />
+          </div>
+
+          {/* Text */}
+          <div className="order-1 lg:order-2">
+            <Label>Operational calm</Label>
+            <Headline>Focus on the jobs that need you.</Headline>
+            <Sub>
+              Tragent separates work that requires your attention
+              from conversations it's already handling.
+            </Sub>
+          </div>
+
+        </div>
+
+        <Divider />
+
+        {/* ── Block 3: Every enquiry captured ──────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20">
+
+          {/* Text */}
+          <div className="flex flex-col justify-center">
+            <Label>New enquiries</Label>
+            <Headline>Every enquiry captured.</Headline>
+            <Sub>
+              New leads are acknowledged immediately and
+              organised automatically — nothing slips through.
+            </Sub>
+          </div>
+
+          {/* Screenshot: New enquiries crop */}
+          <div className="flex justify-center lg:justify-end lg:-mr-6">
+            <Crop
+              src="/screenshots/today.png"
+              alt="Tragent new enquiries list — Grace Taylor, Alexander Lewis, Natalie Wilson"
+              containerWidth={320}
+              containerHeight={215}
+              imgWidth={320}
+              imgTop={-415}
+            />
+          </div>
+
+        </div>
+
+        <Divider />
+
+        {/* ── Block 4: Add enquiries in seconds ────────────────── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-20 pb-20">
+
+          {/* Screenshot: New Enquiry bottom sheet */}
+          <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+            <Crop
+              src="/screenshots/new-enquiry.png"
+              alt="New Enquiry form with customer name, email and phone fields"
+              containerWidth={295}
+              containerHeight={390}
+              imgWidth={295}
+              imgTop={-205}
+            />
+          </div>
+
+          {/* Text */}
+          <div className="order-1 lg:order-2">
+            <Label>Manual entry</Label>
+            <Headline>Add enquiries in seconds.</Headline>
+            <Sub>
+              Phone calls, referrals and walk-ins can all
+              be tracked in one place alongside email enquiries.
+            </Sub>
+          </div>
+
+        </div>
+
       </div>
     </section>
   )

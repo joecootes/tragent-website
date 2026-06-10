@@ -1,26 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tragent — Stop Losing Jobs. Get Your Evenings Back.</title>
-    <meta name="description" content="Tragent is an AI admin assistant for tradespeople. Reply faster, organise enquiries, and cut evening admin." />
-    <link rel="canonical" href="https://www.trytragent.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.trytragent.com/" />
-    <meta property="og:title" content="Tragent — AI admin assistant for tradespeople" />
-    <meta property="og:description" content="Reply faster, organise enquiries, and keep trade jobs moving without spending every evening on your phone." />
-    <meta property="og:site_name" content="Tragent" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Tragent — AI admin assistant for tradespeople" />
-    <meta name="twitter:description" content="Reply faster, organise enquiries, and keep trade jobs moving without spending every evening on your phone." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tragent. Never miss another enquiry</title>
+  <meta name="description" content="Tragent is the AI assistant for UK tradespeople. It watches your inbox, replies to real enquiries in minutes, and follows up when customers go quiet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;510;600;650;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <script>document.documentElement.dataset.theme = localStorage.getItem("tragent-theme") || "blue";</script>
+</head>
+<body>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav-wrap" id="nav">
+    <nav class="nav container">
+      <a href="#" class="nav-logo" aria-label="Tragent home">
+        <span class="logo-mark">
+          <img src="assets/tragent-logo-white.svg" alt="" width="24" height="30" />
+        </span>
+        <span class="logo-word">Tragent</span>
+      </a>
+      <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#proof">Proof</a>
+        <a href="#trust">Trust</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="nav-login">Log in</a>
+        <a href="#cta" class="btn btn-primary btn-sm">Start free</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <a href="#cta" class="hero-badge reveal">
+              <span class="badge-dot"></span>
+              Gmail is live. WhatsApp Business coming soon
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <h1 class="hero-title reveal d-1">Never miss<br />another enquiry.</h1>
+          </div>
+          <div class="hero-right reveal d-2">
+            <p class="hero-sub">Tragent watches your inbox, replies to real enquiries in minutes, and follows up when customers go quiet. You stay on the tools. Nothing slips.</p>
+            <div class="hero-ctas">
+              <a href="#cta" class="btn btn-primary btn-lg">Start free</a>
+              <a href="#how" class="btn btn-ghost btn-lg">See how it works
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+            <span class="hero-note reveal d-3">Set up in about two minutes. No card needed.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product screenshot (built UI), full-bleed stage -->
+      <div class="container-wide">
+        <div class="hero-shot reveal d-3">
+          <div class="app-frame" id="heroApp">
+            <div class="app-titlebar">
+              <span class="tb-dot"></span><span class="tb-dot"></span><span class="tb-dot"></span>
+              <span class="tb-url">app.tragent.com/today</span>
+            </div>
+            <div class="app-body">
+              <aside class="app-sidebar">
+                <div class="sb-account">
+                  <span class="sb-avatar">DW</span>
+                  <span class="sb-name">Dawson Electrical</span>
+                </div>
+                <div class="sb-group">
+                  <a class="sb-item active"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Today<span class="sb-count">6</span></a>
+                  <a class="sb-item"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="2.5" y="3.5" width="11" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 7h11" stroke="currentColor" stroke-width="1.4"/></svg>Jobs<span class="sb-count">23</span></a>
+                  <a class="sb-item"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 13c.7-2.3 2.7-3.5 5-3.5s4.3 1.2 5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Customers</a>
+                  <a class="sb-item"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M3 8a5 5 0 1 1 1.5 3.6M3 8V5m0 3h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Follow-ups<span class="sb-count">4</span></a>
+                  <a class="sb-item"><svg viewBox="0 0 16 16" width="14" height="14" fill="none"><path d="M8 2l1.8 3.6 4 .6-2.9 2.8.7 4L8 11.1 4.4 13l.7-4L2.2 6.2l4-.6L8 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Automations</a>
+                </div>
+              </aside>
+              <div class="app-main">
+                <div class="app-main-head">
+                  <h4>Today</h4>
+                  <span class="app-date">Wednesday, 10 June</span>
+                </div>
+                <div class="app-stats">
+                  <div><strong>14</strong><span>enquiries this week</span></div>
+                  <div><strong>3m</strong><span>avg. first reply</span></div>
+                  <div><strong>9</strong><span>awaiting customer</span></div>
+                  <div><strong>5</strong><span>booked this week</span></div>
+                </div>
+                <div class="enquiry-card glowable">
+                  <div class="eq-row">
+                    <span class="eq-avatar a1">SR</span>
+                    <div class="eq-meta">
+                      <span class="eq-name">Sarah Reeve</span>
+                      <span class="eq-snippet">Hi, I need a full rewire quote for a 3-bed semi in Didsbury...</span>
+                    </div>
+                    <span class="eq-time">12m ago</span>
+                  </div>
+                  <div class="eq-ai">
+                    <span class="ai-chip"><svg viewBox="0 0 16 16" width="11" height="11" fill="none"><path d="M8 1.5l1.6 3.7 4 .4-3 2.7.9 3.9L8 10.1l-3.5 2.1.9-3.9-3-2.7 4-.4L8 1.5z" fill="currentColor"/></svg>Replied in 3 minutes</span>
+                    <span class="eq-reply">"Hi Sarah, yes we can sort that. Can you send your postcode, a contact number, and a couple of days that suit for a look round?"</span>
+                  </div>
+                </div>
+                <div class="enquiry-card glowable">
+                  <div class="eq-row">
+                    <span class="eq-avatar a2">MT</span>
+                    <div class="eq-meta">
+                      <span class="eq-name">Mark Tully</span>
+                      <span class="eq-snippet">Quote sent £2,840. Kitchen ring main and consumer unit</span>
+                    </div>
+                    <span class="eq-time">1h ago</span>
+                  </div>
+                  <div class="eq-ai">
+                    <span class="ai-chip chip-amber"><svg viewBox="0 0 16 16" width="11" height="11" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Follow-up scheduled · Friday 9:00</span>
+                  </div>
+                </div>
+                <div class="enquiry-card glowable">
+                  <div class="eq-row">
+                    <span class="eq-avatar a3">JP</span>
+                    <div class="eq-meta">
+                      <span class="eq-name">Jess Parker</span>
+                      <span class="eq-snippet">Yes, let's go ahead with the EV charger install</span>
+                    </div>
+                    <span class="eq-time">3h ago</span>
+                  </div>
+                  <div class="eq-ai">
+                    <span class="ai-chip chip-green"><svg viewBox="0 0 16 16" width="11" height="11" fill="none"><path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked · moved to Jobs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trades strip -->
+      <div class="container">
+        <div class="social-proof reveal d-4">
+          <p>Built for UK trades</p>
+          <div class="proof-logos">
+            <span>Electricians</span>
+            <span>Plumbers</span>
+            <span>Heating engineers</span>
+            <span>Roofers</span>
+            <span>Builders</span>
+            <span>Scaffolders</span>
+            <span>Plasterers</span>
+            <span>Landscapers</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROBLEM ======================= -->
+    <section class="section problem" id="problem">
+      <div class="container">
+        <div class="section-head split reveal">
+          <div>
+            <span class="eyebrow">The problem</span>
+            <h2>The first reply<br /><span class="dim">usually wins the job.</span></h2>
+          </div>
+          <p class="section-sub">You are on the tools all day. Enquiries pile up in your inbox, quotes go quiet, and customers book whoever answers first.</p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card glowable reveal">
+            <span class="stat">1st</span>
+            <h3>The first tradesperson to reply usually gets the visit</h3>
+            <p>A customer emails three electricians and books the one who answers. Speed wins the job before price even comes up.</p>
+          </div>
+          <div class="problem-card glowable reveal d-1">
+            <span class="stat">8pm</span>
+            <h3>When most tradespeople finally get to their inbox</h3>
+            <p>By the time you reply from the sofa, the job has often gone to whoever answered at lunchtime.</p>
+          </div>
+          <div class="problem-card glowable reveal d-2">
+            <span class="stat">£0</span>
+            <h3>What a quote earns when nobody chases it</h3>
+            <p>Most quotes are never followed up. One polite nudge is often all it takes, and it almost never happens.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= HOW IT WORKS ======================= -->
+    <section class="section how" id="how">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How Tragent works</span>
+          <h2>Connect Gmail.<br /><span class="dim">Tragent does the rest.</span></h2>
+        </div>
+        <div class="how-grid">
+          <div class="how-card glowable reveal">
+            <span class="how-num">01</span>
+            <div class="how-visual">
+              <div class="hv-connect">
+                <span class="hv-logo hv-gmail"><img src="assets/gmail-logo.svg" alt="Gmail" /></span>
+                <span class="hv-line"><span class="hv-pulse"></span></span>
+                <span class="hv-logo hv-tragent"><img src="assets/tragent-logo-white.svg" alt="Tragent" /></span>
+              </div>
+            </div>
+            <h3>Connect your Gmail</h3>
+            <p>Two clicks and Tragent starts watching for new enquiries. It tells real customers apart from spam, invoices and marketing, and only ever replies to genuine enquiries.</p>
+          </div>
+          <div class="how-card glowable reveal d-1">
+            <span class="how-num">02</span>
+            <div class="how-visual">
+              <div class="hv-reply">
+                <span class="hv-msg in">Can you fit a new consumer unit?</span>
+                <span class="hv-msg out">Replied in 3 min<svg viewBox="0 0 16 16" width="11" height="11" fill="none"><path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </div>
+            <h3>Tragent replies in minutes</h3>
+            <p>It confirms you can help and asks for what is missing: postcode, contact number, the key job detail. Quotes, prices and technical advice always stay with you.</p>
+          </div>
+          <div class="how-card glowable reveal d-2">
+            <span class="how-num">03</span>
+            <div class="how-visual">
+              <div class="hv-pipeline">
+                <span class="hv-stage">New</span>
+                <span class="hv-arrow">→</span>
+                <span class="hv-stage">Quote sent</span>
+                <span class="hv-arrow">→</span>
+                <span class="hv-stage won">Booked</span>
+              </div>
+            </div>
+            <h3>Every enquiry becomes a job</h3>
+            <p>Each conversation moves through a pipeline: new enquiry, awaiting details, ready to quote, quote sent, booked, completed. You always know where everything stands.</p>
+          </div>
+          <div class="how-card glowable reveal d-3">
+            <span class="how-num">04</span>
+            <div class="how-visual">
+              <div class="hv-followup">
+                <span class="hv-day done">Mon · Quote sent</span>
+                <span class="hv-day done">Wed · Customer quiet</span>
+                <span class="hv-day active">Thu · Follow-up sent</span>
+              </div>
+            </div>
+            <h3>Follows up until it is booked or done</h3>
+            <p>If a customer goes quiet, Tragent sends a gentle nudge after 24 to 48 hours. You set the limit, edit any message before it sends, and can stop it with one tap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PRODUCT SHOWCASE ======================= -->
+    <section class="section product" id="product">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Product</span>
+          <h2>Built for the way<br /><span class="dim">trades businesses actually run.</span></h2>
+        </div>
+
+        <!-- Feature 1: Today -->
+        <div class="feature reveal">
+          <div class="feature-copy">
+            <span class="feature-tag">Today screen</span>
+            <h3>Your whole day, on one screen.</h3>
+            <p>Open Tragent with your morning brew and see everything that matters: new enquiries, replies sent, follow-ups scheduled, and anything waiting on a decision from you.</p>
+            <ul class="feature-list">
+              <li>New enquiries spotted and answered automatically</li>
+              <li>Everything Tragent sends is visible in the app</li>
+              <li>If something needs your attention, it is here</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="mini-app glowable">
+              <div class="mini-head"><span class="mini-title">Today</span><span class="mini-pill">6 items</span></div>
+              <div class="mini-row"><span class="mini-dot dot-blue"></span><span class="mini-text">Sarah Reeve, rewire enquiry <em>· replied 3m</em></span></div>
+              <div class="mini-row"><span class="mini-dot dot-amber"></span><span class="mini-text">Mark Tully, follow-up due Friday</span></div>
+              <div class="mini-row"><span class="mini-dot dot-green"></span><span class="mini-text">Jess Parker, booked, EV charger</span></div>
+              <div class="mini-row"><span class="mini-dot dot-blue"></span><span class="mini-text">T. Okafor, new enquiry, fuse board</span></div>
+              <div class="mini-row faded"><span class="mini-dot dot-grey"></span><span class="mini-text">Hill St job marked completed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Jobs -->
+        <div class="feature flip reveal">
+          <div class="feature-copy">
+            <span class="feature-tag">Jobs</span>
+            <h3>Every job, from first message to booked in.</h3>
+            <p>A clean pipeline that mirrors how work really flows: new enquiry, awaiting details, ready to quote, quote sent, booked, completed. The full message history sits behind every job.</p>
+            <ul class="feature-list">
+              <li>See what is waiting on the customer and what is waiting on you</li>
+              <li>Every reply and follow-up attached to the job</li>
+              <li>Nothing lives only in your inbox any more</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="mini-app glowable">
+              <div class="mini-head"><span class="mini-title">Jobs</span><span class="mini-pill">23 active</span></div>
+              <div class="kanban">
+                <div class="kb-col"><span class="kb-label">Ready to quote</span><div class="kb-card">Rewire · Didsbury</div><div class="kb-card">Fuse board · M20</div></div>
+                <div class="kb-col"><span class="kb-label">Quote sent</span><div class="kb-card">Kitchen · £2,840</div></div>
+                <div class="kb-col"><span class="kb-label">Booked</span><div class="kb-card hot">EV charger · Tue</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Follow-ups -->
+        <div class="feature reveal">
+          <div class="feature-copy">
+            <span class="feature-tag">Follow-ups</span>
+            <h3>The polite persistence that wins work.</h3>
+            <p>When a customer goes quiet, Tragent waits 24 to 48 hours and sends a friendly nudge. It stops the moment they reply. You decide how many nudges feel right.</p>
+            <ul class="feature-list">
+              <li>Set the limit: one, two or three follow-ups</li>
+              <li>Edit any message before it sends</li>
+              <li>Stop any follow-up with one tap</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="mini-app glowable">
+              <div class="mini-head"><span class="mini-title">Follow-ups</span><span class="mini-pill">4 scheduled</span></div>
+              <div class="fu-row"><span class="fu-when done">Sent</span><span class="mini-text">"Just checking you got the quote over okay..."</span><span class="fu-status sent">Replied</span></div>
+              <div class="fu-row"><span class="fu-when">In 12h</span><span class="mini-text">"Morning, any questions on the quote at all?"</span><span class="fu-status">Edit</span></div>
+              <div class="fu-row"><span class="fu-when">In 2d</span><span class="mini-text">"We have space week of the 23rd if that helps..."</span><span class="fu-status">Stop</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4: Knows when to stop -->
+        <div class="feature flip reveal">
+          <div class="feature-copy">
+            <span class="feature-tag">Lead intelligence</span>
+            <h3>It knows when a conversation is over.</h3>
+            <p>Tragent reads every customer reply and works out whether there is still a next step. Finished conversations are left alone. When it is not sure, it never guesses. It asks you.</p>
+            <ul class="feature-list">
+              <li>"Thanks, all sorted" never gets chased</li>
+              <li>"I'll come back to you" gets a polite nudge days later</li>
+              <li>No customer ever gets an awkward chase after saying goodbye</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="mini-app glowable">
+              <div class="mini-head"><span class="mini-title">Customer replies</span><span class="mini-pill">classified</span></div>
+              <div class="stop-row">
+                <span class="stop-quote">"Thanks, all sorted now."</span>
+                <span class="ai-chip chip-green">Closed · no follow-up</span>
+              </div>
+              <div class="stop-row">
+                <span class="stop-quote">"I'll check with my wife and come back to you."</span>
+                <span class="ai-chip chip-amber">Waiting · nudge in 2 days</span>
+              </div>
+              <div class="stop-row">
+                <span class="stop-quote">"Maybe later in the year, depends on budget."</span>
+                <span class="ai-chip">Not sure · asking you first</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 5: Control -->
+        <div class="feature reveal">
+          <div class="feature-copy">
+            <span class="feature-tag">You're in control</span>
+            <h3>Automatic, never out of your hands.</h3>
+            <p>Auto-replies and follow-ups have simple on and off switches. You get a notification when Tragent handles an enquiry, sends a follow-up, or needs you to decide something.</p>
+            <ul class="feature-list">
+              <li>Turn auto-replies and follow-ups on or off any time</li>
+              <li>Review and edit drafts before they send</li>
+              <li>Push notifications keep you in the loop</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="mini-app glowable">
+              <div class="mini-head"><span class="mini-title">Automations</span><span class="mini-pill">2 on</span></div>
+              <div class="auto-row"><span class="auto-toggle on"></span><div class="auto-meta"><span class="mini-text">Auto-reply to new enquiries</span><em>On · replies within minutes</em></div></div>
+              <div class="auto-row"><span class="auto-toggle on"></span><div class="auto-meta"><span class="mini-text">Follow up quiet customers</span><em>On · limit 2 per customer</em></div></div>
+              <div class="auto-row"><span class="auto-toggle"></span><div class="auto-meta"><span class="mini-text">WhatsApp Business</span><em>Coming soon · join the waitlist</em></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROOF ======================= -->
+    <section class="section proof" id="proof">
+      <div class="container">
+        <div class="section-head split reveal">
+          <div>
+            <span class="eyebrow">Proof</span>
+            <h2>One enquiry,<br /><span class="dim">start to finish.</span></h2>
+          </div>
+          <p class="section-sub">A typical job through Tragent. The only thing you did yourself was send the quote.</p>
+        </div>
+        <div class="journey reveal">
+          <div class="j-item">
+            <span class="j-time">Tue 11:43</span>
+            <span class="j-dot"></span>
+            <div class="j-body">
+              <span class="j-title">Enquiry arrives</span>
+              <span class="j-text">"Hi, we need scaffolding up for a chimney repair in Leeds. Can you help?"</span>
+            </div>
+          </div>
+          <div class="j-item">
+            <span class="j-time">Tue 11:46</span>
+            <span class="j-dot j-active"></span>
+            <div class="j-body">
+              <span class="j-title">Tragent replies <span class="ai-chip">sent for you</span></span>
+              <span class="j-text">"Hi, yes we can sort that. Can you send your postcode, contact number, and roughly how long you'll need it up for?"</span>
+            </div>
+          </div>
+          <div class="j-item">
+            <span class="j-time">Tue 11:58</span>
+            <span class="j-dot"></span>
+            <div class="j-body">
+              <span class="j-title">Customer sends details</span>
+              <span class="j-text">Job moves to Ready to quote. You see it at lunch.</span>
+            </div>
+          </div>
+          <div class="j-item">
+            <span class="j-time">Tue 18:10</span>
+            <span class="j-dot"></span>
+            <div class="j-body">
+              <span class="j-title">You send the quote <span class="ai-chip chip-grey">your job, not Tragent's</span></span>
+              <span class="j-text">Two minutes in the van at the end of the day. Job moves to Quote sent.</span>
+            </div>
+          </div>
+          <div class="j-item">
+            <span class="j-time">Thu 09:00</span>
+            <span class="j-dot j-active"></span>
+            <div class="j-body">
+              <span class="j-title">Customer goes quiet. Tragent follows up <span class="ai-chip">sent for you</span></span>
+              <span class="j-text">"Morning, just checking the quote came through okay. Any questions, give us a shout."</span>
+            </div>
+          </div>
+          <div class="j-item">
+            <span class="j-time">Thu 09:38</span>
+            <span class="j-dot j-won"></span>
+            <div class="j-body">
+              <span class="j-title">Booked</span>
+              <span class="j-text">"Great, let's get it booked in." Job moves to Booked. You never touched your phone before 6pm.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TRUST ======================= -->
+    <section class="section trust" id="trust">
+      <div class="container">
+        <div class="section-head split reveal">
+          <div>
+            <span class="eyebrow">Trust</span>
+            <h2>Connecting your inbox<br /><span class="dim">is a big ask. Here are the rules.</span></h2>
+          </div>
+          <p class="section-sub">Tragent only touches customer enquiries. Everything else in your Google account is off limits, and everything it sends is visible in the app.</p>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-card glowable reveal">
+            <h3><span class="trust-icon can"><svg viewBox="0 0 16 16" width="12" height="12" fill="none"><path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tragent can</h3>
+            <ul class="trust-list">
+              <li>Read new customer enquiries as they arrive</li>
+              <li>Send replies on your behalf</li>
+              <li>Track customer conversations as jobs</li>
+              <li>Schedule and send follow-ups</li>
+            </ul>
+          </div>
+          <div class="trust-card glowable reveal d-1">
+            <h3><span class="trust-icon cannot"><svg viewBox="0 0 16 16" width="11" height="11" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>Tragent cannot</h3>
+            <ul class="trust-list">
+              <li>Access Google Drive, Calendar or Photos</li>
+              <li>Read emails from before you connected</li>
+              <li>Send quotes, prices or technical advice</li>
+              <li>Email anyone who is not a customer enquiry</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FINAL CTA ======================= -->
+    <section class="section final-cta" id="cta">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container reveal">
+        <h2>Stop missing enquiries.</h2>
+        <p>Connect Gmail and Tragent starts watching your inbox today. Set up takes about two minutes.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary btn-lg">Start free</a>
+          <a href="#" class="btn btn-ghost btn-lg">Get early access</a>
+        </div>
+        <span class="cta-note">Gmail today · WhatsApp Business coming soon · Cancel anytime</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="logo-mark"><img src="assets/tragent-logo-white.svg" alt="" width="24" height="30" /></span>
+          <span class="logo-word">Tragent</span>
+        </a>
+        <p>The AI assistant that answers enquiries for UK tradespeople.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#product">Today screen</a>
+          <a href="#product">Follow-ups</a>
+          <a href="#trust">Trust and permissions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Trades</h4>
+          <a href="#">Electricians</a>
+          <a href="#">Plumbers</a>
+          <a href="#">Heating engineers</a>
+          <a href="#">Roofers</a>
+          <a href="#">Builders</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-base">
+      <span>© 2026 Tragent. All rights reserved.</span>
+      <span>Made in the UK 🇬🇧</span>
+    </div>
+  </footer>
+
+  <!-- Palette evaluation tool — remove before launch -->
+  <div class="theme-switcher" id="themeSwitcher" role="group" aria-label="Palette experiment">
+    <span class="ts-label">Palette</span>
+    <button data-set-theme="mono"><span class="ts-swatch sw-mono"></span>Mono</button>
+    <button data-set-theme="sage"><span class="ts-swatch sw-sage"></span>Sage</button>
+    <button data-set-theme="blue"><span class="ts-swatch sw-blue"></span>Blue</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

@@ -1391,62 +1391,6 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .legal a { color: var(--accent-bright); }
 .legal a:hover { text-decoration: underline; }
 
-/* ============ Theme switcher (evaluation tool) ============ */
-
-.theme-switcher {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(15, 16, 17, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-strong);
-  border-radius: 100px;
-  padding: 4px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-.theme-switcher .ts-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  padding: 0 8px 0 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.theme-switcher button {
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 510;
-  color: var(--text-secondary);
-  background: transparent;
-  border: none;
-  border-radius: 100px;
-  padding: 6px 12px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.15s var(--ease), color 0.15s var(--ease);
-}
-.theme-switcher button:hover { color: var(--text); }
-.theme-switcher button.active {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text);
-}
-.ts-swatch {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.ts-swatch.sw-mono { background: #e8eaed; }
-.ts-swatch.sw-sage { background: #5f7d62; }
-.ts-swatch.sw-blue { background: #4e7d9c; }
-
 /* ============ Reveal animations ============ */
 
 .reveal {
@@ -1506,5 +1450,4 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   .j-item::before { left: calc(64px + 12px + 6px); }
   .j-time { font-size: 11px; }
   .footer-base { flex-direction: column; gap: 8px; }
-  .theme-switcher .ts-label { display: none; }
 }

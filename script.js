@@ -39,19 +39,6 @@ if (heroApp) {
   settleObserver.observe(heroApp);
 }
 
-// Palette experiment switcher (mono / sage / blue)
-const switcher = document.getElementById("themeSwitcher");
-if (switcher) {
-  const buttons = switcher.querySelectorAll("[data-set-theme]");
-  const applyTheme = (theme) => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem("tragent-theme", theme);
-    buttons.forEach((b) => b.classList.toggle("active", b.dataset.setTheme === theme));
-  };
-  buttons.forEach((b) => b.addEventListener("click", () => applyTheme(b.dataset.setTheme)));
-  applyTheme(document.documentElement.dataset.theme || "blue");
-}
-
 // Mouse-tracked glow on cards
 document.querySelectorAll(".glowable").forEach((card) => {
   card.addEventListener("pointermove", (e) => {

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="mono">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Try Tragent live. Send a test enquiry</title>
+  <meta name="description" content="Send a test trade enquiry and see how Tragent would reply." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;510;600;650;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="demo-page">
+
+  <header class="nav-wrap scrolled">
+    <nav class="nav container">
+      <a href="/" class="nav-logo" aria-label="Tragent home">
+        <span class="logo-mark"><img src="/assets/tragent-logo-white.svg" alt="" width="24" height="30" /></span>
+        <span class="logo-word">Tragent</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#how">How it works</a>
+        <a href="/#trust">Trust</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:hello@trytragent.com" class="nav-login">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="demo-main">
+    <section class="demo-hero">
+      <div class="container demo-grid">
+        <div class="demo-copy">
+          <a href="/" class="legal-back demo-back">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to Tragent
+          </a>
+          <span class="eyebrow">Live demo</span>
+          <h1>See Tragent reply to a real enquiry.</h1>
+          <p>Send a test job enquiry and watch Tragent turn it into a clear first reply. No signup required.</p>
+          <div class="demo-proof-row">
+            <span>Reply preview in seconds</span>
+            <span>No card needed</span>
+            <span>You stay in control</span>
+          </div>
+        </div>
+
+        <div class="demo-card glowable">
+          <div class="demo-card-head">
+            <div>
+              <span class="demo-kicker">Send a test enquiry</span>
+              <h2>Tell Tragent about the job</h2>
+            </div>
+            <span class="demo-status-pill" id="demoStatusPill">Ready</span>
+          </div>
+
+          <form class="demo-form" id="demoForm">
+            <div class="field-row">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" placeholder="Sarah" autocomplete="name" required />
+              </label>
+              <label>
+                <span>Trade</span>
+                <input type="text" name="trade" placeholder="Electrician" required />
+              </label>
+            </div>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Job enquiry</span>
+              <textarea name="enquiry" rows="5" placeholder="Hi, I need a quote for a new consumer unit. Are you free this week?" required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-block">Send test enquiry</button>
+            <p class="demo-fineprint">This demo generates an on-page reply preview. Email delivery can be connected when the live backend is ready.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-result-section">
+      <div class="container demo-result-grid">
+        <div class="demo-steps glowable" aria-live="polite">
+          <h2>What Tragent is doing</h2>
+          <div class="demo-step active" data-demo-step="received">
+            <span></span>
+            <div><strong>Enquiry received</strong><em>Waiting for your test enquiry.</em></div>
+          </div>
+          <div class="demo-step" data-demo-step="reading">
+            <span></span>
+            <div><strong>Reading the job details</strong><em>Finding the trade, location, and missing information.</em></div>
+          </div>
+          <div class="demo-step" data-demo-step="drafting">
+            <span></span>
+            <div><strong>Writing the first reply</strong><em>Keeping it useful, quick, and customer-friendly.</em></div>
+          </div>
+          <div class="demo-step" data-demo-step="ready">
+            <span></span>
+            <div><strong>Reply ready</strong><em>You would approve or edit before it sends.</em></div>
+          </div>
+        </div>
+
+        <div class="demo-preview glowable">
+          <div class="mini-head">
+            <span class="mini-title">Tragent reply preview</span>
+            <span class="mini-pill" id="replyPill">Waiting</span>
+          </div>
+          <div class="demo-email">
+            <div class="demo-email-meta">
+              <span>To</span>
+              <strong id="previewEmail">your inbox</strong>
+            </div>
+            <div class="demo-email-meta">
+              <span>Subject</span>
+              <strong id="previewSubject">Re: Your enquiry</strong>
+            </div>
+            <p id="previewReply">Submit a test enquiry above and Tragent will draft the first customer reply here.</p>
+          </div>
+          <div class="demo-actions">
+            <button class="btn btn-ghost btn-sm" type="button" id="copyReply" disabled>Copy reply</button>
+            <a class="btn btn-ghost btn-sm" href="/#trust">How permissions work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-base">
+      <span>© 2026 Tragent. All rights reserved.</span>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

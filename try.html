@@ -37,55 +37,36 @@
     <section class="section demo-section demo-first" id="demo">
       <div class="container-wide">
         <div class="demo-intro reveal">
-          <span class="eyebrow">Live demo</span>
           <h1>See Tragent reply to a real enquiry.</h1>
-          <p>Send a test job enquiry and watch Tragent generate the first reply. No signup required.</p>
+          <p>Fill in the enquiry. Tragent writes the reply.</p>
         </div>
 
         <div class="demo-grid">
 
           <!-- The "customer" side: a tradesperson's website contact form -->
           <div class="demo-pane reveal">
-            <span class="demo-pane-label">You are the customer</span>
+            <span class="demo-pane-label">Customer enquiry</span>
             <div class="app-frame demo-frame">
               <div class="app-titlebar">
                 <span class="tb-dot"></span><span class="tb-dot"></span><span class="tb-dot"></span>
                 <span class="tb-url">dawsonelectrical.co.uk/contact</span>
               </div>
               <form class="demo-form" id="demoForm" novalidate>
-                <h3>Get a quote</h3>
-                <p class="demo-form-sub">Tell us about the job and we will get back to you.</p>
-
-                <div class="field-row">
-                  <label class="field">
-                    <span>Name</span>
-                    <input type="text" name="name" id="fName" value="Sam Carter" maxlength="80" required />
-                  </label>
-                  <label class="field">
-                    <span>Phone</span>
-                    <input type="tel" name="phone" id="fPhone" value="07700 900123" maxlength="30" />
-                  </label>
-                </div>
+                <h3>Send a test enquiry</h3>
 
                 <label class="field">
-                  <span>Email <em>the reply lands here</em></span>
+                  <span>Name</span>
+                  <input type="text" name="name" id="fName" value="Sam Carter" maxlength="80" required />
+                </label>
+
+                <label class="field">
+                  <span>Email <em>reply lands here</em></span>
                   <input type="email" name="email" id="fEmail" placeholder="you@example.com" maxlength="120" required />
                 </label>
 
                 <label class="field">
-                  <span>Job type</span>
-                  <select name="jobType" id="fJobType">
-                    <option>EV charger installation</option>
-                    <option>Consumer unit replacement</option>
-                    <option>Fault finding</option>
-                    <option>Additional sockets</option>
-                    <option>Full rewire</option>
-                  </select>
-                </label>
-
-                <label class="field">
-                  <span>Message</span>
-                  <textarea name="message" id="fMessage" rows="4" maxlength="1000" required>Hi, I'm looking for a quote for an EV charger installation at my property in Essex. Please let me know availability and next steps.</textarea>
+                  <span>Job enquiry</span>
+                  <textarea name="message" id="fMessage" rows="3" maxlength="1000" required>Hi, I need a quote for an EV charger install in Essex. What are the next steps?</textarea>
                 </label>
 
                 <!-- Honeypot: hidden from humans -->
@@ -96,8 +77,8 @@
                   <span>Keep me posted about the Tragent beta</span>
                 </label>
 
-                <button type="submit" class="btn btn-primary btn-block" id="sendBtn">Send Test Enquiry</button>
-                <span class="demo-form-note">Replies in under 60 seconds. Your message never reaches a real business.</span>
+                <button type="submit" class="btn btn-primary btn-block" id="sendBtn">Send test enquiry</button>
+                <span class="demo-form-note">Replies in under 60 seconds. No signup required.</span>
                 <p class="demo-error" id="demoError" hidden></p>
               </form>
             </div>
@@ -105,7 +86,7 @@
 
           <!-- The "tradesperson" side: Tragent working -->
           <div class="demo-pane reveal d-1">
-            <span class="demo-pane-label">Tragent, working for the business</span>
+            <span class="demo-pane-label">Tragent is working</span>
             <div class="tragent-panel" id="tragentPanel">
 
               <div class="panel-idle" id="panelIdle">
@@ -257,8 +238,8 @@
       const payload = {
         name: document.getElementById('fName').value.trim(),
         email,
-        phone: document.getElementById('fPhone').value.trim(),
-        jobType: document.getElementById('fJobType').value,
+        phone: '',
+        jobType: '',
         message,
         betaConsent: document.getElementById('fConsent').checked,
         company: document.getElementById('fCompany').value,

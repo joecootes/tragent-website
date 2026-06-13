@@ -1098,14 +1098,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .final-cta .hero-ctas { justify-content: center; }
 
 .final-cta {
-  padding: 58px 0 64px;
+  padding: 38px 0 42px;
   text-align: center;
   border-top: 1px solid var(--border);
   overflow: hidden;
   position: relative;
 }
 .final-cta .eyebrow {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   color: var(--text-tertiary);
 }
 .cta-glow {
@@ -1119,22 +1119,22 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   pointer-events: none;
 }
 .final-cta h2 {
-  font-size: clamp(32px, 3.8vw, 50px);
+  font-size: clamp(28px, 3.1vw, 42px);
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .final-cta p {
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 15px;
   max-width: 480px;
-  margin: 0 auto 28px;
+  margin: 0 auto 22px;
 }
 .cta-note {
   display: block;
-  margin-top: 18px;
+  margin-top: 14px;
   font-size: 13px;
   color: var(--text-tertiary);
 }
@@ -1143,7 +1143,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .footer {
   border-top: 1px solid var(--border);
-  padding: 34px 0 28px;
+  padding: 22px 0;
 }
 .footer-inner {
   display: grid;
@@ -1359,9 +1359,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .demo-section { padding-top: 70px; }
 .demo-first {
-  min-height: calc(100vh - 64px);
+  min-height: 0;
   padding-top: 84px;
-  padding-bottom: 52px;
+  padding-bottom: 28px;
 }
 
 .demo-intro {

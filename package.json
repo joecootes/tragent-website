@@ -3,6 +3,6 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cp -r index.html try-live.html privacy.html terms.html styles.css script.js assets dist/"
+    "build": "rm -rf dist && mkdir dist && cp -r index.html try.html privacy.html terms.html styles.css script.js assets dist/"
   }
 }

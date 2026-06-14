@@ -210,9 +210,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   height: 56px;
   gap: 32px;
-  max-width: 1540px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 96px);
+  padding: 0 var(--gutter);
   border-radius: 16px;
   border: 1px solid transparent;
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease),

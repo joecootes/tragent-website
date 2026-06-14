@@ -193,28 +193,36 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 /* ============ Nav ============ */
 
+/* Floating glass nav: the bar detaches from the page edge and sits
+   above content as a rounded, blurred surface once you scroll.
+   Glass lives here and nowhere else; cards and content stay solid. */
 .nav-wrap {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  border-bottom: 1px solid transparent;
-  transition: background 0.25s var(--ease), border-color 0.25s var(--ease),
-    backdrop-filter 0.25s var(--ease);
-}
-.nav-wrap.scrolled {
-  background: rgba(18, 18, 18, 0.78);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom-color: var(--border);
+  padding: 10px 0;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  height: 64px;
+  height: 56px;
   gap: 32px;
+  margin: 0 -20px;
+  padding: 0 20px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+.nav-wrap.scrolled .nav {
+  background: rgba(18, 18, 18, 0.66);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-color: var(--border);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 .nav-logo {
@@ -1349,6 +1357,59 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .trust-card:last-child .trust-list li::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' stroke='%2362666d' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* ============ Try it live (homepage bridge section) ============ */
+
+.try-live { border-top: 1px solid var(--border); }
+
+.try-live-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  transition: border-color 0.2s var(--ease);
+}
+.try-live-card:hover { border-color: var(--border-strong); }
+
+.tl-demo-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+  max-width: 920px;
+}
+.tl-demo-msg {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.012);
+}
+.tl-demo-msg.out { border-left: 2px solid var(--border-strong); }
+.tl-demo-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 11px;
+}
+.tl-demo-msg p { font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); }
+.tl-demo-msg.out p { color: var(--text); }
+.tl-demo-arrow { color: var(--text-tertiary); font-size: 20px; }
+
+@media (max-width: 760px) {
+  .try-live-card { padding: 28px; }
+  .tl-demo-row { grid-template-columns: 1fr; gap: 16px; }
+  .tl-demo-arrow { transform: rotate(90deg); justify-self: center; }
 }
 
 /* ============ Try Tragent Live ============ */

@@ -10,16 +10,17 @@
  * Env vars (set in Vercel project settings):
  *   ANTHROPIC_API_KEY  required — powers the reply generation
  *   RESEND_API_KEY     optional — sends the reply to the visitor's inbox
- *   DEMO_FROM_EMAIL    optional — verified sender, e.g. "Tragent <demo@trytragent.com>"
+ *   DEMO_FROM_EMAIL    optional — verified sender, e.g. "Tragent <test@trytragent.com>"
+ *   DEMO_REPLY_TO_EMAIL optional — reply destination, e.g. "test@trytragent.com"
  *   LEAD_NOTIFY_EMAIL  optional — where beta-interest leads are forwarded
  */
 
 // ── Demo business (the "tradesperson" answering the test enquiry) ────────────
 
 const DEMO_PROFILE = {
-  businessName: 'Dawson Electrical',
-  yourName: 'Dan',
-  businessType: 'electrician',
+  businessName: 'Your Trade Business',
+  yourName: '',
+  businessType: 'multi-trade property services',
   serviceArea: 'Essex',
   replyStyle: 'friendly',
 };
@@ -33,7 +34,8 @@ const REPLY_STYLE_HINTS = {
 };
 
 const TRADE_SCOPE = {
-  electrician: 'Domestic and commercial electrical work: rewires, sockets, consumer units, lighting, testing.',
+  electrician: 'Domestic and commercial electrical work: rewires, sockets, consumer units, lighting, testing, EV chargers, inspections, fault finding, and general electrical enquiries.',
+  'multi-trade property services': 'All common UK trade and property maintenance enquiries, including plumbing leaks, heating and boilers, electrical work, EV chargers, roofing, guttering, building work, extensions, plastering, decorating, flooring, tiling, drainage, scaffolding, repairs, urgent callouts, inspections, and general property jobs.',
 };
 
 function buildSystemPrompt(profile) {
@@ -75,6 +77,13 @@ REPLY STRUCTURE:
      GOOD: "We'll review this and get back to you shortly."
      BAD: "We'll give you a call shortly." / "We'll get this booked in." / "We'll send a quote over today."
 
+AVAILABILITY AND URGENCY:
+- If the customer asks for today, tomorrow, ASAP, urgent, this week, or a specific date, acknowledge the timing but do not promise availability.
+- Good: "We'll check the details and come back to you."
+- Good: "Send the missing details and we'll take a look."
+- Bad: "We can come today." / "We can get someone there tomorrow." / "We'll fit you in." / "I'll get this booked."
+- "Yes we can help" means the business can handle that type of enquiry. It does not mean a date, slot, or callout is confirmed.
+
 WORD LIMIT — this overrides everything else:
 - Target 50–80 words. Hard maximum: 100 words.
 - 2 to 3 sentences. Never more.
@@ -83,6 +92,9 @@ WORD LIMIT — this overrides everything else:
 - Always end on a complete sentence. Never trail off mid-thought.
 
 HARD PROHIBITIONS — never include any of these in an auto-reply:
+- Saying or implying the job is outside scope
+- Recommending another trade, installer, contractor, plumber, electrician, surveyor, roofer, builder, or specialist
+- Phrases like "we're electricians", "we don't handle", "outside our scope", "not something we do", "you'll need to call", or "contact another"
 - Technical diagnosis or fault analysis of any kind
 - Electrical, gas, or building standards (Part P, 18th Edition, BS 7671, Gas Safe, Building Regs, etc.)
 - Recommendations to upgrade or replace equipment (consumer units, fuse boards, boilers, wiring, etc.)
@@ -95,13 +107,16 @@ If the job sounds complex or technical: acknowledge it confidently, say the trad
 
 CONFIDENCE RULES:
 - Always sound capable and ready. Assume the job is within scope.
+- For this demo, treat every customer enquiry as a valid job lead for the business, across all common UK trades. The only task is to acknowledge the enquiry and collect missing details.
+- Never reject, redirect, qualify out, or turn away the customer.
 - NEVER use uncertain language: no "may be able to", "might", "sounds like", "could potentially", "look into"
 - Do NOT guarantee availability, pricing, or dates
+- Do NOT imply the business can meet a requested urgent timeline until a human has reviewed it.
 - Do NOT say "I will get you booked in" or suggest a specific time
 - Do NOT ask for information the customer has already provided
 
 MOMENTUM — use sparingly, only when it fits naturally:
-- Closing phrases like "and I'll get this moving for you" or "and we'll get it sorted" add energy
+- Closing phrases like "and we'll take a look" or "and we'll review it" add energy without promising availability
 - Only add one momentum phrase per reply, at the end
 - Do not force it — if the reply reads naturally without it, leave it out
 
@@ -133,6 +148,9 @@ AVOID THESE PHRASES:
 - "may be able to" / "might be able to" / "could potentially"
 - "I would love to help"
 - "when are you free" / "I can come on [day]"
+- "I'll get this moving for you"
+- "we'll get it sorted"
+- "we can come today" / "we can come tomorrow"
 - Em dashes (—) anywhere
 - Anything hesitant or non-committal about capability
 
@@ -141,7 +159,10 @@ STYLE EXAMPLES (show adaptive behaviour — do not copy verbatim):
   "Hi, yes we can sort that. Can you send your postcode, contact number, and roughly how long you'll need it up for?"
 
 "Need scaffolding at RM3 0AA for 2 weeks" → postcode and duration given, number missing:
-  "Hi, yes we cover that area. What's the best number to reach you on and I'll get this moving for you."
+  "Hi, yes we cover that area. What's the best number to reach you on and we'll review the details."
+
+"Leak under the bathroom, need someone today, CM1 4PX" → urgency and location given, number missing:
+  "Hi, yes we can help with that. What's the best number to reach you on and we'll check the details."
 
 "Need scaffolding, my number is 07700 900000" → number given, postcode and duration missing:
   "Hi, yes we can help with that. Can you send your postcode and roughly how long you'll need the scaffold up for?"
@@ -187,11 +208,12 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 async function sendEmail({ to, subject, text, replyHtml }) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return false;
-  const from = process.env.DEMO_FROM_EMAIL || 'Tragent <demo@trytragent.com>';
+  const from = process.env.DEMO_FROM_EMAIL || 'Tragent <test@trytragent.com>';
+  const replyTo = process.env.DEMO_REPLY_TO_EMAIL || 'test@trytragent.com';
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to, subject, text, html: replyHtml }),
+    body: JSON.stringify({ from, to, subject, text, html: replyHtml, reply_to: replyTo }),
   });
   return r.ok;
 }
@@ -309,7 +331,7 @@ module.exports = async (req, res) => {
     ok: true,
     reply,
     subject,
-    from: `${DEMO_PROFILE.businessName} <hello@dawsonelectrical.co.uk>`,
+    from: `${DEMO_PROFILE.businessName} <hello@yourtradebusiness.co.uk>`,
     emailSent,
   });
 };

@@ -49,7 +49,7 @@
             <div class="app-frame demo-frame">
               <div class="app-titlebar">
                 <span class="tb-dot"></span><span class="tb-dot"></span><span class="tb-dot"></span>
-                <span class="tb-url">dawsonelectrical.co.uk/contact</span>
+                <span class="tb-url">yourtradebusiness.co.uk/contact</span>
               </div>
               <form class="demo-form" id="demoForm" novalidate>
                 <h3>Send a test enquiry</h3>
@@ -105,9 +105,9 @@
               <div class="email-card" id="emailCard" hidden>
                 <div class="email-head">
                   <div class="email-meta">
-                    <span class="eq-avatar a1">DE</span>
+                    <span class="eq-avatar a1">YT</span>
                     <div>
-                      <span class="email-from" id="emailFrom">Dawson Electrical</span>
+                      <span class="email-from" id="emailFrom">Your Trade Business</span>
                       <span class="email-sub" id="emailSubject">Re: EV charger installation</span>
                     </div>
                   </div>
@@ -305,7 +305,7 @@
 
         // Reveal the email
         document.getElementById('emailSubject').textContent = data.subject || 'Re: Your enquiry';
-        document.getElementById('emailFrom').textContent = (data.from || 'Dawson Electrical').replace(/<.*>/, '').trim();
+        document.getElementById('emailFrom').textContent = (data.from || 'Your Trade Business').replace(/<.*>/, '').trim();
         document.getElementById('emailTime').textContent = now().slice(0, 5);
         document.getElementById('emailBody').textContent = data.reply;
         await sleep(500);

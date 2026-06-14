@@ -193,37 +193,31 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 /* ============ Nav ============ */
 
-/* Floating glass nav: the bar detaches from the page edge and sits
-   above content as a rounded, blurred surface once you scroll.
-   Glass lives here and nowhere else; cards and content stay solid. */
 .nav-wrap {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    backdrop-filter 0.3s var(--ease);
 }
 
 .nav {
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 68px;
   gap: 32px;
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  border-radius: 16px;
-  border: 1px solid transparent;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
 }
-.nav-wrap.scrolled .nav {
-  background: rgba(18, 18, 18, 0.66);
+.nav-wrap.scrolled {
+  background: rgba(18, 18, 18, 0.78);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border-color: var(--border);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  border-bottom-color: var(--border);
 }
 
 .nav-logo {

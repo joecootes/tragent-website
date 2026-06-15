@@ -142,6 +142,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 
 .section-head h2 .dim { color: var(--text-secondary); }
+.section-head h2 .accent-text { color: var(--accent-bright); }
 
 .eyebrow {
   display: inline-flex;

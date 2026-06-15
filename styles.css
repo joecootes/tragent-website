@@ -788,7 +788,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* --- Social proof --- */
 
 .trades-strip {
-  margin-top: 80px;
+  margin-top: 110px;
   text-align: center;
 }
 
@@ -851,7 +851,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .section-head.split .section-sub { margin-top: 0; justify-self: end; }
 
-.problem { border-top: 1px solid var(--border); }
+.problem { }
 .problem .section-head { max-width: 648px; }
 
 /* ============ Cards / glow effect ============ */

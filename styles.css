@@ -452,7 +452,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   margin-top: 0;
   transition: background 0.3s ease, border-color 0.3s ease;
   background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid transparent;
 }
 
 /* Spinning arc ring — shown during active state */
@@ -2176,7 +2176,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* Workflow card */
 [data-theme="light"] .conv-step--done { background: rgba(0, 0, 0, 0.015); }
 [data-theme="light"] .conv-step { border-bottom-color: var(--border); }
-[data-theme="light"] .conv-step-icon { border-color: #D0D0D0; }
+[data-theme="light"] .conv-step-icon { border-color: transparent; }
 
 /* App frame (product screenshots stay dark — intentional) */
 [data-theme="light"] .app-frame {

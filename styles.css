@@ -707,27 +707,51 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 /* --- Social proof --- */
 
-.social-proof { margin-top: 80px; text-align: center; }
-.social-proof p {
+.trades-strip {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.trades-strip-label {
   font-size: 13px;
   color: var(--text-tertiary);
   margin-bottom: 22px;
 }
-.proof-logos {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px 40px;
+
+.trades-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
-.proof-logos span {
+
+.trades-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: trades-scroll 40s linear infinite;
+}
+
+.trades-track span {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-tertiary);
-  opacity: 0.85;
-  transition: color 0.2s var(--ease);
+  white-space: nowrap;
+  padding: 0 4px;
 }
-.proof-logos span:hover { color: var(--text-secondary); }
+
+.trades-sep {
+  color: var(--border-strong) !important;
+  font-weight: 400 !important;
+  padding: 0 20px !important;
+  font-size: 16px !important;
+}
+
+@keyframes trades-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 /* ============ Sections ============ */
 
@@ -2026,8 +2050,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   }
   .hero-shot { margin-top: 48px; }
   .app-body { min-height: 0; }
-  .proof-logos { gap: 12px 24px; }
-  .proof-logos span { font-size: 13px; }
+  .trades-track span { font-size: 13px; }
   .app-stats { grid-template-columns: repeat(2, 1fr); }
   .j-item { grid-template-columns: 64px 14px 1fr; gap: 0 12px; }
   .j-item::before { left: calc(64px + 12px + 6px); }

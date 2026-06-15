@@ -64,74 +64,76 @@
             <span class="hero-note reveal d-3">Set up in about two minutes. No card needed.</span>
           </div>
 
-          <!-- Right: animated conversation panel -->
+          <!-- Right: animated workflow card -->
           <div class="hero-right reveal d-2">
             <div class="conv-panel">
 
-              <!-- Tragent active status -->
-              <div class="conv-status">
-                <span class="conv-status-dot"></span>
-                Tragent is monitoring your inbox
-              </div>
-
-              <!-- App-style nav bar -->
-              <div class="conv-nav">
-                <span class="conv-nav-back">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Jobs
-                </span>
-                <div class="conv-nav-center">
-                  <span class="conv-customer-name">Sarah Reeves</span>
-                  <span class="conv-job-label">Full rewire · 3-bed house</span>
+              <!-- Card header -->
+              <div class="conv-header">
+                <div class="conv-header-left">
+                  <span class="conv-header-title">Sarah Reeves</span>
+                  <span class="conv-header-sub">Full rewire · 3-bed house</span>
                 </div>
-                <span class="conv-needs-badge">Needs reply</span>
+                <span class="conv-header-count"><span id="convDone">0</span> / 4</span>
               </div>
 
-              <!-- Messages -->
-              <div class="conv-body">
-                <div class="conv-date-sep">TODAY</div>
+              <!-- Workflow steps -->
+              <div class="conv-steps">
 
-                <!-- 1: customer message -->
-                <div class="conv-msg conv-msg--in" id="cm1">
-                  <div class="conv-avatar">SR</div>
-                  <div class="conv-msg-wrap">
-                    <div class="conv-msg-meta">Sarah Reeves · 4:55 pm</div>
-                    <div class="conv-bubble conv-bubble--in">Hi, looking for a quote on a full rewire for my 3-bed house.</div>
+                <div class="conv-step" id="cs1">
+                  <div class="conv-step-icon" id="ci1">
+                    <div class="conv-step-ring"></div>
+                    <svg class="conv-check" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </div>
+                  <div class="conv-step-body">
+                    <div class="conv-step-title">Enquiry received</div>
+                    <div class="conv-step-sub">"Hi, looking for a quote on a full rewire for my 3-bed house."</div>
+                  </div>
+                  <span class="conv-step-time">4:55 pm</span>
                 </div>
 
-                <!-- 2: auto-reply sent label -->
-                <div class="conv-label" id="cl1">Auto-reply sent · 4:55 pm</div>
-
-                <!-- 3: Tragent typing → message -->
-                <div class="conv-msg conv-msg--out" id="cm2">
-                  <div class="conv-msg-wrap conv-msg-wrap--out">
-                    <div class="conv-bubble conv-bubble--out" id="cb-typing">
-                      <span class="conv-dot"></span><span class="conv-dot"></span><span class="conv-dot"></span>
+                <div class="conv-step" id="cs2">
+                  <div class="conv-step-icon" id="ci2">
+                    <div class="conv-step-ring"></div>
+                    <svg class="conv-check" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div class="conv-step-body">
+                    <div class="conv-step-title">Tragent replied
+                      <span class="conv-step-chip">12 seconds</span>
                     </div>
-                    <div class="conv-bubble conv-bubble--out conv-bubble--text" id="cb-text">Hi Sarah! Happy to help. Could you share your postcode and when suits you for a visit?</div>
+                    <div class="conv-step-sub">"Hi Sarah! Happy to help. Could you share your postcode and when suits you?"</div>
                   </div>
-                  <div class="conv-avatar conv-avatar--t">T</div>
+                  <span class="conv-step-time">4:55 pm</span>
                 </div>
 
-                <!-- 4: customer replies -->
-                <div class="conv-msg conv-msg--in" id="cm3">
-                  <div class="conv-avatar">SR</div>
-                  <div class="conv-msg-wrap">
-                    <div class="conv-msg-meta">Sarah Reeves · 6:40 pm</div>
-                    <div class="conv-bubble conv-bubble--in">SW12 8LP — Thursday morning works best.</div>
+                <div class="conv-step" id="cs3">
+                  <div class="conv-step-icon" id="ci3">
+                    <div class="conv-step-ring"></div>
+                    <svg class="conv-check" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div class="conv-step-body">
+                    <div class="conv-step-title">Sarah replied</div>
+                    <div class="conv-step-sub">"SW12 8LP — Thursday morning works best."</div>
+                  </div>
+                  <span class="conv-step-time">6:40 pm</span>
+                </div>
+
+                <div class="conv-step conv-step--last" id="cs4">
+                  <div class="conv-step-icon conv-step-icon--pending" id="ci4">
+                    <div class="conv-step-ring"></div>
+                    <svg class="conv-check" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div class="conv-step-body">
+                    <div class="conv-step-title">Draft ready
+                      <span class="conv-step-chip conv-step-chip--amber" id="cs4chip">awaiting approval</span>
+                    </div>
+                    <div class="conv-step-actions" id="cs4actions">
+                      <button class="conv-btn-send" tabindex="-1">Send reply</button>
+                      <button class="conv-btn-edit" tabindex="-1">Edit</button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Draft ready footer -->
-              <div class="conv-footer" id="convFooter">
-                <span class="conv-footer-dot"></span>
-                <span class="conv-footer-label">Draft ready · awaiting your approval</span>
-                <div class="conv-footer-btns">
-                  <button class="conv-btn-send" tabindex="-1">Send</button>
-                  <button class="conv-btn-edit" tabindex="-1">Edit</button>
-                </div>
               </div>
 
             </div>

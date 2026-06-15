@@ -48,50 +48,65 @@ document.querySelectorAll(".glowable").forEach((card) => {
   });
 });
 
-// Hero conversation panel animation
+// Hero workflow card animation
 (function () {
-  const cm1 = document.getElementById('cm1');
-  const cl1 = document.getElementById('cl1');
-  const cm2 = document.getElementById('cm2');
-  const cbTyping = document.getElementById('cb-typing');
-  const cbText = document.getElementById('cb-text');
-  const cm3 = document.getElementById('cm3');
-  const footer = document.getElementById('convFooter');
+  const panel = document.querySelector('.conv-panel');
+  if (!panel) return;
 
-  if (!cm1) return;
+  const steps = [
+    document.getElementById('cs1'),
+    document.getElementById('cs2'),
+    document.getElementById('cs3'),
+    document.getElementById('cs4'),
+  ];
+  const icons = [
+    document.getElementById('ci1'),
+    document.getElementById('ci2'),
+    document.getElementById('ci3'),
+    document.getElementById('ci4'),
+  ];
+  const doneCount = document.getElementById('convDone');
 
-  // Hide text bubble initially; typing bubble shows first
-  cbText.style.display = 'none';
+  function setDone(icon, step, count) {
+    icon.classList.remove('active');
+    icon.classList.add('done');
+    step.classList.add('conv-step--done');
+    if (doneCount) doneCount.textContent = count;
+  }
 
-  function show(el) { el.classList.add('conv-visible'); }
+  function setActive(icon) {
+    icon.classList.add('active');
+  }
 
   function reset() {
-    [cm1, cl1, cm2, cm3, footer].forEach(el => el.classList.remove('conv-visible'));
-    cbTyping.style.display = '';
-    cbText.style.display = 'none';
+    icons.forEach(i => { i.classList.remove('done', 'active'); });
+    steps.forEach(s => s.classList.remove('conv-step--done'));
+    if (doneCount) doneCount.textContent = '0';
   }
 
   function run() {
     reset();
-    const t = (fn, ms) => setTimeout(fn, ms);
-    t(() => show(cm1), 900);
-    t(() => show(cl1), 2500);
-    t(() => show(cm2), 3500);
-    t(() => { cbTyping.style.display = 'none'; cbText.style.display = 'block'; }, 5300);
-    t(() => show(cm3), 7500);
-    t(() => show(footer), 8700);
-    t(run, 14000);
+    const t = setTimeout;
+    // Step 1 activates → completes
+    t(() => setActive(icons[0]), 800);
+    t(() => setDone(icons[0], steps[0], 1), 2000);
+    // Step 2 activates → completes
+    t(() => setActive(icons[1]), 2400);
+    t(() => setDone(icons[1], steps[1], 2), 3800);
+    // Step 3 activates → completes
+    t(() => setActive(icons[2]), 5600);
+    t(() => setDone(icons[2], steps[2], 3), 7000);
+    // Step 4 activates (stays pending — awaiting approval)
+    t(() => setActive(icons[3]), 7400);
+    // Hold, then reset
+    t(() => run(), 14000);
   }
 
-  // Start once the panel scrolls into view
-  const panelEl = cm1.closest('.conv-panel');
-  const startObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      run();
-      startObserver.disconnect();
-    }
+  // Kick off when card enters view
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { run(); observer.disconnect(); }
   }, { threshold: 0.3 });
-  startObserver.observe(panelEl);
+  observer.observe(panel);
 })();
 
 // Try-live demo: keep the interaction above the fold and show the magic first.

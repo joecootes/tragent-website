@@ -850,6 +850,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .section-head.split .section-sub { margin-top: 0; justify-self: end; }
 
 .problem { border-top: 1px solid var(--border); }
+.problem .section-head { max-width: 648px; }
 
 /* ============ Cards / glow effect ============ */
 
@@ -879,23 +880,23 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 32px 28px;
+  padding: 35px 31px;
   transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .problem-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
 .problem-card .stat {
   display: block;
-  font-size: 44px;
+  font-size: 48px;
   font-weight: 650;
   letter-spacing: -0.03em;
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.65) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 14px;
+  margin-bottom: 15px;
 }
-.problem-card h3 { font-size: 16.5px; line-height: 1.35; margin-bottom: 10px; }
-.problem-card p { font-size: 14px; color: var(--text-secondary); }
+.problem-card h3 { font-size: 18px; line-height: 1.35; margin-bottom: 11px; }
+.problem-card p { font-size: 15.5px; color: var(--text-secondary); }
 
 /* ============ How it works ============ */
 

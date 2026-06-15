@@ -713,15 +713,16 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 
 .trades-strip-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-tertiary);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
 }
 
 .trades-marquee {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
 
 .trades-track {
@@ -729,23 +730,24 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   gap: 0;
   width: max-content;
-  animation: trades-scroll 40s linear infinite;
+  animation: trades-scroll 35s linear infinite;
 }
 
 .trades-track span {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: var(--text-tertiary);
   white-space: nowrap;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 .trades-sep {
-  color: var(--border-strong) !important;
-  font-weight: 400 !important;
-  padding: 0 20px !important;
-  font-size: 16px !important;
+  color: rgba(255, 255, 255, 0.12) !important;
+  font-weight: 300 !important;
+  padding: 0 18px !important;
+  font-size: 20px !important;
+  letter-spacing: 0 !important;
 }
 
 @keyframes trades-scroll {

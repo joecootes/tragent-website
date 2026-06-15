@@ -85,12 +85,18 @@ document.querySelectorAll(".glowable").forEach((card) => {
     document.getElementById('ci5'),
   ];
   const doneCount = document.getElementById('convDone');
+  const countWrap = document.getElementById('convCount');
+  const allDonePill = document.getElementById('convAllDone');
 
   function setDone(icon, step, count) {
     icon.classList.remove('active');
     icon.classList.add('done');
     step.classList.add('conv-step--done');
     if (doneCount) doneCount.textContent = count;
+    if (count === steps.length) {
+      if (countWrap) countWrap.style.display = 'none';
+      if (allDonePill) allDonePill.classList.add('visible');
+    }
   }
 
   function setActive(icon) {
@@ -101,6 +107,8 @@ document.querySelectorAll(".glowable").forEach((card) => {
     icons.forEach(i => { i.classList.remove('done', 'active'); });
     steps.forEach(s => s.classList.remove('conv-step--done'));
     if (doneCount) doneCount.textContent = '0';
+    if (countWrap) countWrap.style.display = '';
+    if (allDonePill) allDonePill.classList.remove('visible');
   }
 
   function run() {

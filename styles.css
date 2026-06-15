@@ -342,7 +342,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   width: 100%;
   max-width: 560px;
   background: var(--bg-raised);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.05);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-conv);
@@ -354,7 +354,17 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px 14px;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.conv-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: var(--border);
 }
 
 .conv-header-left {
@@ -380,6 +390,22 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   font-weight: 500;
   color: var(--text-tertiary);
   font-variant-numeric: tabular-nums;
+}
+
+.conv-all-done {
+  display: none;
+  align-items: center;
+  background: var(--accent-bright);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 4px 11px;
+  border-radius: 100px;
+}
+
+.conv-all-done.visible {
+  display: inline-flex;
 }
 
 /* Steps */
@@ -463,7 +489,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* Done state — orange fill, white check */
 .conv-step-icon.done {
   background: var(--accent-bright);
-  border-color: var(--accent-bright);
+  border-color: transparent;
 }
 
 .conv-step-icon.done .conv-step-ring {
@@ -498,7 +524,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .conv-step--done .conv-step-title {
   color: var(--text-tertiary);
   text-decoration: line-through;
-  text-decoration-color: rgba(255,255,255,0.2);
+  text-decoration-color: var(--text-tertiary);
 }
 
 .conv-step-sub {

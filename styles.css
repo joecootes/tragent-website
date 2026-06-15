@@ -739,21 +739,19 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   letter-spacing: -0.025em;
   color: var(--text-tertiary);
   white-space: nowrap;
-  padding: 0 2px;
+  padding: 0 40px;
 }
 
 .trades-sep {
-  color: rgba(255, 255, 255, 0.12) !important;
-  font-weight: 300 !important;
-  padding: 0 22px !important;
-  font-size: 28px !important;
-  letter-spacing: 0 !important;
+  display: none;
 }
 
 @keyframes trades-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+.trades-track { animation-duration: 55s; }
 
 /* ============ Sections ============ */
 

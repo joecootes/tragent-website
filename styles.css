@@ -271,11 +271,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .hero {
   position: relative;
-  padding: 130px 0 0;
+  padding: 130px 0 80px;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .hero-grid {
@@ -302,7 +299,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   pointer-events: none;
 }
 
-.hero-inner { position: relative; flex: 1; display: flex; flex-direction: column; }
+.hero-inner { position: relative; }
 
 .hero-badge {
   display: inline-flex;
@@ -791,9 +788,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* --- Social proof --- */
 
 .trades-strip {
-  margin-top: auto;
-  padding-top: 60px;
-  padding-bottom: 40px;
+  margin-top: 80px;
   text-align: center;
 }
 
@@ -2099,7 +2094,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 @media (max-width: 720px) {
   .nav-links, .nav-login { display: none; }
   .nav { justify-content: space-between; }
-  .hero { padding: 130px 0 0; }
+  .hero { padding: 130px 0 60px; }
   .demo-main { padding-top: 64px; }
   .demo-hero {
     min-height: 0;

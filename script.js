@@ -75,12 +75,14 @@ document.querySelectorAll(".glowable").forEach((card) => {
     document.getElementById('cs2'),
     document.getElementById('cs3'),
     document.getElementById('cs4'),
+    document.getElementById('cs5'),
   ];
   const icons = [
     document.getElementById('ci1'),
     document.getElementById('ci2'),
     document.getElementById('ci3'),
     document.getElementById('ci4'),
+    document.getElementById('ci5'),
   ];
   const doneCount = document.getElementById('convDone');
 
@@ -112,7 +114,9 @@ document.querySelectorAll(".glowable").forEach((card) => {
     t(() => setDone(icons[2], steps[2], 3), 4400);
     t(() => setActive(icons[3]), 4700);
     t(() => setDone(icons[3], steps[3], 4), 5800);
-    t(() => run(), 10000);
+    t(() => setActive(icons[4]), 6100);
+    t(() => setDone(icons[4], steps[4], 5), 7200);
+    t(() => run(), 12000);
   }
 
   // Kick off when card enters view

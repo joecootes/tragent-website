@@ -276,7 +276,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 48px 64px;
   align-items: center;
 }
@@ -340,7 +340,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .conv-panel {
   width: 100%;
-  max-width: 600px;
+  max-width: 520px;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: 20px;

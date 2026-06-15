@@ -2,6 +2,23 @@
 // Tragent — interactions
 // ============================================================
 
+// Theme toggle
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+
+  const saved = localStorage.getItem('tragent-theme');
+  if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('tragent-theme', next);
+    btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  });
+})();
+
 // Nav: glass background once scrolled past the top
 const nav = document.getElementById("nav");
 const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);

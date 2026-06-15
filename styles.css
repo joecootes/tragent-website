@@ -2179,6 +2179,59 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 [data-theme="light"] .demo-textarea::placeholder { color: var(--text-tertiary); }
 [data-theme="light"] .demo-result-section { background: var(--bg-raised); border-color: var(--border); }
 [data-theme="light"] .demo-step { border-color: var(--border); }
+[data-theme="light"] .demo-pane-label {
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.035);
+  border-color: var(--border);
+}
+[data-theme="light"] .demo-frame.app-frame {
+  background: var(--bg-raised);
+  border-color: var(--border);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.14);
+}
+[data-theme="light"] .demo-frame .app-titlebar {
+  background: rgba(0, 0, 0, 0.025);
+  border-bottom-color: var(--border);
+}
+[data-theme="light"] .demo-frame .tb-dot { background: #c9c9c9; }
+[data-theme="light"] .demo-frame .tb-url {
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.045);
+}
+[data-theme="light"] .field > span { color: var(--text); }
+[data-theme="light"] .field > span em { color: var(--text-secondary); }
+[data-theme="light"] .field input,
+[data-theme="light"] .field select,
+[data-theme="light"] .field textarea {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.035);
+  border-color: var(--border-strong);
+}
+[data-theme="light"] .field input::placeholder,
+[data-theme="light"] .field textarea::placeholder { color: var(--text-tertiary); }
+[data-theme="light"] .field input:focus,
+[data-theme="light"] .field select:focus,
+[data-theme="light"] .field textarea:focus {
+  background: #fff;
+  border-color: rgba(13, 13, 13, 0.42);
+}
+[data-theme="light"] .consent { color: var(--text-secondary); }
+[data-theme="light"] .tragent-panel {
+  background: var(--bg-raised);
+  border-color: var(--border);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .panel-idle p { color: var(--text-secondary); }
+[data-theme="light"] .tl-dot { background: var(--bg-raised); }
+[data-theme="light"] .timeline li:not(:last-child)::before { background: var(--border); }
+[data-theme="light"] .email-card {
+  background: var(--bg-raised);
+  border-color: var(--border);
+}
+[data-theme="light"] .inbox-note {
+  border-color: rgba(76, 183, 130, 0.22);
+  background: rgba(76, 183, 130, 0.075);
+}
 
 /* Enquiry feed */
 [data-theme="light"] .eq-ai { border-left-color: rgba(180, 75, 35, 0.4); }

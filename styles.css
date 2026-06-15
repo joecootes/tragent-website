@@ -125,7 +125,7 @@ img, svg { display: block; }
 h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .hero-title {
-  font-size: clamp(30px, 3vw, 48px);
+  font-size: clamp(33px, 3.3vw, 53px);
   font-weight: 650;
   line-height: 1.06;
   letter-spacing: -0.035em;

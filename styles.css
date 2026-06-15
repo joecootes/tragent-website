@@ -747,7 +747,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .eq-avatar.lg { width: 40px; height: 40px; font-size: 13px; }
 .eq-avatar--photo { object-fit: cover; object-position: center top; }
 .eq-avatar--logo {
-  background: #fff url('/assets/Untitled-52 2.PNG') center/280% no-repeat;
+  background: #fff url('/assets/Untitled-52 2.PNG') center/200% no-repeat;
+}
+.eq-avatar--reidstone {
+  background: #fff url('/assets/IMG_2584 2.jpg') center/200% no-repeat;
 }
 .a1 { background: #4a4f56; }
 .a2 { background: #3d4d57; }

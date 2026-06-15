@@ -129,10 +129,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   font-weight: 650;
   line-height: 1.02;
   letter-spacing: -0.038em;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text);
+}
+
+.hero-title .accent-text {
+  color: var(--accent-bright);
 }
 
 .section-head h2, .final-cta h2 {
@@ -2145,12 +2146,6 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
    ============================================================ */
 
 /* Gradient text: hero title, stat numbers, final CTA */
-[data-theme="light"] .hero-title {
-  background: linear-gradient(180deg, #0D0D0D 0%, rgba(13, 13, 13, 0.75) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 [data-theme="light"] .problem-card .stat {
   background: linear-gradient(180deg, #0D0D0D 0%, rgba(13, 13, 13, 0.70) 100%);
   -webkit-background-clip: text;

@@ -58,12 +58,14 @@ document.querySelectorAll(".glowable").forEach((card) => {
     document.getElementById('cs2'),
     document.getElementById('cs3'),
     document.getElementById('cs4'),
+    document.getElementById('cs5'),
   ];
   const icons = [
     document.getElementById('ci1'),
     document.getElementById('ci2'),
     document.getElementById('ci3'),
     document.getElementById('ci4'),
+    document.getElementById('ci5'),
   ];
   const doneCount = document.getElementById('convDone');
 
@@ -87,18 +89,16 @@ document.querySelectorAll(".glowable").forEach((card) => {
   function run() {
     reset();
     const t = setTimeout;
-    // Step 1 activates → completes
-    t(() => setActive(icons[0]), 800);
-    t(() => setDone(icons[0], steps[0], 1), 2000);
-    // Step 2 activates → completes
-    t(() => setActive(icons[1]), 2400);
-    t(() => setDone(icons[1], steps[1], 2), 3800);
-    // Step 3 activates → completes
-    t(() => setActive(icons[2]), 5600);
-    t(() => setDone(icons[2], steps[2], 3), 7000);
-    // Step 4 activates (stays pending — awaiting approval)
-    t(() => setActive(icons[3]), 7400);
-    // Hold, then reset
+    t(() => setActive(icons[0]), 600);
+    t(() => setDone(icons[0], steps[0], 1), 1800);
+    t(() => setActive(icons[1]), 2100);
+    t(() => setDone(icons[1], steps[1], 2), 3200);
+    t(() => setActive(icons[2]), 4800);
+    t(() => setDone(icons[2], steps[2], 3), 6000);
+    t(() => setActive(icons[3]), 6300);
+    t(() => setDone(icons[3], steps[3], 4), 7400);
+    // Step 5 activates (stays pending — awaiting approval)
+    t(() => setActive(icons[4]), 7700);
     t(() => run(), 14000);
   }
 

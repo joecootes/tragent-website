@@ -1305,10 +1305,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 /* ============ Testimonials ============ */
 
-.testimonials { border-top: 1px solid var(--border); }
+.testimonials { }
 .quote-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .quote-card {

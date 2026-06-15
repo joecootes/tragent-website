@@ -279,12 +279,13 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   gap: 48px 64px;
-  align-items: center;
+  align-items: start;
 }
 
 .hero-right {
   display: flex;
   justify-content: flex-end;
+  padding-top: 62px;
 }
 
 .hero-glow {
@@ -327,7 +328,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   font-size: clamp(16px, 2.2vw, 19px);
   color: var(--text-secondary);
   max-width: 560px;
-  margin: 0 0 30px;
+  margin: 24px 0 30px;
   line-height: 1.55;
 }
 

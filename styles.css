@@ -414,43 +414,54 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   justify-content: center;
   margin-top: 1px;
-  transition: background 0.35s ease, border-color 0.35s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
   background: transparent;
   border: 1.5px solid rgba(255,255,255,0.15);
 }
 
+/* Spinning arc ring — shown during active state */
 .conv-step-ring {
   display: none;
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-bright);
+  border-right-color: var(--accent-bright);
+  pointer-events: none;
+}
+
+@keyframes conv-spin {
+  to { transform: rotate(360deg); }
 }
 
 .conv-check {
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* Done state */
+/* Active state — show spinning arc */
+.conv-step-icon.active {
+  border-color: rgba(var(--accent-rgb), 0.3);
+}
+
+.conv-step-icon.active .conv-step-ring {
+  display: block;
+  animation: conv-spin 0.75s linear infinite;
+}
+
+/* Done state — orange fill, white check */
 .conv-step-icon.done {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
+}
+
+.conv-step-icon.done .conv-step-ring {
+  display: none;
 }
 
 .conv-step-icon.done .conv-check {
   opacity: 1;
-}
-
-/* Active/pulsing state */
-.conv-step-icon.active {
-  border-color: var(--accent-bright);
-  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2);
-}
-
-@keyframes conv-pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.08); }
-}
-
-.conv-step-icon.active {
-  animation: conv-pulse 1.8s ease-in-out infinite;
 }
 
 /* Step body */

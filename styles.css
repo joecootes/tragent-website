@@ -734,9 +734,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 
 .trades-track span {
-  font-size: 19px;
+  font-size: 26px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--text-tertiary);
   white-space: nowrap;
   padding: 0 2px;
@@ -745,8 +745,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .trades-sep {
   color: rgba(255, 255, 255, 0.12) !important;
   font-weight: 300 !important;
-  padding: 0 18px !important;
-  font-size: 20px !important;
+  padding: 0 22px !important;
+  font-size: 28px !important;
   letter-spacing: 0 !important;
 }
 

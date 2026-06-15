@@ -276,7 +276,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: 48px 64px;
   align-items: center;
 }
@@ -340,7 +340,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .conv-panel {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -353,7 +353,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 24px 16px;
+  padding: 14px 20px 13px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -390,14 +390,24 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 .conv-step {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 13px 24px;
-  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px;
+  position: relative;
   transition: background 0.3s ease;
 }
 
-.conv-step--last { border-bottom: none; }
+.conv-step::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: var(--border);
+}
+
+.conv-step--last::after { display: none; }
 
 .conv-step.conv-step--done {
   background: rgba(255,255,255,0.01);
@@ -405,15 +415,15 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
 /* Status icon */
 .conv-step-icon {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   flex-shrink: 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
+  margin-top: 0;
   transition: background 0.3s ease, border-color 0.3s ease;
   background: transparent;
   border: 1.5px solid rgba(255,255,255,0.15);

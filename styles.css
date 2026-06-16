@@ -1434,7 +1434,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   background: #363636;
 }
 .gs-visual--scanner .gs-img {
-  object-fit: contain;
+  object-fit: cover;
 }
 .gs-fp-svg {
   width: 54%;

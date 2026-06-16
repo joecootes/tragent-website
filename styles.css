@@ -1435,9 +1435,26 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .gs-visual--scanner .gs-img {
   object-fit: cover;
-  filter: contrast(1.25);
-  mask-image: radial-gradient(ellipse 78% 82% at 50% 50%, black 35%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 50%, black 35%, transparent 100%);
+  position: relative;
+  z-index: 1;
+}
+.gs-visual--scanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse 85% 88% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 88% at 50% 50%, black 20%, transparent 100%);
+  pointer-events: none;
+}
+[data-theme="dark"] .gs-visual--scanner::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
 }
 .gs-fp-svg {
   width: 54%;

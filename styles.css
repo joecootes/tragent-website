@@ -243,6 +243,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   font-size: 19px;
   letter-spacing: -0.02em;
 }
+.nav-logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+[data-theme="dark"] .nav-logo-img {
+  filter: invert(1);
+}
 
 .nav-links {
   display: flex;

@@ -1436,8 +1436,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .gs-fp-mask {
   position: absolute;
   inset: 0;
+  background: #F2F2F2;
   mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
+}
+[data-theme="dark"] .gs-fp-mask {
+  background: #363636;
 }
 .gs-fp-mask .gs-img {
   mix-blend-mode: multiply;

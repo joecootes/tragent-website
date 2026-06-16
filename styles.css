@@ -1428,7 +1428,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .gs-sphere-orb {
   position: absolute;
-  width: 44%;
+  width: 25%;
   aspect-ratio: 1;
   top: 50%;
   left: 50%;

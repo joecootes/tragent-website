@@ -620,9 +620,9 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const CELL  = 38;
-    const SQ    = 26;
-    const R     = 5;
+    const CELL  = 22;
+    const SQ    = 16;
+    const R     = 3;
     const CYCLE = 6000;
 
     const C_NEAR = [194, 66, 13];
@@ -704,7 +704,7 @@
 
     function dots(color) {
       ctx.fillStyle = color;
-      // Align dots to grid centres
+      // Dots at cell corners (intersections) so each square has 4 dots at its corners
       const cx = W / 2, cy = H / 2;
       const cols = Math.round(W / CELL) + 2;
       const rows = Math.round(H / CELL) + 2;
@@ -712,10 +712,10 @@
       const oy = cy - (rows / 2) * CELL;
       for (let c = 0; c <= cols; c++)
         for (let r = 0; r <= rows; r++) {
-          const x = ox + c * CELL + CELL / 2;
-          const y = oy + r * CELL + CELL / 2;
+          const x = ox + c * CELL;
+          const y = oy + r * CELL;
           if (x > -2 && x < W + 2 && y > -2 && y < H + 2) {
-            ctx.beginPath(); ctx.arc(x, y, 1.5, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill();
           }
         }
     }
@@ -744,7 +744,7 @@
           // Sparkle just before a square appears
           if (age > -0.06 && ga > 0 && fill > 0.03) {
             const sp = smoothstep(clamp((age + 0.06) / 0.06, 0, 1));
-            sparkle(sq.x + SQ / 2, sq.y + SQ / 2, 7, sp * 0.55 * ga);
+            sparkle(sq.x + SQ / 2, sq.y + SQ / 2, 4, sp * 0.55 * ga);
           }
           return;
         }

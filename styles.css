@@ -1436,11 +1436,15 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .gs-visual--scanner .gs-img {
   object-fit: cover;
   mix-blend-mode: multiply;
-  filter: brightness(1.12);
+  filter: brightness(1.15);
+  mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
 }
 [data-theme="dark"] .gs-visual--scanner .gs-img {
   mix-blend-mode: screen;
   filter: invert(1) brightness(0.88);
+  mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 78% at 50% 48%, black 35%, transparent 90%);
 }
 .gs-fp-svg {
   width: 54%;

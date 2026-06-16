@@ -2176,6 +2176,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   .hero-grid { gap: 40px; }
   .hero-right { padding-top: 0; justify-content: center; }
   .hero-title { font-size: clamp(30px, 8.5vw, 42px); text-align: center; }
+  .hero-title br { display: none; }
   .hero-sub { text-align: center; }
   .hero-badge { align-self: center; }
   .hero-ctas { justify-content: center; }

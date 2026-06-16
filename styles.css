@@ -394,7 +394,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   height: 6px;
   border-radius: 50%;
   background: var(--accent-bright);
-  box-shadow: 0 0 8px var(--accent-bright);
+  flex-shrink: 0;
+  animation: idle-pulse 2s ease-in-out infinite;
 }
 
 .hero-sub {

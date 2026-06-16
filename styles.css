@@ -187,7 +187,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .btn-primary:hover {
   background: var(--btn-primary-bg-hover, var(--accent-hover));
-  transform: translateY(-1px);
+  transform: translateY(0);
   box-shadow: var(--btn-primary-shadow);
 }
 
@@ -244,10 +244,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   letter-spacing: -0.02em;
 }
 .nav-logo-mark {
-  height: 21px;
+  height: 20px;
   width: auto;
   display: block;
-  transform: translateY(-1px);
+  transform: translateY(0);
 }
 [data-theme="dark"] .nav-logo-mark {
   filter: invert(1);

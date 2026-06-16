@@ -1430,6 +1430,25 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   justify-content: center;
 }
+.gs-visual--scanner .gs-img {
+  object-fit: contain;
+  mix-blend-mode: normal;
+}
+.gs-visual--scanner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,  #F3F3F3 0%, transparent 18%, transparent 82%, #F3F3F3 100%),
+    linear-gradient(to bottom, #F3F3F3 0%, transparent 18%, transparent 82%, #F3F3F3 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+[data-theme="dark"] .gs-visual--scanner::after {
+  background:
+    linear-gradient(to right,  #363636 0%, transparent 18%, transparent 82%, #363636 100%),
+    linear-gradient(to bottom, #363636 0%, transparent 18%, transparent 82%, #363636 100%);
+}
 .gs-fp-svg {
   width: 54%;
   display: block;

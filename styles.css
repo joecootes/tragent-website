@@ -2422,7 +2422,7 @@ br.br-m { display: none; }
   .hero-title { font-size: clamp(30px, 8.5vw, 42px); text-align: center; }
   br.br-m { display: block; }
   .hero-sub { text-align: center; }
-  .hero-badge { align-self: center; margin-inline: auto; background: var(--bg); }
+  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; background: var(--bg); }
   .hero-ctas { justify-content: center; }
   .hero-note { text-align: center; }
   .trades-strip { padding-bottom: 32px; }

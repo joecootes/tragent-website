@@ -238,15 +238,16 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-weight: 600;
-  font-size: 19px;
+  gap: 10px;
+  font-weight: 650;
+  font-size: 24px;
   letter-spacing: -0.02em;
 }
 .nav-logo-mark {
-  height: 34px;
+  height: 28px;
   width: auto;
   display: block;
+  transform: translateY(1px);
 }
 [data-theme="dark"] .nav-logo-mark {
   filter: invert(1);

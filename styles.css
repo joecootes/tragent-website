@@ -1434,29 +1434,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   background: #363636;
 }
 .gs-visual--scanner .gs-img {
-  object-fit: contain;
-  position: relative;
-  z-index: 1;
-  width: 88%;
-  height: 88%;
-}
-.gs-visual--scanner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px);
-  background-size: 25% 25%;
-  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 45%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 45%, transparent 100%);
-  pointer-events: none;
-}
-[data-theme="dark"] .gs-visual--scanner::before {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  object-fit: cover;
+  width: 115%;
+  height: 115%;
 }
 .gs-fp-svg {
   width: 54%;
@@ -2002,7 +1982,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   .try-live-card { padding: 28px; }
   .tl-demo-row { grid-template-columns: 1fr; gap: 16px; }
   .tl-demo-arrow { transform: rotate(90deg); justify-self: center; }
-  .gs-visual--scanner .gs-img { width: 96%; height: 96%; }
+  .gs-visual--scanner .gs-img { width: 115%; height: 115%; }
 }
 
 /* ============ Try Tragent Live ============ */

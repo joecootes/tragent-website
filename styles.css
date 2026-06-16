@@ -1495,6 +1495,74 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .gs-q-pill--1 { top: 12%; left: 5%; }
 .gs-q-pill--2 { top: 8%;  right: 5%; }
 .gs-q-pill--3 { bottom: 12%; left: 8%; }
+
+/* ── Card 3: enquiry notification cards ── */
+.gs-visual--enquiries {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+.gs-eq-card {
+  position: absolute;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 12px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  width: 72%;
+}
+[data-theme="dark"] .gs-eq-card {
+  background: rgba(42,42,42,0.97);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+.gs-eq-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.gs-eq-avatar svg { display: block; }
+.gs-eq-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.gs-eq-name {
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--text);
+  white-space: nowrap;
+  line-height: 1.3;
+}
+.gs-eq-job {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0.75;
+  line-height: 1.3;
+}
+.gs-eq-status {
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  align-self: flex-start;
+  line-height: 1.5;
+}
+.gs-eq-status--done     { background: rgba(34,197,94,0.12); color: #15803d; }
+.gs-eq-status--progress { background: rgba(249,115,22,0.12); color: #c2410c; }
+[data-theme="dark"] .gs-eq-status--done     { background: rgba(34,197,94,0.18); color: #4ade80; }
+[data-theme="dark"] .gs-eq-status--progress { background: rgba(249,115,22,0.18); color: #fb923c; }
+.gs-eq-card--1 { top: 5%;    right: 4%;  transform: rotate(-2deg); }
+.gs-eq-card--2 { top: 27%;   left: 4%;   transform: rotate(1.5deg); }
+.gs-eq-card--3 { top: 50%;   right: 3%;  transform: rotate(-1.5deg); }
+.gs-eq-card--4 { bottom: 6%; left: 6%;   transform: rotate(1deg); }
 .gs-visual--anim {
   background: transparent;
   padding: 0;

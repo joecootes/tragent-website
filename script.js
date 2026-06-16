@@ -25,6 +25,24 @@ const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
 
+// Mobile burger menu
+const burger = document.getElementById("burger");
+const navDrawer = document.getElementById("navDrawer");
+if (burger && navDrawer) {
+  burger.addEventListener("click", () => {
+    const open = burger.classList.toggle("open");
+    navDrawer.classList.toggle("open", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  navDrawer.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      burger.classList.remove("open");
+      navDrawer.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+  });
+}
+
 // Scroll-reveal via IntersectionObserver
 const revealObserver = new IntersectionObserver(
   (entries) => {

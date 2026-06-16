@@ -244,10 +244,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   letter-spacing: -0.02em;
 }
 .nav-logo-mark {
-  height: 25px;
+  height: 21px;
   width: auto;
   display: block;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 [data-theme="dark"] .nav-logo-mark {
   filter: invert(1);

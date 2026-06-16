@@ -623,10 +623,12 @@
     const CELL  = 22;
     const SQ    = 16;
     const R     = 3;
-    const CYCLE = 7200;
+    const CYCLE = 14400;
 
     const C_NEAR = [194, 66, 13];
     const C_FAR  = [228, 172, 150];
+
+    const DIRS8 = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]];
 
     let squares = [], W = 0, H = 0;
 
@@ -636,13 +638,11 @@
       H = canvas.height = Math.round(p.offsetHeight);
 
       const cx = W / 2, cy = H / 2;
-
       const cols = Math.round(W / CELL) + 2;
       const rows = Math.round(H / CELL) + 2;
       const ox = cx - (cols / 2) * CELL;
       const oy = cy - (rows / 2) * CELL;
 
-      // Grid covers the full canvas — arms can reach the edges
       const grid = {};
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
@@ -650,7 +650,6 @@
           const gy = oy + r * CELL + CELL / 2;
           if (gx < 0 || gx > W || gy < 0 || gy > H) continue;
           const dist = Math.sqrt((gx - cx) ** 2 + (gy - cy) ** 2);
-          // All squares fully opaque — shape defined by arm paths, not opacity fade
           grid[`${c},${r}`] = { x: gx - SQ / 2, y: gy - SQ / 2, dist, opacityCap: 0.88 + Math.random() * 0.12, c, r };
         }
       }
@@ -658,53 +657,75 @@
       const all = Object.values(grid);
       if (!all.length) { squares = []; return; }
 
-      // Spider: directional arms walk outward from the exact centre.
-      // Each arm has a fixed angle so they fan out like spider legs with clear gaps.
       const start = all.reduce((b, s) => s.dist < b.dist ? s : b, all[0]);
       const visited = new Set([`${start.c},${start.r}`]);
       const ordered = [start];
 
-      const nArms = 4 + Math.floor(Math.random() * 3); // 4–6 legs
+      // Small center cluster via BFS before arms peel off
+      const centerQ = [start];
+      const centerSize = 5 + Math.floor(Math.random() * 4);
+      while (centerQ.length && ordered.length < centerSize) {
+        const cur = centerQ.shift();
+        const shuffled = [...DIRS8].sort(() => Math.random() - 0.5);
+        for (const [dc, dr] of shuffled) {
+          const nc = cur.c + dc, nr = cur.r + dr;
+          const key = `${nc},${nr}`;
+          if (!visited.has(key) && grid[key]) {
+            visited.add(key);
+            ordered.push(grid[key]);
+            centerQ.push(grid[key]);
+            if (ordered.length >= centerSize) break;
+          }
+        }
+      }
 
+      const nArms = 4 + Math.floor(Math.random() * 3);
+      const centerPool = ordered.slice();
+
+      // Grow all arms simultaneously one step at a time so they all extend together
+      const armStates = [];
       for (let a = 0; a < nArms; a++) {
-        // Evenly spread angles with small random jitter so no two runs look identical
         const angle = (a / nArms) * Math.PI * 2 + (Math.random() - 0.5) * (Math.PI / nArms);
-        const cosA = Math.cos(angle);
-        const sinA = Math.sin(angle);
+        const origin = centerPool[Math.floor(Math.random() * centerPool.length)];
+        armStates.push({ c: origin.c, r: origin.r, h: angle, steps: 0, maxLen: 6 + Math.floor(Math.random() * 6), done: false });
+      }
 
-        let c = start.c, r = start.r;
-        const len = 9 + Math.floor(Math.random() * 7); // 9–15 cells long
+      let safety = 0;
+      while (armStates.some(s => !s.done) && safety++ < 2000) {
+        const toProcess = [...armStates]; // snapshot so branches added this round run next round
+        for (const state of toProcess) {
+          if (state.done || state.steps >= state.maxLen) { state.done = true; continue; }
 
-        for (let step = 0; step < len; step++) {
-          // Primary move: step in the arm's direction; secondary: perpendicular drift
-          const candidates = [];
-          // Prefer the grid step closest to the true angle
-          const dc1 = Math.round(cosA), dr1 = Math.round(sinA);
-          candidates.push([dc1, dr1]);
-          // Perpendicular fallback options
-          candidates.push([dc1 === 0 ? 1 : 0, dr1 === 0 ? 1 : 0]);
-          candidates.push([dc1 === 0 ? -1 : 0, dr1 === 0 ? -1 : 0]);
-          // Slight random drift 30% of the time
-          if (Math.random() < 0.3) candidates.push([Math.round(cosA + (Math.random()-0.5)), Math.round(sinA + (Math.random()-0.5))]);
+          state.h += (Math.random() - 0.5) * 0.9;
+          const cosH = Math.cos(state.h), sinH = Math.sin(state.h);
+
+          const sorted = DIRS8
+            .map(([dc, dr]) => ({ dc, dr, score: dc * cosH + dr * sinH + Math.random() * 0.3 }))
+            .sort((a, b) => b.score - a.score);
 
           let moved = false;
-          for (const [dc, dr] of candidates) {
-            if (dc === 0 && dr === 0) continue;
-            const nc = c + dc, nr = r + dr;
+          for (const { dc, dr } of sorted) {
+            const nc = state.c + dc, nr = state.r + dr;
             const key = `${nc},${nr}`;
             if (!visited.has(key) && grid[key]) {
               visited.add(key);
               ordered.push(grid[key]);
-              c = nc; r = nr;
+              state.c = nc; state.r = nr;
               moved = true;
+              state.steps++;
               break;
             }
           }
-          if (!moved) break; // arm hits boundary or visited cells — stop
+          if (!moved) { state.done = true; continue; }
+
+          // Occasional branch — queued for next round
+          if (state.steps > 2 && Math.random() < 0.15) {
+            const bAngle = state.h + (Math.random() < 0.5 ? 1 : -1) * (0.5 + Math.random() * 0.8);
+            armStates.push({ c: state.c, r: state.r, h: bAngle, steps: 0, maxLen: 2 + Math.floor(Math.random() * 4), done: false });
+          }
         }
       }
 
-      // No gap filling — only arm cells are shown, giving the sparse spider shape
       squares = ordered;
     }
 
@@ -736,7 +757,6 @@
 
     function dots(color) {
       ctx.fillStyle = color;
-      // Dots at cell corners (intersections) so each square has 4 dots at its corners
       const cx = W / 2, cy = H / 2;
       const cols = Math.round(W / CELL) + 2;
       const rows = Math.round(H / CELL) + 2;
@@ -759,41 +779,40 @@
       dots(dark ? 'rgba(90,85,80,0.65)' : 'rgba(195,188,183,0.65)');
 
       const phase = (ts % CYCLE) / CYCLE;
-      // fill 0→0.60 | hold 0.60→0.78 | fade 0.78→1.0
-      const fill = clamp(phase / 0.60, 0, 1);
-      const ga   = phase > 0.78 ? 1 - clamp((phase - 0.78) / 0.22, 0, 1) : 1;
+      const fill  = clamp(phase / 0.60, 0, 1);
+      const ga    = phase > 0.78 ? 1 - clamp((phase - 0.78) / 0.22, 0, 1) : 1;
 
       const n = squares.length;
       if (!n) return;
-
       const maxDist = squares.reduce((m, s) => Math.max(m, s.dist), 0) || 1;
 
+      // Draw filled squares
       squares.forEach((sq, i) => {
-        const progress = i / n;
-        const age = fill - progress;
-
-        if (age < 0) {
-          // Sparkle builds slowly just before the square fills
-          if (age > -0.14 && ga > 0 && fill > 0.03) {
-            const sp = smoothstep(clamp((age + 0.14) / 0.14, 0, 1));
-            sparkle(sq.x + SQ / 2, sq.y + SQ / 2, 4, sp * 0.7 * ga);
-          }
-          return;
-        }
-
-        // Fade in smoothly; clamp to per-square opacity cap for organic edge
-        const alpha = smoothstep(clamp(age / 0.10, 0, 1)) * ga * sq.opacityCap;
+        const age = fill - i / n;
+        if (age < 0) return;
+        const alpha = smoothstep(clamp(age / 0.08, 0, 1)) * ga * sq.opacityCap;
         if (alpha < 0.004) return;
-
         const t  = clamp(sq.dist / maxDist, 0, 1);
         const cr = Math.round(lerp(C_NEAR[0], C_FAR[0], t));
         const cg = Math.round(lerp(C_NEAR[1], C_FAR[1], t));
         const cb = Math.round(lerp(C_NEAR[2], C_FAR[2], t));
-
         ctx.fillStyle = `rgba(${cr},${cg},${cb},${alpha.toFixed(3)})`;
         rr(sq.x, sq.y, SQ, SQ, R);
         ctx.fill();
       });
+
+      // Sequential sparkle: find the single next square to appear, show only that one
+      if (ga > 0 && fill > 0.01 && fill < 1) {
+        const slot = 1 / n; // fill-fraction per square
+        for (let i = 0; i < n; i++) {
+          const age = fill - i / n;
+          if (age >= 0) continue; // already filled — check next
+          // Fade sparkle in over one slot: starts the moment the previous square fills
+          const sp = smoothstep(clamp((age + slot) / slot, 0, 1));
+          if (sp > 0.01) sparkle(squares[i].x + SQ / 2, squares[i].y + SQ / 2, 4, sp * 0.9 * ga);
+          break; // only one sparkle at a time
+        }
+      }
     }
 
     setup();

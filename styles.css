@@ -1426,9 +1426,17 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   overflow: hidden;
   background: transparent;
 }
+.gs-brain-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
 .gs-sphere-orb {
   position: absolute;
   width: 25%;
+  z-index: 2;
   aspect-ratio: 1;
   top: 50%;
   left: 50%;
@@ -1454,6 +1462,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .gs-q-pill {
   position: absolute;
+  z-index: 3;
   background: rgba(255,255,255,0.90);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

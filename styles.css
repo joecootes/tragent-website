@@ -1980,6 +1980,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   .try-live-card { padding: 28px; }
   .tl-demo-row { grid-template-columns: 1fr; gap: 16px; }
   .tl-demo-arrow { transform: rotate(90deg); justify-self: center; }
+  .gs-visual--scanner .gs-img { object-fit: cover; }
 }
 
 /* ============ Try Tragent Live ============ */

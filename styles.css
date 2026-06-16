@@ -1388,8 +1388,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   margin-top: 56px;
 }
 .gs-card {
-  background: #EBEBEB;
-  border: 1px solid #DCDCDC;
+  background: #F3F3F3;
+  border: 1px solid #E8E8E8;
   border-radius: 18px;
   overflow: hidden;
   display: flex;

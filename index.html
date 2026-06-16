@@ -222,8 +222,68 @@
         <div class="gs-grid">
 
           <div class="gs-card">
-            <div class="gs-visual">
-              <img src="/assets/C8418583-8002-4C45-A188-C4138281C2BB.PNG" alt="Connect Gmail" class="gs-img" />
+            <div class="gs-visual gs-visual--anim">
+              <!-- Animated Gmail → Tragent → Microsoft connection diagram -->
+              <svg class="gs-connect-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Connect Gmail to Tragent">
+                <defs>
+                  <filter id="gs-card-shadow" x="-25%" y="-25%" width="150%" height="150%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="7" flood-color="rgba(0,0,0,0.13)"/>
+                  </filter>
+                </defs>
+                <!-- Google card (bottom-left, tilted) -->
+                <g transform="translate(22, 98) rotate(-16, 40, 40)">
+                  <rect x="2" y="79" width="78" height="6" rx="3" fill="#d4d4d4"/>
+                  <rect width="80" height="80" rx="12" fill="white" filter="url(#gs-card-shadow)"/>
+                  <!-- Google G: 4-colour ring, r=20, circ=125.66, quarter=31.42 -->
+                  <circle cx="40" cy="40" r="20" stroke="#4285F4" stroke-width="10" fill="none"
+                          stroke-dasharray="31.4 94.2" stroke-dashoffset="0" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="20" stroke="#EA4335" stroke-width="10" fill="none"
+                          stroke-dasharray="31.4 94.2" stroke-dashoffset="-31.4" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="20" stroke="#FBBC05" stroke-width="10" fill="none"
+                          stroke-dasharray="31.4 94.2" stroke-dashoffset="-62.8" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="20" stroke="#34A853" stroke-width="10" fill="none"
+                          stroke-dasharray="31.4 94.2" stroke-dashoffset="-94.2" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="12" fill="white"/>
+                  <rect x="40" y="33" width="21" height="9" rx="1" fill="#4285F4"/>
+                </g>
+                <!-- Microsoft card (top-right, tilted) -->
+                <g transform="translate(196, 14) rotate(-16, 40, 40)">
+                  <rect x="2" y="79" width="78" height="6" rx="3" fill="#d4d4d4"/>
+                  <rect width="80" height="80" rx="12" fill="white" filter="url(#gs-card-shadow)"/>
+                  <rect x="16" y="16" width="21" height="21" rx="2" fill="#F25022"/>
+                  <rect x="40" y="16" width="21" height="21" rx="2" fill="#7FBA00"/>
+                  <rect x="16" y="40" width="21" height="21" rx="2" fill="#00A4EF"/>
+                  <rect x="40" y="40" width="21" height="21" rx="2" fill="#FFB900"/>
+                </g>
+                <!-- Flowing arrow: Google → Tragent -->
+                <path class="gs-arrow" d="M 101 128 C 115 120 128 113 138 107"
+                      stroke="#b4b4b4" stroke-width="2.2" stroke-dasharray="4.5 4" stroke-linecap="round">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-17" dur="0.75s" repeatCount="indefinite"/>
+                </path>
+                <!-- Flowing arrow: Tragent → Microsoft -->
+                <path class="gs-arrow" d="M 162 93 C 172 86 184 78 197 68"
+                      stroke="#b4b4b4" stroke-width="2.2" stroke-dasharray="4.5 4" stroke-linecap="round">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-17" dur="0.75s" repeatCount="indefinite" begin="0.375s"/>
+                </path>
+                <!-- Tragent icon (centre) -->
+                <g transform="translate(150, 100)">
+                  <!-- Pulse ring: expands and fades -->
+                  <circle cx="0" cy="0" r="22" stroke="#C2420D" stroke-width="1.5" fill="none">
+                    <animate attributeName="r" values="22;38;38" dur="1.8s" repeatCount="indefinite"
+                             calcMode="spline" keySplines="0.35 0 0.65 1; 0 0 1 1" keyTimes="0;0.55;1"/>
+                    <animate attributeName="opacity" values="0.75;0;0" dur="1.8s" repeatCount="indefinite"
+                             calcMode="spline" keySplines="0.35 0 0.65 1; 0 0 1 1" keyTimes="0;0.55;1"/>
+                  </circle>
+                  <!-- Spinning dashed ring -->
+                  <circle cx="0" cy="0" r="26" stroke="#C2420D" stroke-width="2" stroke-dasharray="15 7" fill="none" opacity="0.75">
+                    <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="5s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- Tragent T mark (scaled from 1080×1080 favicon viewbox) -->
+                  <g transform="scale(0.04) translate(-530 -540)">
+                    <path class="gs-t-mark" fill="#1E2440" d="M695.98,675.71h-174.39c-13.82,0-25.02-11.2-25.02-25.02v-63.45c0-13.75,11.15-24.9,24.9-24.9h82.95c14.18,0,25.67-11.49,25.67-25.67v-99.71c0-14.18-11.49-25.67-25.67-25.67h-83.79c-13.27,0-24.03-10.76-24.03-24.03v-95.51c0-14.18-11.49-25.67-25.67-25.67h-86.87c-14.18,0-25.67,11.49-25.67,25.67v113.35c0,14.18,11.49,25.67,25.67,25.67h67.93c14.38,0,26.04,11.66,26.04,26.04v60.59c0,13.43-10.89,24.32-24.32,24.32h-69.69c-14.18,0-25.67,11.49-25.67,25.67v102.43c0,14.18,11.49,25.67,25.67,25.67h70.81c12.81,0,23.19,10.38,23.19,23.19v69.57c0,14.18,11.49,25.67,25.67,25.67h192.28c14.18,0,25.67-11.49,25.67-25.67v-86.87c0-14.18-11.49-25.67-25.67-25.67Z"/>
+                  </g>
+                </g>
+              </svg>
             </div>
             <div class="gs-body">
               <span class="gs-num">01.</span>

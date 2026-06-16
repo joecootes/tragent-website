@@ -640,9 +640,16 @@
       gOx   = Math.round((W - gCols * CELL) / 2);
       gOy   = Math.round((H - gRows * CELL) / 2);
 
+      const maxRow = gRows - 1;
+      const maxCol = gCols - 1 || 1;
+
+      // Build only the lower-right triangle: column c gets rows from minR(c) to maxRow.
+      // minR(c) = round(maxRow * (1 - c / maxCol)) — creates staircase steps from
+      // bottom-left (1 cell tall) to top-right (full height column).
       const all = [];
       for (let c = 0; c < gCols; c++) {
-        for (let r = 0; r < gRows; r++) {
+        const minR = Math.round(maxRow * (1 - c / maxCol));
+        for (let r = minR; r < gRows; r++) {
           const gx = gOx + c * CELL + CELL / 2;
           const gy = gOy + r * CELL + CELL / 2;
           all.push({ x: gx - SQ / 2, y: gy - SQ / 2, c, r });
@@ -650,9 +657,6 @@
       }
 
       // Anti-diagonal sort: bottom-left first, wave sweeps to top-right.
-      // Score = col + (maxRow - row): squares on the same anti-diagonal share the same score.
-      // Within each diagonal, fill left-to-right.
-      const maxRow = gRows - 1;
       all.sort((a, b) => {
         const dA = a.c + (maxRow - a.r);
         const dB = b.c + (maxRow - b.r);

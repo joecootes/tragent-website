@@ -67,7 +67,6 @@
             <a href="#cta" class="hero-badge reveal">
               <span class="badge-dot"></span>
               You're working. Tragent's replying.
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <h1 class="hero-title reveal d-1">Never miss another<br class="br-m"> enquiry and<br class="br-m"> <span class="accent-text">win more jobs.</span></h1>
             <p class="hero-sub reveal d-2">Every enquiry gets a response in seconds. Every lead gets followed up. You stay on the tools.</p>
@@ -218,7 +217,7 @@
       <div class="container">
         <div class="section-head" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">
           <h2>Getting started</h2>
-          <p class="section-sub" style="margin-top:12px;">Get Tragent up and running in minutes.</p>
+          <p class="section-sub" style="margin-top:12px;text-align:center;">Get Tragent up and running in minutes.</p>
         </div>
         <div class="gs-grid">
 
@@ -631,6 +630,7 @@
     const DIRS8 = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]];
 
     let squares = [], W = 0, H = 0;
+    let gOx = 0, gOy = 0, gCols = 0, gRows = 0; // grid origin + dimensions (shared with dots())
 
     function setup() {
       const p = canvas.parentElement;
@@ -638,17 +638,20 @@
       H = canvas.height = Math.round(p.offsetHeight);
 
       const cx = W / 2, cy = H / 2;
-      const cols = Math.round(W / CELL) + 2;
-      const rows = Math.round(H / CELL) + 2;
-      const ox = cx - (cols / 2) * CELL;
-      const oy = cy - (rows / 2) * CELL;
 
+      // Dot grid: margin from card edge = CELL, equal on all sides
+      gCols = Math.floor((W - 2 * CELL) / CELL); // number of cell columns (gaps between dot columns)
+      gRows = Math.floor((H - 2 * CELL) / CELL);
+      gOx   = Math.round((W - gCols * CELL) / 2); // x of first dot column — centred, margin ≥ CELL
+      gOy   = Math.round((H - gRows * CELL) / 2);
+
+      // Build grid: cell (c,r) is the square sitting between dot columns c and c+1
+      // This guarantees no square can appear in the margin zone outside the outermost dots
       const grid = {};
-      for (let c = 0; c < cols; c++) {
-        for (let r = 0; r < rows; r++) {
-          const gx = ox + c * CELL + CELL / 2;
-          const gy = oy + r * CELL + CELL / 2;
-          if (gx < 0 || gx > W || gy < 0 || gy > H) continue;
+      for (let c = 0; c < gCols; c++) {
+        for (let r = 0; r < gRows; r++) {
+          const gx = gOx + c * CELL + CELL / 2; // cell centre
+          const gy = gOy + r * CELL + CELL / 2;
           const dist = Math.sqrt((gx - cx) ** 2 + (gy - cy) ** 2);
           grid[`${c},${r}`] = { x: gx - SQ / 2, y: gy - SQ / 2, dist, opacityCap: 0.88 + Math.random() * 0.12, c, r };
         }
@@ -757,18 +760,12 @@
 
     function dots(color) {
       ctx.fillStyle = color;
-      const cx = W / 2, cy = H / 2;
-      const cols = Math.round(W / CELL) + 2;
-      const rows = Math.round(H / CELL) + 2;
-      const ox = cx - (cols / 2) * CELL;
-      const oy = cy - (rows / 2) * CELL;
-      for (let c = 0; c <= cols; c++)
-        for (let r = 0; r <= rows; r++) {
-          const x = ox + c * CELL;
-          const y = oy + r * CELL;
-          if (x > -2 && x < W + 2 && y > -2 && y < H + 2) {
-            ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill();
-          }
+      // Dots at grid intersections — same origin as squares, margin = CELL on all sides
+      for (let c = 0; c <= gCols; c++)
+        for (let r = 0; r <= gRows; r++) {
+          ctx.beginPath();
+          ctx.arc(gOx + c * CELL, gOy + r * CELL, 1.2, 0, Math.PI * 2);
+          ctx.fill();
         }
     }
 

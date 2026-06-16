@@ -623,7 +623,7 @@
     const CELL  = 22;
     const SQ    = 16;
     const R     = 3;
-    const CYCLE = 6000;
+    const CYCLE = 7200;
 
     const C_NEAR = [194, 66, 13];
     const C_FAR  = [228, 172, 150];
@@ -644,36 +644,56 @@
       const ox = cx - (cols / 2) * CELL;
       const oy = cy - (rows / 2) * CELL;
 
-      const all = [];
+      // Build grid lookup for BFS neighbour queries
+      const grid = {};
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
           const gx = ox + c * CELL + CELL / 2;
           const gy = oy + r * CELL + CELL / 2;
           const dist = Math.sqrt((gx - cx) ** 2 + (gy - cy) ** 2);
-          // Allow squares slightly beyond softR; distance controls max opacity
           if (dist < softR * 1.22) {
-            // Distance-based opacity cap: full at centre, fades toward edge
-            // Also randomise per-square so the boundary looks organic
             const edgeFade = Math.max(0, 1 - Math.pow(dist / softR, 2.2));
             const opacityCap = edgeFade * (0.6 + Math.random() * 0.4);
             if (opacityCap > 0.05) {
-              all.push({ x: gx - SQ / 2, y: gy - SQ / 2, dist, opacityCap });
+              grid[`${c},${r}`] = { x: gx - SQ / 2, y: gy - SQ / 2, dist, opacityCap, c, r };
             }
           }
         }
       }
 
+      const all = Object.values(grid);
       if (!all.length) { squares = []; return; }
 
-      // Sort: small distance bias + heavy random → organic scattered appearance
-      const maxDist = all.reduce((m, s) => Math.max(m, s.dist), 0) || 1;
-      all.sort((a, b) => {
-        const ra = a.dist * 0.25 + Math.random() * maxDist;
-        const rb = b.dist * 0.25 + Math.random() * maxDist;
-        return ra - rb;
-      });
+      // DFS-biased frontier: 78% of the time pick from the END of the frontier
+      // (extend the current arm), 22% pick randomly (start a new branch).
+      // This creates the long irregular arms seen in the reference.
+      const start = all.reduce((b, s) => s.dist < b.dist ? s : b, all[0]);
+      const ordered = [];
+      const visited = new Set([`${start.c},${start.r}`]);
+      const frontier = [start];
 
-      squares = all;
+      while (frontier.length > 0) {
+        const idx = Math.random() < 0.78
+          ? frontier.length - 1          // extend current arm (DFS)
+          : Math.floor(Math.random() * frontier.length); // branch (BFS)
+        const sq = frontier.splice(idx, 1)[0];
+        ordered.push(sq);
+
+        const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+        for (let i = dirs.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+        }
+        for (const [dc, dr] of dirs) {
+          const key = `${sq.c + dc},${sq.r + dr}`;
+          if (!visited.has(key) && grid[key]) {
+            visited.add(key);
+            frontier.push(grid[key]);
+          }
+        }
+      }
+
+      squares = ordered;
     }
 
     function lerp(a, b, t) { return a + (b - a) * t; }
@@ -741,10 +761,10 @@
         const age = fill - progress;
 
         if (age < 0) {
-          // Sparkle just before a square appears
-          if (age > -0.06 && ga > 0 && fill > 0.03) {
-            const sp = smoothstep(clamp((age + 0.06) / 0.06, 0, 1));
-            sparkle(sq.x + SQ / 2, sq.y + SQ / 2, 4, sp * 0.55 * ga);
+          // Sparkle only in the very last moment before the square appears
+          if (age > -0.028 && ga > 0 && fill > 0.03) {
+            const sp = smoothstep(clamp((age + 0.028) / 0.028, 0, 1));
+            sparkle(sq.x + SQ / 2, sq.y + SQ / 2, 4, sp * 0.7 * ga);
           }
           return;
         }

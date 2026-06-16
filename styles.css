@@ -247,7 +247,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   height: 25px;
   width: auto;
   display: block;
-  transform: translateY(1px);
+  transform: translateY(-2px);
 }
 [data-theme="dark"] .nav-logo-mark {
   filter: invert(1);

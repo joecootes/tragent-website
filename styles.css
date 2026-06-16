@@ -1431,9 +1431,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   justify-content: center;
 }
 .gs-visual--scanner .gs-img {
-  object-fit: contain;
+  object-fit: cover;
   mix-blend-mode: multiply;
-  filter: brightness(1.09);
+  filter: brightness(1.12);
 }
 [data-theme="dark"] .gs-visual--scanner .gs-img {
   mix-blend-mode: screen;
@@ -1444,15 +1444,15 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to right,  #F3F3F3 0%, transparent 18%, transparent 82%, #F3F3F3 100%),
-    linear-gradient(to bottom, #F3F3F3 0%, transparent 18%, transparent 82%, #F3F3F3 100%);
+    linear-gradient(to right,  #F2F2F2 0%, transparent 16%, transparent 84%, #F2F2F2 100%),
+    linear-gradient(to bottom, #F2F2F2 0%, transparent 16%, transparent 84%, #F2F2F2 100%);
   pointer-events: none;
   z-index: 2;
 }
 [data-theme="dark"] .gs-visual--scanner::after {
   background:
-    linear-gradient(to right,  #363636 0%, transparent 18%, transparent 82%, #363636 100%),
-    linear-gradient(to bottom, #363636 0%, transparent 18%, transparent 82%, #363636 100%);
+    linear-gradient(to right,  #363636 0%, transparent 16%, transparent 84%, #363636 100%),
+    linear-gradient(to bottom, #363636 0%, transparent 16%, transparent 84%, #363636 100%);
 }
 .gs-fp-svg {
   width: 54%;

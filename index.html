@@ -233,70 +233,41 @@
           </div>
 
           <div class="gs-card">
-            <div class="gs-visual gs-visual--sphere">
-              <!-- Neural network — sits behind sphere, particles flow inward -->
-              <svg class="gs-brain-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="gs-visual gs-visual--scanner">
+              <!-- Scan frame corners -->
+              <span class="gs-sc gs-sc--tl"></span>
+              <span class="gs-sc gs-sc--tr"></span>
+              <span class="gs-sc gs-sc--bl"></span>
+              <span class="gs-sc gs-sc--br"></span>
+              <!-- Fingerprint: dark top half, grey lower half, split at scan line -->
+              <svg class="gs-fp-svg" viewBox="0 -80 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <filter id="gs-node-glow" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur stdDeviation="2.5" result="b"/>
-                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
+                  <clipPath id="gs-fp-top"><rect x="-5" y="-80" width="210" height="130"/></clipPath>
+                  <clipPath id="gs-fp-bot"><rect x="-5" y="50"  width="210" height="130"/></clipPath>
                 </defs>
-                <!-- Connection lines: pill anchors → sphere centre (150,150) -->
-                <line x1="148" y1="58" x2="200" y2="150" stroke="rgba(255,110,40,0.28)" stroke-width="1"/>
-                <line x1="280" y1="36" x2="200" y2="150" stroke="rgba(255,110,40,0.28)" stroke-width="1"/>
-                <line x1="168" y1="256" x2="200" y2="150" stroke="rgba(255,110,40,0.28)" stroke-width="1"/>
-                <!-- Extra floating nodes -->
-                <line x1="348" y1="205" x2="200" y2="150" stroke="rgba(255,110,40,0.18)" stroke-width="0.8"/>
-                <line x1="350" y1="96"  x2="200" y2="150" stroke="rgba(255,110,40,0.18)" stroke-width="0.8"/>
-                <line x1="52"  y1="172" x2="200" y2="150" stroke="rgba(255,110,40,0.15)" stroke-width="0.8"/>
-                <!-- Pill anchor dots -->
-                <circle cx="148" cy="58"  r="3.5" fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.0s" repeatCount="indefinite"/></circle>
-                <circle cx="280" cy="36"  r="3.5" fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.3s" repeatCount="indefinite" begin="0.7s"/></circle>
-                <circle cx="168" cy="256" r="3.5" fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.9s" repeatCount="indefinite" begin="0.3s"/></circle>
-                <!-- Extra floating dots -->
-                <circle cx="348" cy="205" r="2.5" fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.35;0.8;0.35" dur="2.5s" repeatCount="indefinite" begin="1.1s"/></circle>
-                <circle cx="350" cy="96"  r="2.5" fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.35;0.8;0.35" dur="2.0s" repeatCount="indefinite" begin="0.5s"/></circle>
-                <circle cx="52"  cy="172" r="2"   fill="#FF8040" filter="url(#gs-node-glow)"><animate attributeName="opacity" values="0.3;0.7;0.3"  dur="2.2s" repeatCount="indefinite" begin="1.5s"/></circle>
-                <!-- Motion paths (invisible, used by animateMotion) -->
-                <path id="gs-mp1" d="M148,58  L200,150" stroke="none"/>
-                <path id="gs-mp2" d="M280,36  L200,150" stroke="none"/>
-                <path id="gs-mp3" d="M168,256 L200,150" stroke="none"/>
-                <path id="gs-mp4" d="M348,205 L200,150" stroke="none"/>
-                <path id="gs-mp5" d="M350,96  L200,150" stroke="none"/>
-                <path id="gs-mp6" d="M52,172  L200,150" stroke="none"/>
-                <!-- Particles flowing toward sphere -->
-                <circle r="2.5" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#gs-mp1"/></animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
-                <circle r="2.5" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="0.6s"><mpath href="#gs-mp2"/></animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.0s" repeatCount="indefinite" begin="0.6s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
-                <circle r="2.5" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.2s"><mpath href="#gs-mp3"/></animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="1.2s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
-                <circle r="2" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s"><mpath href="#gs-mp4"/></animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="1.6s" repeatCount="indefinite" begin="0.4s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
-                <circle r="2" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="1.9s" repeatCount="indefinite" begin="1.0s"><mpath href="#gs-mp5"/></animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="1.9s" repeatCount="indefinite" begin="1.0s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
-                <circle r="2" fill="#FFA060" filter="url(#gs-node-glow)">
-                  <animateMotion dur="2.1s" repeatCount="indefinite" begin="0.8s"><mpath href="#gs-mp6"/></animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.1s" repeatCount="indefinite" begin="0.8s" keyTimes="0;0.08;0.82;1"/>
-                </circle>
+                <!-- Dark ridges (above scan midpoint) -->
+                <g class="gs-fp-dark" clip-path="url(#gs-fp-top)" stroke="#1C1C1C" stroke-width="8" stroke-linecap="round" fill="none">
+                  <path d="M 95,140 Q 100,68 105,140"/>
+                  <path d="M 80,145 Q 100,48 120,145"/>
+                  <path d="M 65,150 Q 100,28 135,150"/>
+                  <path d="M 50,155 Q 100,8  150,155"/>
+                  <path d="M 33,160 Q 100,-12 167,160"/>
+                  <path d="M 15,165 Q 100,-32 185,165"/>
+                  <path d="M -3,170 Q 100,-52 203,170"/>
+                </g>
+                <!-- Faded ridges (below scan midpoint) -->
+                <g class="gs-fp-light" clip-path="url(#gs-fp-bot)" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" fill="none">
+                  <path d="M 95,140 Q 100,68 105,140"/>
+                  <path d="M 80,145 Q 100,48 120,145"/>
+                  <path d="M 65,150 Q 100,28 135,150"/>
+                  <path d="M 50,155 Q 100,8  150,155"/>
+                  <path d="M 33,160 Q 100,-12 167,160"/>
+                  <path d="M 15,165 Q 100,-32 185,165"/>
+                  <path d="M -3,170 Q 100,-52 203,170"/>
+                </g>
               </svg>
-              <!-- Sphere sits above SVG so particles are "absorbed" into it -->
-              <div class="gs-sphere-orb"></div>
-              <!-- Pills float above everything -->
-              <div class="gs-q-pill gs-q-pill--1"><span class="gs-q-label">What's your trade?</span></div>
-              <div class="gs-q-pill gs-q-pill--2"><span class="gs-q-label">Your area?</span></div>
-              <div class="gs-q-pill gs-q-pill--3"><span class="gs-q-label">Your name?</span></div>
+              <!-- Animated orange scanning line -->
+              <div class="gs-scan-line"></div>
             </div>
             <div class="gs-body">
               <span class="gs-num">02.</span>

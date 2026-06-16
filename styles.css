@@ -1421,80 +1421,51 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .gs-visual--icon {
   background: transparent;
 }
-.gs-visual--sphere {
+/* ── Card 2: fingerprint scanner ── */
+.gs-visual--scanner {
   position: relative;
   overflow: hidden;
   background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.gs-brain-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.gs-fp-svg {
+  width: 54%;
+  display: block;
+  position: relative;
   z-index: 1;
 }
-.gs-sphere-orb {
+[data-theme="dark"] .gs-fp-dark { stroke: #E0E0E0; }
+[data-theme="dark"] .gs-fp-light { stroke: #505050; }
+/* Corner scan brackets */
+.gs-sc {
   position: absolute;
-  width: 18%;
+  width: 18px;
+  height: 18px;
   z-index: 2;
-  aspect-ratio: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 33% 26%, rgba(255,248,238,0.80) 0%, rgba(255,220,170,0.30) 22%, transparent 42%),
-    radial-gradient(circle at 42% 40%, #FF8040 0%, #C93C08 34%, #841400 64%, #220300 100%);
-  box-shadow:
-    0 0 28px 8px rgba(175,50,8,0.22),
-    0 8px 18px rgba(0,0,0,0.18);
-  animation: gs-sphere-breathe 3.5s ease-in-out infinite;
 }
-@keyframes gs-sphere-breathe {
-  0%, 100% {
-    box-shadow: 0 0 28px 8px rgba(175,50,8,0.22), 0 8px 18px rgba(0,0,0,0.18);
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    box-shadow: 0 0 40px 12px rgba(175,50,8,0.32), 0 10px 22px rgba(0,0,0,0.22);
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-}
-.gs-q-pill {
+.gs-sc--tl { top: 10%;    left: 22%;  border-top:    1.5px solid #A8A8A8; border-left:   1.5px solid #A8A8A8; }
+.gs-sc--tr { top: 10%;    right: 22%; border-top:    1.5px solid #A8A8A8; border-right:  1.5px solid #A8A8A8; }
+.gs-sc--bl { bottom: 7%;  left: 22%;  border-bottom: 1.5px solid #A8A8A8; border-left:   1.5px solid #A8A8A8; }
+.gs-sc--br { bottom: 7%;  right: 22%; border-bottom: 1.5px solid #A8A8A8; border-right:  1.5px solid #A8A8A8; }
+/* Scanning line */
+.gs-scan-line {
   position: absolute;
+  left: 22%;
+  right: 22%;
+  height: 1.5px;
+  background: #C2420D;
+  box-shadow: 0 0 8px rgba(194,66,13,0.65), 0 0 2px rgba(194,66,13,0.9);
   z-index: 3;
-  background: rgba(255,255,255,0.90);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.6);
-  border-radius: 10px;
-  padding: 9px 13px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.09);
+  animation: gs-scan-move 2.4s ease-in-out infinite;
+  pointer-events: none;
 }
-[data-theme="dark"] .gs-q-pill {
-  background: rgba(48,48,48,0.90);
-  border-color: rgba(255,255,255,0.1);
-  box-shadow: 0 3px 14px rgba(0,0,0,0.3);
+@keyframes gs-scan-move {
+  0%   { top: 13%; }
+  50%  { top: 84%; }
+  100% { top: 13%; }
 }
-.gs-q-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-  line-height: 1.3;
-}
-.gs-q-answer {
-  font-size: 10.5px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  line-height: 1.3;
-}
-.gs-q-pill--1 { top: 12%; left: 5%; }
-.gs-q-pill--2 { top: 8%;  right: 5%; }
-.gs-q-pill--3 { bottom: 12%; left: 8%; }
 
 /* ── Card 3: enquiry notification cards ── */
 .gs-visual--enquiries {

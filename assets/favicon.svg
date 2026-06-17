@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="Tragent logo">
-  <rect width="1080" height="1080" rx="240" fill="#ffffff"/>
-  <svg viewBox="-30 -20 475 285" x="90" y="265" width="900" height="550">
-    <polygon points="233.73 0 355.68 0 196.14 244.13 73.62 244.13 233.73 0" fill="#000000"/>
-    <circle cx="375.23" cy="177.24" r="67.15" fill="#000000"/>
-    <rect x="28.11" y="159.77" width="38.65" height="88.1" transform="translate(-148.99 131.63) rotate(-56.72)" fill="#3d3d3d"/>
-    <polyline points="21.2 163.5 125.97 164.62 94.86 211.83" fill="none" stroke="#cfcfce" stroke-width="8"/>
-  </svg>
+  <!-- White rounded background -->
+  <rect width="1080" height="1080" rx="200" fill="#ffffff"/>
+  <!-- Orange square mark (top-left, matching wordmark) -->
+  <rect x="108" y="148" width="188" height="188" rx="18" fill="#E8541A"/>
+  <!-- Dark green "t" — vertical stem -->
+  <rect x="350" y="208" width="148" height="724" rx="74" fill="#1D3527"/>
+  <!-- Dark green "t" — horizontal crossbar -->
+  <rect x="248" y="290" width="580" height="136" rx="68" fill="#1D3527"/>
 </svg>

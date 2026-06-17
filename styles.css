@@ -1463,6 +1463,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   object-fit: cover;
   width: 115%;
   height: 115%;
+  filter: contrast(1.5);
 }
 .gs-fp-svg {
   width: 54%;
@@ -1479,10 +1480,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   height: 18px;
   z-index: 2;
 }
-.gs-sc--tl { top: 10%;    left: 22%;  border-top:    2px solid #666; border-left:   2px solid #666; }
-.gs-sc--tr { top: 10%;    right: 22%; border-top:    2px solid #666; border-right:  2px solid #666; }
-.gs-sc--bl { bottom: 7%;  left: 22%;  border-bottom: 2px solid #666; border-left:   2px solid #666; }
-.gs-sc--br { bottom: 7%;  right: 22%; border-bottom: 2px solid #666; border-right:  2px solid #666; }
+.gs-sc--tl { top: 10%;    left: 22%;  border-top:    3px solid #444; border-left:   3px solid #444; }
+.gs-sc--tr { top: 10%;    right: 22%; border-top:    3px solid #444; border-right:  3px solid #444; }
+.gs-sc--bl { bottom: 7%;  left: 22%;  border-bottom: 3px solid #444; border-left:   3px solid #444; }
+.gs-sc--br { bottom: 7%;  right: 22%; border-bottom: 3px solid #444; border-right:  3px solid #444; }
 /* Scanning line */
 .gs-scan-line {
   position: absolute;

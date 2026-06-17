@@ -262,6 +262,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   color: var(--text);
   text-decoration: none;
 }
+.nav-logo-wordmark {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+[data-theme="dark"] .nav-logo-wordmark {
+  filter: brightness(0) invert(1);
+}
 
 .nav-links {
   display: flex;
@@ -2422,7 +2430,7 @@ br.br-m { display: none; }
   .hero-title { font-size: clamp(30px, 8.5vw, 42px); text-align: center; }
   br.br-m { display: block; }
   .hero-sub { text-align: center; }
-  .hero-badge { display: block; width: fit-content; margin-left: auto; margin-right: auto; background: var(--bg); }
+  .hero-badge { display: flex; width: fit-content; margin-left: auto; margin-right: auto; background: var(--bg); }
   .hero-ctas { justify-content: center; }
   .hero-note { text-align: center; }
   .trades-strip { padding-bottom: 32px; }

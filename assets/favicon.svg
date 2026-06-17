@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="Tragent logo">
-  <!-- White rounded background -->
-  <rect width="1080" height="1080" rx="200" fill="#ffffff"/>
-  <!-- Orange square mark (top-left, matching wordmark) -->
-  <rect x="108" y="148" width="188" height="188" rx="18" fill="#E8541A"/>
-  <!-- Dark green "t" — vertical stem -->
-  <rect x="350" y="208" width="148" height="724" rx="74" fill="#1D3527"/>
-  <!-- Dark green "t" — horizontal crossbar -->
-  <rect x="248" y="290" width="580" height="136" rx="68" fill="#1D3527"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080" role="img" aria-label="Tragent">
+  <defs>
+    <clipPath id="r">
+      <rect width="1080" height="1080" rx="180"/>
+    </clipPath>
+  </defs>
+  <image href="Untitled-11.png" width="1080" height="1080" clip-path="url(#r)"/>
 </svg>

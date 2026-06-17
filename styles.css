@@ -1993,16 +1993,25 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .hw-net-card {
   position: relative;
   min-height: 420px;
-  background: #fff;
-  border: 1px solid #E5E5E5;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05);
   overflow: hidden;
 }
 [data-theme="dark"] .hw-net-card {
-  background: #1a1a1a;
-  border-color: rgba(255,255,255,0.07);
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* Floating inbox cards inner wrapper */
+.hw-int-inner {
+  position: absolute;
+  width: 640px;
+  height: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.72);
+  transform-origin: center center;
 }
 
 /* SVG lines */
@@ -2122,7 +2131,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 @media (max-width: 860px) {
   .how-works-grid { grid-template-columns: 1fr; gap: 40px; }
   .hw-net-card { min-height: 320px; }
-  .hw-eq-node { max-width: 170px; }
+  .hw-int-inner { transform: translate(-50%, -50%) scale(0.58); }
+}
+@media (max-width: 500px) {
+  .hw-net-card { min-height: 270px; }
+  .hw-int-inner { transform: translate(-50%, -50%) scale(0.48); }
 }
 
 .try-live { border-top: 1px solid var(--border); }

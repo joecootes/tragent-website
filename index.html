@@ -383,43 +383,55 @@
             <p class="how-works-sub">Tragent sits in your inbox, spots new enquiries the moment they land, and sends a professional reply — while you stay on the tools.</p>
           </div>
 
-          <!-- Right: animated inbox card -->
+          <!-- Right: network animation card -->
           <div class="how-works-visual reveal d-1">
-            <div class="hw-card">
-              <div class="hw-inbox-header">
-                <span class="hw-col-from">From</span>
-                <span class="hw-col-subject">Subject</span>
-                <span class="hw-col-time">Time</span>
-              </div>
-              <div class="hw-row hw-row--muted">
-                <span class="hw-from">Mark Thompson</span>
-                <span class="hw-subject">Bathroom renovation quote</span>
-                <span class="hw-time">9:14 am</span>
-              </div>
-              <div class="hw-row hw-row--muted">
-                <span class="hw-from">Claire Foster</span>
-                <span class="hw-subject">Emergency plumber needed</span>
-                <span class="hw-time">8:52 am</span>
-              </div>
-              <div class="hw-row hw-row--muted">
-                <span class="hw-from">David O'Brien</span>
-                <span class="hw-subject">Boiler service enquiry</span>
-                <span class="hw-time">8:31 am</span>
-              </div>
-              <!-- New enquiry (animated) -->
-              <div class="hw-row hw-row--new" id="hwNewRow">
-                <div class="hw-pulse" id="hwPulse"></div>
-                <span class="hw-from hw-from--bold">Sarah Williams</span>
-                <span class="hw-subject hw-subject--bold">Kitchen Rewire Quote</span>
-                <span class="hw-time hw-time--now">Just now</span>
-                <div class="hw-badge" id="hwBadge">
-                  <span class="hw-badge-dot"></span>Detected
+            <div class="hw-card hw-net-card" id="hwCard">
+
+              <!-- SVG connection lines -->
+              <svg class="hw-net-svg" id="hwSvg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line class="hw-net-line" id="hwLine1"/>
+                <line class="hw-net-line" id="hwLine2"/>
+                <line class="hw-net-line" id="hwLine3"/>
+              </svg>
+
+              <!-- Enquiry nodes -->
+              <div class="hw-eq-node" id="hwEq1" style="top:12%;left:5%">
+                <div class="hw-eq-avatar" style="background:#EBF4FB;color:#2B7FA8">SW</div>
+                <div class="hw-eq-text">
+                  <p class="hw-eq-name">Sarah Williams</p>
+                  <p class="hw-eq-sub">Kitchen Rewire Quote</p>
                 </div>
               </div>
-              <!-- Status -->
-              <div class="hw-status-bar" id="hwStatusBar">
-                <span class="hw-status-dot"></span>Monitoring inbox
+
+              <div class="hw-eq-node" id="hwEq2" style="top:40%;right:5%">
+                <div class="hw-eq-avatar" style="background:#EBF5EE;color:#2B8A4A">MT</div>
+                <div class="hw-eq-text">
+                  <p class="hw-eq-name">Mark Thompson</p>
+                  <p class="hw-eq-sub">Boiler service needed</p>
+                </div>
               </div>
+
+              <div class="hw-eq-node" id="hwEq3" style="bottom:12%;left:5%">
+                <div class="hw-eq-avatar" style="background:#FBF0EB;color:#A8502B">CF</div>
+                <div class="hw-eq-text">
+                  <p class="hw-eq-name">Claire Foster</p>
+                  <p class="hw-eq-sub">Bathroom reno quote</p>
+                </div>
+              </div>
+
+              <!-- Centre hub: Tragent -->
+              <div class="hw-hub" id="hwHub">
+                <div class="hw-hub-ring" id="hwHubRing"></div>
+                <div class="hw-hub-icon">
+                  <img src="/assets/mark.svg" alt="" class="hw-hub-mark"/>
+                </div>
+                <span class="hw-hub-label">Tragent</span>
+                <div class="hw-hub-counter" id="hwCounter">
+                  <span class="hw-hub-dot"></span>
+                  <span id="hwCountText">Monitoring</span>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -772,43 +784,85 @@
     requestAnimationFrame(frame);
   })();
 
-  // ── How It Works inbox animation ──
+  // ── How It Works network animation ──
   (function () {
-    const row    = document.getElementById('hwNewRow');
-    const pulse  = document.getElementById('hwPulse');
-    const badge  = document.getElementById('hwBadge');
-    const status = document.getElementById('hwStatusBar');
-    if (!row) return;
+    const card      = document.getElementById('hwCard');
+    if (!card) return;
+    const svg       = document.getElementById('hwSvg');
+    const hub       = document.getElementById('hwHub');
+    const ring      = document.getElementById('hwHubRing');
+    const counter   = document.getElementById('hwCounter');
+    const countText = document.getElementById('hwCountText');
+    const eqs       = [document.getElementById('hwEq1'), document.getElementById('hwEq2'), document.getElementById('hwEq3')];
+    const lines     = [document.getElementById('hwLine1'), document.getElementById('hwLine2'), document.getElementById('hwLine3')];
+
+    function cx(el) {
+      const cr = card.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return { x: r.left - cr.left + r.width / 2, y: r.top - cr.top + r.height / 2 };
+    }
+
+    function setupLines() {
+      const h = cx(hub);
+      eqs.forEach((eq, i) => {
+        const e = cx(eq);
+        const len = Math.hypot(h.x - e.x, h.y - e.y);
+        const ln = lines[i];
+        ln.setAttribute('x1', e.x); ln.setAttribute('y1', e.y);
+        ln.setAttribute('x2', h.x); ln.setAttribute('y2', h.y);
+        ln.style.strokeDasharray = len;
+        ln.style.strokeDashoffset = len;
+        ln.style.opacity = 0;
+      });
+    }
+
+    function firePulse() {
+      ring.classList.remove('hw-ring--fire');
+      void ring.offsetWidth;
+      ring.classList.add('hw-ring--fire');
+    }
 
     function reset() {
-      row.classList.remove('hw-arrive');
-      pulse.classList.remove('hw-pulse--fire');
-      badge.classList.remove('hw-badge--show');
-      status.classList.remove('hw-status--show');
+      eqs.forEach(eq => eq.classList.remove('hw-eq--show'));
+      lines.forEach(ln => { ln.style.transition = 'none'; ln.style.opacity = 0; });
+      counter.classList.remove('hw-counter--show');
+      countText.textContent = 'Monitoring';
+      setupLines();
+    }
+
+    function drawLine(i) {
+      const ln = lines[i];
+      ln.style.opacity = 0.65;
+      requestAnimationFrame(() => {
+        ln.style.transition = 'stroke-dashoffset 0.65s cubic-bezier(0.4,0,0.2,1)';
+        ln.style.strokeDashoffset = 0;
+      });
     }
 
     function runSequence() {
       reset();
-      // Step 1: new email slides in after 600ms pause
-      setTimeout(() => row.classList.add('hw-arrive'), 600);
-      // Step 2: pulse fires after email is in
-      setTimeout(() => pulse.classList.add('hw-pulse--fire'), 1100);
-      // Step 3: detected badge slides up
-      setTimeout(() => badge.classList.add('hw-badge--show'), 1700);
-      // Step 4: monitoring status
-      setTimeout(() => status.classList.add('hw-status--show'), 2200);
-      // Hold then loop
-      setTimeout(runSequence, 5200);
+      const labels = ['1 enquiry detected', '2 enquiries detected', '3 enquiries detected'];
+
+      [0, 1, 2].forEach((i) => {
+        const base = 600 + i * 2000;
+        setTimeout(() => eqs[i].classList.add('hw-eq--show'), base);
+        setTimeout(() => drawLine(i), base + 380);
+        setTimeout(() => {
+          firePulse();
+          countText.textContent = labels[i];
+          counter.classList.add('hw-counter--show');
+        }, base + 1080);
+      });
+
+      setTimeout(runSequence, 8000);
     }
 
-    // Start when card scrolls into view
-    const observer = new IntersectionObserver((entries) => {
+    const obs = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
-        observer.disconnect();
-        runSequence();
+        obs.disconnect();
+        setTimeout(() => { setupLines(); runSequence(); }, 300);
       }
-    }, { threshold: 0.3 });
-    observer.observe(row.closest('.hw-card'));
+    }, { threshold: 0.35 });
+    obs.observe(card);
   })();
   </script>
 </body>

@@ -890,7 +890,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* --- Social proof --- */
 
 .trades-strip {
-  margin-top: 110px;
+  margin-top: 88px;
   text-align: center;
 }
 
@@ -1479,10 +1479,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   height: 18px;
   z-index: 2;
 }
-.gs-sc--tl { top: 10%;    left: 22%;  border-top:    1.5px solid #A8A8A8; border-left:   1.5px solid #A8A8A8; }
-.gs-sc--tr { top: 10%;    right: 22%; border-top:    1.5px solid #A8A8A8; border-right:  1.5px solid #A8A8A8; }
-.gs-sc--bl { bottom: 7%;  left: 22%;  border-bottom: 1.5px solid #A8A8A8; border-left:   1.5px solid #A8A8A8; }
-.gs-sc--br { bottom: 7%;  right: 22%; border-bottom: 1.5px solid #A8A8A8; border-right:  1.5px solid #A8A8A8; }
+.gs-sc--tl { top: 10%;    left: 22%;  border-top:    2px solid #666; border-left:   2px solid #666; }
+.gs-sc--tr { top: 10%;    right: 22%; border-top:    2px solid #666; border-right:  2px solid #666; }
+.gs-sc--bl { bottom: 7%;  left: 22%;  border-bottom: 2px solid #666; border-left:   2px solid #666; }
+.gs-sc--br { bottom: 7%;  right: 22%; border-bottom: 2px solid #666; border-right:  2px solid #666; }
 /* Scanning line */
 .gs-scan-line {
   position: absolute;

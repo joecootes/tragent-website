@@ -372,6 +372,61 @@
       </div>
     </section>
 
+    <!-- ======================= HOW IT WORKS ======================= -->
+    <section class="section how-works" id="how-it-works">
+      <div class="container">
+        <div class="how-works-grid">
+
+          <!-- Left: text -->
+          <div class="how-works-text reveal">
+            <h2>How it works</h2>
+            <p class="how-works-sub">Tragent sits in your inbox, spots new enquiries the moment they land, and sends a professional reply — while you stay on the tools.</p>
+          </div>
+
+          <!-- Right: animated inbox card -->
+          <div class="how-works-visual reveal d-1">
+            <div class="hw-card">
+              <div class="hw-inbox-header">
+                <span class="hw-col-from">From</span>
+                <span class="hw-col-subject">Subject</span>
+                <span class="hw-col-time">Time</span>
+              </div>
+              <div class="hw-row hw-row--muted">
+                <span class="hw-from">Mark Thompson</span>
+                <span class="hw-subject">Bathroom renovation quote</span>
+                <span class="hw-time">9:14 am</span>
+              </div>
+              <div class="hw-row hw-row--muted">
+                <span class="hw-from">Claire Foster</span>
+                <span class="hw-subject">Emergency plumber needed</span>
+                <span class="hw-time">8:52 am</span>
+              </div>
+              <div class="hw-row hw-row--muted">
+                <span class="hw-from">David O'Brien</span>
+                <span class="hw-subject">Boiler service enquiry</span>
+                <span class="hw-time">8:31 am</span>
+              </div>
+              <!-- New enquiry (animated) -->
+              <div class="hw-row hw-row--new" id="hwNewRow">
+                <div class="hw-pulse" id="hwPulse"></div>
+                <span class="hw-from hw-from--bold">Sarah Williams</span>
+                <span class="hw-subject hw-subject--bold">Kitchen Rewire Quote</span>
+                <span class="hw-time hw-time--now">Just now</span>
+                <div class="hw-badge" id="hwBadge">
+                  <span class="hw-badge-dot"></span>Detected
+                </div>
+              </div>
+              <!-- Status -->
+              <div class="hw-status-bar" id="hwStatusBar">
+                <span class="hw-status-dot"></span>Monitoring inbox
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ======================= PRODUCT SHOWCASE ======================= -->
     <section class="section product" id="product">
       <div class="container">
@@ -715,6 +770,45 @@
     setup();
     new ResizeObserver(setup).observe(canvas.parentElement);
     requestAnimationFrame(frame);
+  })();
+
+  // ── How It Works inbox animation ──
+  (function () {
+    const row    = document.getElementById('hwNewRow');
+    const pulse  = document.getElementById('hwPulse');
+    const badge  = document.getElementById('hwBadge');
+    const status = document.getElementById('hwStatusBar');
+    if (!row) return;
+
+    function reset() {
+      row.classList.remove('hw-arrive');
+      pulse.classList.remove('hw-pulse--fire');
+      badge.classList.remove('hw-badge--show');
+      status.classList.remove('hw-status--show');
+    }
+
+    function runSequence() {
+      reset();
+      // Step 1: new email slides in after 600ms pause
+      setTimeout(() => row.classList.add('hw-arrive'), 600);
+      // Step 2: pulse fires after email is in
+      setTimeout(() => pulse.classList.add('hw-pulse--fire'), 1100);
+      // Step 3: detected badge slides up
+      setTimeout(() => badge.classList.add('hw-badge--show'), 1700);
+      // Step 4: monitoring status
+      setTimeout(() => status.classList.add('hw-status--show'), 2200);
+      // Hold then loop
+      setTimeout(runSequence, 5200);
+    }
+
+    // Start when card scrolls into view
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        observer.disconnect();
+        runSequence();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(row.closest('.hw-card'));
   })();
   </script>
 </body>

@@ -130,6 +130,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   line-height: 1.06;
   letter-spacing: -0.035em;
   color: var(--text);
+  max-width: 480px;
 }
 
 .accent-text {

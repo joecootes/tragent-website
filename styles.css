@@ -420,7 +420,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .hero-sub {
   font-size: clamp(16px, 2.2vw, 19px);
   color: var(--text-secondary);
-  max-width: 560px;
+  max-width: 420px;
   margin: 24px 0 30px;
   line-height: 1.55;
 }

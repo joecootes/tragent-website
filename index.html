@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;510;600;650;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/Untitled-11.png" type="image/png" />
   <script>(function(){var t=localStorage.getItem('tragent-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
@@ -647,11 +647,10 @@
         }
       }
 
-      // Anti-diagonal sort: bottom-left first, wave sweeps to top-right.
+      // Column-by-column fill: left to right, bottom to top within each column.
       all.sort((a, b) => {
-        const dA = a.c + (maxRow - a.r);
-        const dB = b.c + (maxRow - b.r);
-        return dA !== dB ? dA - dB : a.c - b.c;
+        if (a.c !== b.c) return a.c - b.c;
+        return b.r - a.r; // high r = bottom row first
       });
 
       squares = all;
@@ -698,7 +697,7 @@
       squares.forEach((sq, i) => {
         const age = fill - i / n;
         if (age < 0) return;
-        const alpha = smoothstep(clamp(age / 0.06, 0, 1)) * ga;
+        const alpha = smoothstep(clamp(age * n, 0, 1)) * ga;
         if (alpha < 0.004) return;
 
         // Colour by row: bottom row (r=maxRow) → C_NEAR (dark), top row (r=0) → C_FAR (light)

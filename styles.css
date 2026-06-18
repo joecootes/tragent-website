@@ -3111,8 +3111,10 @@ br.br-m { display: none; }
   .biz-headline {
     grid-column: 1 / -1;
     grid-row: 1;
-    padding: 40px 24px 24px var(--gutter);
+    padding: 40px var(--gutter) 24px var(--gutter);
     margin: 0;
+    text-align: center;
+    font-weight: 400;
   }
 
   .biz-illus-desktop { display: none; }

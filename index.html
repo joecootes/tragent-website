@@ -729,67 +729,60 @@
 
   <script src="script.js"></script>
   <script>
-  // Card 3: jobs-won canvas — staircase fill, then zoom-out reveals 4 more columns
+  // Card 3: jobs-won canvas — staircase fill + smooth zoom-out via canvas transform
   (function () {
     const canvas = document.querySelector('.gs-jobs-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const CELL_START = 22;   // initial cell size
-    const EXTRA_COLS = 4;    // columns to reveal during zoom
+    const CELL_START = 22;
+    const EXTRA_COLS = 4;
     const SQ_RATIO   = 16 / 22;
     const R          = 3;
     const CYCLE      = 24336;
-    const ZOOM_START = 0.50; // phase when zoom begins (halfway through fill)
-    const ZOOM_END   = 0.78; // phase when zoom ends (and fade begins)
+    const ZOOM_START = 0.50;
+    const ZOOM_END   = 0.78;
 
     const C_NEAR = [194, 66, 13];
     const C_FAR  = [228, 172, 150];
 
-    let W = 0, H = 0, cellEnd = CELL_START;
+    let W = 0, H = 0;
+    let squares = [], cellF = CELL_START, sqF = 0;
+    let gCols = 0, gRows = 0, gOx = 0, gOy = 0, s0 = 1;
 
     function setup() {
       const p = canvas.parentElement;
       W = canvas.width  = Math.round(p.offsetWidth);
       H = canvas.height = Math.round(p.offsetHeight);
-      // Derive cellEnd so that exactly EXTRA_COLS more columns fit
+
+      // Final (zoomed-out) cell size — gives exactly EXTRA_COLS more columns
       const startCols = Math.floor((W - 2 * CELL_START) / CELL_START);
-      cellEnd = W / (startCols + EXTRA_COLS + 2);
+      cellF = W / (startCols + EXTRA_COLS + 2);
+      sqF   = cellF * SQ_RATIO;
+      s0    = CELL_START / cellF; // initial canvas scale (appears zoomed in)
+
+      gCols = Math.floor((W - 2 * cellF) / cellF);
+      gRows = Math.floor((H - 2 * cellF) / cellF);
+      gOx   = Math.round((W - gCols * cellF) / 2);
+      gOy   = Math.round((H - gRows * cellF) / 2);
+
+      // Build squares once at final cell size — never rebuilt during animation
+      const all = [];
+      for (let c = 0; c < gCols; c++) {
+        const minR = Math.max(0, gRows - (c + 1));
+        for (let r = minR; r < gRows; r++) {
+          const gx = gOx + c * cellF + cellF / 2;
+          const gy = gOy + r * cellF + cellF / 2;
+          all.push({ x: gx - sqF / 2, y: gy - sqF / 2, c, r });
+        }
+      }
+      all.sort((a, b) => a.c !== b.c ? a.c - b.c : b.r - a.r);
+      squares = all;
     }
 
     function lerp(a, b, t) { return a + (b - a) * t; }
     function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
     function smoothstep(t) { return t * t * (3 - 2 * t); }
-
-    function currentCell(phase) {
-      const t = clamp((phase - ZOOM_START) / (ZOOM_END - ZOOM_START), 0, 1);
-      return lerp(CELL_START, cellEnd, smoothstep(t));
-    }
-
-    function buildGrid(cell) {
-      const sq   = cell * SQ_RATIO;
-      const cols = Math.floor((W - 2 * cell) / cell);
-      const rows = Math.floor((H - 2 * cell) / cell);
-      const ox   = Math.round((W - cols * cell) / 2);
-      const oy   = Math.round((H - rows * cell) / 2);
-      const sqs  = [];
-      for (let c = 0; c < cols; c++) {
-        const minR = Math.max(0, rows - (c + 1));
-        for (let r = minR; r < rows; r++) {
-          const gx = ox + c * cell + cell / 2;
-          const gy = oy + r * cell + cell / 2;
-          sqs.push({ x: gx - sq / 2, y: gy - sq / 2, r, rows });
-        }
-      }
-      // Fill order: left-to-right columns, bottom-to-top within each column
-      sqs.sort((a, b) => {
-        const ac = Math.round((a.x + sq / 2 - ox) / cell);
-        const bc = Math.round((b.x + sq / 2 - ox) / cell);
-        if (ac !== bc) return ac - bc;
-        return b.r - a.r;
-      });
-      return { sqs, cols, rows, ox, oy, sq };
-    }
 
     function rr(x, y, w, h, r) {
       ctx.beginPath();
@@ -807,41 +800,48 @@
       ctx.clearRect(0, 0, W, H);
 
       const phase = (ts % CYCLE) / CYCLE;
-      const cell  = currentCell(phase);
-      const { sqs, cols, rows, ox, oy, sq } = buildGrid(cell);
 
-      // Dot grid
+      // Zoom: scale from s0 (zoomed in) → 1.0 (full), pivoting from canvas centre
+      const zoomT = clamp((phase - ZOOM_START) / (ZOOM_END - ZOOM_START), 0, 1);
+      const scale = lerp(s0, 1.0, smoothstep(zoomT));
+
+      ctx.save();
+      ctx.setTransform(scale, 0, 0, scale, (W / 2) * (1 - scale), (H / 2) * (1 - scale));
+
+      // Dot grid (drawn in transformed space — scales with the zoom)
       ctx.fillStyle = dark ? 'rgba(90,85,80,0.65)' : 'rgba(195,188,183,0.65)';
-      for (let c = 0; c <= cols; c++)
-        for (let r = 0; r <= rows; r++) {
+      for (let c = 0; c <= gCols; c++)
+        for (let r = 0; r <= gRows; r++) {
           ctx.beginPath();
-          ctx.arc(ox + c * cell, oy + r * cell, 1.2, 0, Math.PI * 2);
+          ctx.arc(gOx + c * cellF, gOy + r * cellF, 1.2, 0, Math.PI * 2);
           ctx.fill();
         }
 
-      // fill sweeps 0→1 over the full ZOOM_END window so new cols always fade in smoothly
-      const fill = clamp(phase / ZOOM_END, 0, 1);
+      // Fill sweeps at original speed; after fill=1 new cols slide in via the zoom transform
+      const fill = clamp(phase / 0.60, 0, 1);
       const ga   = phase > ZOOM_END ? 1 - clamp((phase - ZOOM_END) / (1 - ZOOM_END), 0, 1) : 1;
 
-      const n = sqs.length;
-      if (!n) return;
-      const maxRow = rows - 1 || 1;
+      const n = squares.length;
+      if (!n) { ctx.restore(); return; }
+      const maxRow = gRows - 1 || 1;
 
-      sqs.forEach((s, i) => {
+      squares.forEach((sq, i) => {
         const age = fill - i / n;
         if (age < 0) return;
         const alpha = smoothstep(clamp(age * n, 0, 1)) * ga;
         if (alpha < 0.004) return;
 
-        const t  = clamp(1 - s.r / maxRow, 0, 1);
+        const t  = clamp(1 - sq.r / maxRow, 0, 1);
         const cr = Math.round(lerp(C_NEAR[0], C_FAR[0], t));
         const cg = Math.round(lerp(C_NEAR[1], C_FAR[1], t));
         const cb = Math.round(lerp(C_NEAR[2], C_FAR[2], t));
 
         ctx.fillStyle = `rgba(${cr},${cg},${cb},${alpha.toFixed(3)})`;
-        rr(s.x, s.y, sq, sq, R);
+        rr(sq.x, sq.y, sqF, sqF, R);
         ctx.fill();
       });
+
+      ctx.restore();
     }
 
     setup();

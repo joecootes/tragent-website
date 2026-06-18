@@ -251,6 +251,51 @@
       </div>
     </section>
 
+    <!-- ======================= BIG STATEMENT ======================= -->
+    <section class="biz-section">
+      <div class="container">
+        <div class="biz-frame">
+
+          <!-- top row: empty left, stats right -->
+          <div class="biz-pre-left"></div>
+          <div class="biz-stats">
+            <div class="biz-stat">
+              <span class="biz-stat-number" data-target="10000">0</span>
+              <span class="biz-stat-label">Auto replies</span>
+            </div>
+            <div class="biz-stat">
+              <span class="biz-stat-number" data-target="6000">0</span>
+              <span class="biz-stat-label">Follow ups</span>
+            </div>
+            <div class="biz-stat">
+              <span class="biz-stat-number" data-target="8000">0</span>
+              <span class="biz-stat-label">Jobs completed</span>
+            </div>
+          </div>
+
+          <!-- full-width rule spanning both columns -->
+          <div class="biz-rule"></div>
+
+          <!-- bottom row: headline left, cube right -->
+          <div class="biz-col-left">
+            <div class="biz-copy">
+              <h2 class="biz-headline">Build a business that <span class="biz-accent">always responds</span></h2>
+              <p class="biz-body">Customers get answers in seconds, not when you finish work.</p>
+              <div class="biz-actions">
+                <a href="/try" class="btn btn-primary btn-lg">Try it live</a>
+                <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" class="btn btn-ghost btn-lg">Get early access</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="biz-col-right">
+            <img src="/assets/7AA3F554-8638-4CB8-AE8A-78E37FFBAFAC.PNG" alt="" class="biz-illus" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ======================= PROBLEM ======================= -->
     <section class="section problem" id="problem">
       <div class="container">
@@ -632,51 +677,6 @@
       </div>
     </section>
 
-    <!-- ======================= BIG STATEMENT ======================= -->
-    <section class="biz-section">
-      <div class="container">
-        <div class="biz-frame">
-
-          <!-- top row: empty left, stats right -->
-          <div class="biz-pre-left"></div>
-          <div class="biz-stats">
-            <div class="biz-stat">
-              <span class="biz-stat-number" data-target="10000">0</span>
-              <span class="biz-stat-label">Auto replies</span>
-            </div>
-            <div class="biz-stat">
-              <span class="biz-stat-number" data-target="6000">0</span>
-              <span class="biz-stat-label">Follow ups</span>
-            </div>
-            <div class="biz-stat">
-              <span class="biz-stat-number" data-target="8000">0</span>
-              <span class="biz-stat-label">Jobs completed</span>
-            </div>
-          </div>
-
-          <!-- full-width rule spanning both columns -->
-          <div class="biz-rule"></div>
-
-          <!-- bottom row: headline left, cube right -->
-          <div class="biz-col-left">
-            <div class="biz-copy">
-              <h2 class="biz-headline">Build a business that <span class="biz-accent">always responds</span></h2>
-              <p class="biz-body">Customers get answers in seconds, not when you finish work.</p>
-              <div class="biz-actions">
-                <a href="/try" class="btn btn-primary btn-lg">Try it live</a>
-                <a href="mailto:hello@trytragent.com?subject=Tragent%20early%20access" class="btn btn-ghost btn-lg">Get early access</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="biz-col-right">
-            <img src="/assets/7AA3F554-8638-4CB8-AE8A-78E37FFBAFAC.PNG" alt="" class="biz-illus" />
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- ======================= FINAL CTA ======================= -->
     <section class="section final-cta" id="cta">
       <div class="cta-glow" aria-hidden="true"></div>
@@ -735,8 +735,8 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const CELL  = 22;
-    const SQ    = 16;
+    const CELL  = 18;
+    const SQ    = 13;
     const R     = 3;
     const CYCLE = 24336;
 
@@ -751,21 +751,26 @@
       W = canvas.width  = Math.round(p.offsetWidth);
       H = canvas.height = Math.round(p.offsetHeight);
 
-      gCols = Math.floor((W - 2 * CELL) / CELL);
-      gRows = Math.floor((H - 2 * CELL) / CELL);
-      gOx   = Math.round((W - gCols * CELL) / 2);
-      gOy   = Math.round((H - gRows * CELL) / 2);
+      gCols = Math.floor(W / CELL);
+      gRows = Math.floor(H / CELL);
 
-      const maxRow = gRows - 1;
-      const maxCol = gCols - 1 || 1;
+      // Right-align grid: rightmost column flush with canvas right edge
+      gOx = W - gCols * CELL;
+      // Shift grid UP so the tallest column's top square lands at the canvas top corner.
+      // The tallest column has min(gCols, gRows) squares; for portrait cards gCols < gRows,
+      // so the top row of the staircase is at grid row (gRows - gCols).
+      // Setting gOy = -(gRows - gCols) * CELL pushes that row to y ≈ 0.
+      const topRowIndex = Math.max(0, gRows - gCols);
+      gOy = -(topRowIndex * CELL);
 
-      // Strict staircase: column 0 = 1 square, column 1 = 2 squares, column 2 = 3, etc.
+      // Strict staircase: column 0 = 1 square, column c = c+1 squares (from bottom)
       const all = [];
       for (let c = 0; c < gCols; c++) {
         const minR = Math.max(0, gRows - (c + 1));
         for (let r = minR; r < gRows; r++) {
           const gx = gOx + c * CELL + CELL / 2;
           const gy = gOy + r * CELL + CELL / 2;
+          if (gy - SQ / 2 > H) continue; // skip squares below canvas
           all.push({ x: gx - SQ / 2, y: gy - SQ / 2, c, r });
         }
       }
@@ -795,12 +800,20 @@
 
     function dots(color) {
       ctx.fillStyle = color;
-      for (let c = 0; c <= gCols; c++)
-        for (let r = 0; r <= gRows; r++) {
+      // Render dots across full visible canvas area, aligned to the grid
+      const rMin = Math.floor(-gOy / CELL) - 1;
+      const rMax = Math.ceil((H - gOy) / CELL) + 1;
+      for (let c = 0; c <= gCols; c++) {
+        const dx = gOx + c * CELL;
+        if (dx < 0 || dx > W) continue;
+        for (let r = rMin; r <= rMax; r++) {
+          const dy = gOy + r * CELL;
+          if (dy < 0 || dy > H) continue;
           ctx.beginPath();
-          ctx.arc(gOx + c * CELL, gOy + r * CELL, 1.2, 0, Math.PI * 2);
+          ctx.arc(dx, dy, 1.2, 0, Math.PI * 2);
           ctx.fill();
         }
+      }
     }
 
     function frame(ts) {

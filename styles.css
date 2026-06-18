@@ -2987,7 +2987,7 @@ br.br-m { display: none; }
 .biz-frame::before {
   content: '';
   position: absolute;
-  left: 62%;
+  left: 56%;
   top: 0;
   bottom: 0;
   width: 1px;

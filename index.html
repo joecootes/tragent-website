@@ -840,10 +840,10 @@
   <script>
   (() => {
     const counters = document.querySelectorAll('.biz-stat-number[data-target]');
-    const fmt = n => n >= 1000 ? (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1).replace(/\.0$/, '') + ',000+' : n + '+';
+    const fmt = n => n >= 1000 ? Math.floor(n / 1000) + ',' + String(n % 1000).padStart(3, '0') + '+' : n + '+';
     const animate = el => {
       const target = +el.dataset.target;
-      const duration = 1400;
+      const duration = 2800;
       const start = performance.now();
       const step = now => {
         const p = Math.min((now - start) / duration, 1);

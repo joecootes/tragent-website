@@ -729,64 +729,67 @@
 
   <script src="script.js"></script>
   <script>
-  // Card 3: jobs-won canvas animation — bar-chart fill from bottom-left
+  // Card 3: jobs-won canvas — staircase fill, then zoom-out reveals 4 more columns
   (function () {
     const canvas = document.querySelector('.gs-jobs-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const CELL  = 18;
-    const SQ    = 13;
-    const R     = 3;
-    const CYCLE = 24336;
+    const CELL_START = 22;   // initial cell size
+    const EXTRA_COLS = 4;    // columns to reveal during zoom
+    const SQ_RATIO   = 16 / 22;
+    const R          = 3;
+    const CYCLE      = 24336;
+    const ZOOM_START = 0.50; // phase when zoom begins (halfway through fill)
+    const ZOOM_END   = 0.78; // phase when zoom ends (and fade begins)
 
-    const C_NEAR = [194, 66, 13];   // dark orange — bottom of bars
-    const C_FAR  = [228, 172, 150]; // light terracotta — top of bars
+    const C_NEAR = [194, 66, 13];
+    const C_FAR  = [228, 172, 150];
 
-    let squares = [], W = 0, H = 0;
-    let gOx = 0, gOy = 0, gCols = 0, gRows = 0;
+    let W = 0, H = 0, cellEnd = CELL_START;
 
     function setup() {
       const p = canvas.parentElement;
       W = canvas.width  = Math.round(p.offsetWidth);
       H = canvas.height = Math.round(p.offsetHeight);
-
-      gCols = Math.floor(W / CELL);
-      gRows = Math.floor(H / CELL);
-
-      // Right-align grid: rightmost column flush with canvas right edge
-      gOx = W - gCols * CELL;
-      // Shift grid UP so the tallest column's top square lands at the canvas top corner.
-      // The tallest column has min(gCols, gRows) squares; for portrait cards gCols < gRows,
-      // so the top row of the staircase is at grid row (gRows - gCols).
-      // Setting gOy = -(gRows - gCols) * CELL pushes that row to y ≈ 0.
-      const topRowIndex = Math.max(0, gRows - gCols);
-      gOy = -(topRowIndex * CELL);
-
-      // Strict staircase: column 0 = 1 square, column c = c+1 squares (from bottom)
-      const all = [];
-      for (let c = 0; c < gCols; c++) {
-        const minR = Math.max(0, gRows - (c + 1));
-        for (let r = minR; r < gRows; r++) {
-          const gx = gOx + c * CELL + CELL / 2;
-          const gy = gOy + r * CELL + CELL / 2;
-          if (gy - SQ / 2 > H) continue; // skip squares below canvas
-          all.push({ x: gx - SQ / 2, y: gy - SQ / 2, c, r });
-        }
-      }
-
-      // Column-by-column fill: left to right, bottom to top within each column.
-      all.sort((a, b) => {
-        if (a.c !== b.c) return a.c - b.c;
-        return b.r - a.r; // high r = bottom row first
-      });
-
-      squares = all;
+      // Derive cellEnd so that exactly EXTRA_COLS more columns fit
+      const startCols = Math.floor((W - 2 * CELL_START) / CELL_START);
+      cellEnd = W / (startCols + EXTRA_COLS + 2);
     }
 
     function lerp(a, b, t) { return a + (b - a) * t; }
     function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
     function smoothstep(t) { return t * t * (3 - 2 * t); }
+
+    function currentCell(phase) {
+      const t = clamp((phase - ZOOM_START) / (ZOOM_END - ZOOM_START), 0, 1);
+      return lerp(CELL_START, cellEnd, smoothstep(t));
+    }
+
+    function buildGrid(cell) {
+      const sq   = cell * SQ_RATIO;
+      const cols = Math.floor((W - 2 * cell) / cell);
+      const rows = Math.floor((H - 2 * cell) / cell);
+      const ox   = Math.round((W - cols * cell) / 2);
+      const oy   = Math.round((H - rows * cell) / 2);
+      const sqs  = [];
+      for (let c = 0; c < cols; c++) {
+        const minR = Math.max(0, rows - (c + 1));
+        for (let r = minR; r < rows; r++) {
+          const gx = ox + c * cell + cell / 2;
+          const gy = oy + r * cell + cell / 2;
+          sqs.push({ x: gx - sq / 2, y: gy - sq / 2, r, rows });
+        }
+      }
+      // Fill order: left-to-right columns, bottom-to-top within each column
+      sqs.sort((a, b) => {
+        const ac = Math.round((a.x + sq / 2 - ox) / cell);
+        const bc = Math.round((b.x + sq / 2 - ox) / cell);
+        if (ac !== bc) return ac - bc;
+        return b.r - a.r;
+      });
+      return { sqs, cols, rows, ox, oy, sq };
+    }
 
     function rr(x, y, w, h, r) {
       ctx.beginPath();
@@ -798,52 +801,45 @@
       ctx.closePath();
     }
 
-    function dots(color) {
-      ctx.fillStyle = color;
-      // Render dots across full visible canvas area, aligned to the grid
-      const rMin = Math.floor(-gOy / CELL) - 1;
-      const rMax = Math.ceil((H - gOy) / CELL) + 1;
-      for (let c = 0; c <= gCols; c++) {
-        const dx = gOx + c * CELL;
-        if (dx < 0 || dx > W) continue;
-        for (let r = rMin; r <= rMax; r++) {
-          const dy = gOy + r * CELL;
-          if (dy < 0 || dy > H) continue;
-          ctx.beginPath();
-          ctx.arc(dx, dy, 1.2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-    }
-
     function frame(ts) {
       requestAnimationFrame(frame);
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       ctx.clearRect(0, 0, W, H);
-      dots(dark ? 'rgba(90,85,80,0.65)' : 'rgba(195,188,183,0.65)');
 
       const phase = (ts % CYCLE) / CYCLE;
-      const fill  = clamp(phase / 0.60, 0, 1);
-      const ga    = phase > 0.78 ? 1 - clamp((phase - 0.78) / 0.22, 0, 1) : 1;
+      const cell  = currentCell(phase);
+      const { sqs, cols, rows, ox, oy, sq } = buildGrid(cell);
 
-      const n = squares.length;
+      // Dot grid
+      ctx.fillStyle = dark ? 'rgba(90,85,80,0.65)' : 'rgba(195,188,183,0.65)';
+      for (let c = 0; c <= cols; c++)
+        for (let r = 0; r <= rows; r++) {
+          ctx.beginPath();
+          ctx.arc(ox + c * cell, oy + r * cell, 1.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+      // fill sweeps 0→1 over the full ZOOM_END window so new cols always fade in smoothly
+      const fill = clamp(phase / ZOOM_END, 0, 1);
+      const ga   = phase > ZOOM_END ? 1 - clamp((phase - ZOOM_END) / (1 - ZOOM_END), 0, 1) : 1;
+
+      const n = sqs.length;
       if (!n) return;
-      const maxRow = gRows - 1 || 1;
+      const maxRow = rows - 1 || 1;
 
-      squares.forEach((sq, i) => {
+      sqs.forEach((s, i) => {
         const age = fill - i / n;
         if (age < 0) return;
         const alpha = smoothstep(clamp(age * n, 0, 1)) * ga;
         if (alpha < 0.004) return;
 
-        // Colour by row: bottom row (r=maxRow) → C_NEAR (dark), top row (r=0) → C_FAR (light)
-        const t  = clamp(1 - sq.r / maxRow, 0, 1);
+        const t  = clamp(1 - s.r / maxRow, 0, 1);
         const cr = Math.round(lerp(C_NEAR[0], C_FAR[0], t));
         const cg = Math.round(lerp(C_NEAR[1], C_FAR[1], t));
         const cb = Math.round(lerp(C_NEAR[2], C_FAR[2], t));
 
         ctx.fillStyle = `rgba(${cr},${cg},${cb},${alpha.toFixed(3)})`;
-        rr(sq.x, sq.y, SQ, SQ, R);
+        rr(s.x, s.y, sq, sq, R);
         ctx.fill();
       });
     }

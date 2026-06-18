@@ -3000,7 +3000,7 @@ br.br-m { display: none; }
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin-bottom: 20px;
-  max-width: 14ch;
+  max-width: 18ch;
 }
 .biz-body {
   font-size: 17px;
@@ -3045,7 +3045,10 @@ br.br-m { display: none; }
   color: var(--text-secondary);
 }
 .biz-accent {
-  color: var(--accent);
+  background: linear-gradient(135deg, #FF6B35 0%, #C2420D 50%, #E8541A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .biz-illus {
   width: 70%;

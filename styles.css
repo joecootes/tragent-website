@@ -3169,8 +3169,14 @@ br.br-m { display: none; }
   overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
 }
-.globe-canvas {
+.globe-img {
   display: block;
+  width: 100vw;
+  max-width: 900px;
+  /* invert black dots → white on black background */
+  filter: invert(1);
+  /* negative bottom margin hides the bottom half of the globe */
+  margin-bottom: -50vw;
 }

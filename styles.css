@@ -3114,17 +3114,19 @@ br.br-m { display: none; }
     margin: 0;
   }
 
-  /* Row 2, col 1: image, left-aligned with site gutter */
+  /* Row 2, col 1: image clipped so only right portion peeks in */
   .biz-col-right {
     grid-column: 1;
     grid-row: 2;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 16px 8px 24px var(--gutter);
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    padding: 16px 0 24px 0;
   }
   .biz-illus {
-    width: 100%;
+    width: 260%;
     max-width: none;
     transform: none;
   }
@@ -3159,4 +3161,16 @@ br.br-m { display: none; }
     grid-row: 5;
     padding: 20px var(--gutter) 48px var(--gutter);
   }
+}
+
+/* ============ Globe section ============ */
+.globe-section {
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.globe-canvas {
+  display: block;
 }

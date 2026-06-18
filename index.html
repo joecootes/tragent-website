@@ -296,6 +296,11 @@
       </div>
     </section>
 
+    <!-- ======================= GLOBE ======================= -->
+    <section class="globe-section">
+      <canvas class="globe-canvas"></canvas>
+    </section>
+
     <!-- ======================= PROBLEM ======================= -->
     <section class="section problem" id="problem">
       <div class="container">
@@ -869,6 +874,203 @@
       entries.forEach(e => { if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); } });
     }, { threshold: 0.3 });
     counters.forEach(el => obs.observe(el));
+  })();
+  </script>
+
+  <script>
+  // Globe canvas — orthographic projection, Asia-Pacific centred
+  (() => {
+    const canvas = document.querySelector('.globe-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const PHI0 = 25 * Math.PI / 180;   // centre latitude  25°N
+    const LAM0 = 100 * Math.PI / 180;  // centre longitude 100°E
+
+    let R, W, H, cx, cy;
+
+    function rad(d) { return d * Math.PI / 180; }
+
+    // Orthographic forward projection
+    function project(lat, lon) {
+      const φ = rad(lat), λ = rad(lon);
+      const cosc = Math.sin(PHI0)*Math.sin(φ) + Math.cos(PHI0)*Math.cos(φ)*Math.cos(λ - LAM0);
+      if (cosc < 0) return null;
+      return [
+        cx + R * Math.cos(φ) * Math.sin(λ - LAM0),
+        cy - R * (Math.cos(PHI0)*Math.sin(φ) - Math.sin(PHI0)*Math.cos(φ)*Math.cos(λ - LAM0))
+      ];
+    }
+
+    // Inverse orthographic: canvas pixel → [lat, lon]
+    function unproject(px, py) {
+      const nx = (px - cx) / R;
+      const ny = (cy - py) / R;
+      const rho = Math.sqrt(nx*nx + ny*ny);
+      if (rho > 1) return null;
+      const c = Math.asin(rho);
+      const lat = Math.asin(Math.cos(c)*Math.sin(PHI0) + (rho < 1e-9 ? 0 : ny*Math.sin(c)*Math.cos(PHI0)/rho)) * 180/Math.PI;
+      const lon = (LAM0 + Math.atan2(nx*Math.sin(c), rho*Math.cos(PHI0)*Math.cos(c) - ny*Math.sin(PHI0)*Math.sin(c))) * 180/Math.PI;
+      return [lat, lon];
+    }
+
+    // 2D point-in-polygon [lon, lat] polygon
+    function pip(lat, lon, poly) {
+      let inside = false;
+      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+        const [xi, yi] = poly[i], [xj, yj] = poly[j];
+        if (((yi > lat) !== (yj > lat)) && (lon < (xj - xi) * (lat - yi) / (yj - yi) + xi))
+          inside = !inside;
+      }
+      return inside;
+    }
+
+    // Simplified continent polygons [lon, lat]
+    const LANDS = [
+      // Eurasia (major body)
+      [[-10,35],[-5,43],[5,43],[10,54],[15,57],[20,55],[25,47],[35,48],[40,42],
+       [45,40],[50,28],[55,25],[60,24],[65,22],[68,15],[72,8],[78,10],[82,20],
+       [86,25],[88,28],[90,24],[92,22],[96,18],[100,8],[104,1],[100,4],[96,2],
+       [98,-2],[104,-2],[108,2],[112,2],[116,6],[118,4],[116,0],[112,-2],[108,-4],
+       [104,-6],[100,-4],[95,2],[90,12],[85,15],[80,12],[75,8],[68,15],[60,22],
+       [55,22],[50,26],[45,26],[42,18],[38,12],[36,2],[34,-4],[36,-10],[34,-14],
+       [36,-18],[38,-22],[40,-26],[40,-34],[38,-34],[34,-24],[30,-18],[24,-14],
+       [20,-10],[16,-8],[12,-4],[10,0],[8,4],[3,5],[0,5],[-5,8],[-10,8],
+       [-16,14],[-18,15],[-16,20],[-14,28],[-8,30],[-5,35],[-10,35]],
+      // Indian subcontinent
+      [[68,22],[72,20],[78,8],[80,10],[82,15],[86,20],[88,22],[90,24],
+       [88,26],[86,26],[82,24],[78,18],[75,14],[72,18],[68,22]],
+      // Arabian Peninsula
+      [[37,22],[42,12],[46,8],[50,8],[56,14],[58,22],[56,26],[52,24],[50,28],[46,30],[42,28],[38,24],[37,22]],
+      // Japan (Honshu)
+      [[130,31],[131,34],[133,34],[136,36],[138,38],[140,38],[141,40],[141,42],
+       [140,44],[141,44],[143,42],[141,40],[140,36],[138,35],[136,34],[134,33],[132,32],[130,31]],
+      // Korean Peninsula
+      [[126,34],[126,38],[128,40],[130,38],[130,35],[128,34],[126,34]],
+      // Philippines
+      [[118,18],[120,18],[122,14],[124,10],[126,8],[124,8],[122,10],[120,12],[118,14],[118,18]],
+      // Sumatra
+      [[95,5],[100,2],[104,0],[106,-2],[108,-4],[104,-6],[100,-4],[96,2],[95,5]],
+      // Borneo
+      [[108,4],[112,6],[116,6],[118,4],[116,0],[112,-2],[108,0],[108,4]],
+      // Java
+      [[106,-6],[108,-6],[110,-7],[112,-8],[114,-8],[112,-7],[108,-7],[106,-6]],
+      // Australia
+      [[114,-22],[118,-20],[122,-18],[128,-14],[132,-12],[136,-12],[140,-18],[144,-22],
+       [148,-24],[150,-28],[152,-32],[150,-36],[148,-38],[146,-38],[144,-36],[142,-34],
+       [140,-36],[138,-34],[134,-28],[130,-22],[128,-18],[124,-20],[120,-22],[116,-22],[114,-22]],
+      // Sri Lanka
+      [[80,10],[81,8],[81,6],[80,6],[80,10]],
+      // Taiwan
+      [[120,22],[121,22],[122,24],[122,25],[121,25],[120,24],[120,22]],
+    ];
+
+    function isLand(lat, lon) {
+      for (const poly of LANDS) if (pip(lat, lon, poly)) return true;
+      return false;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Clip to top-half semicircle
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, Math.PI, 0);
+      ctx.clip();
+
+      // Dot grid — ocean vs land colour
+      const STEP = 8, DOT = 1.8;
+      for (let px = 0; px < W; px += STEP) {
+        for (let py = 0; py < H; py += STEP) {
+          const dx = px - cx, dy = py - cy;
+          if (dx*dx + dy*dy > R*R) continue;
+          const ll = unproject(px, py);
+          if (!ll) continue;
+          const land = isLand(ll[0], ll[1]);
+          ctx.fillStyle = land ? 'rgba(175,180,205,0.70)' : 'rgba(80,85,105,0.45)';
+          ctx.fillRect(px - DOT/2, py - DOT/2, DOT, DOT);
+        }
+      }
+
+      // Lat/lon grid lines (very faint)
+      ctx.lineWidth = 0.4;
+      ctx.strokeStyle = 'rgba(160,165,190,0.07)';
+      for (let lat = -60; lat <= 90; lat += 15) {
+        ctx.beginPath(); let first = true;
+        for (let lon = -180; lon <= 180; lon += 2) {
+          const p = project(lat, lon);
+          if (!p) { first = true; continue; }
+          first ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]); first = false;
+        }
+        ctx.stroke();
+      }
+      for (let lon = -180; lon < 180; lon += 15) {
+        ctx.beginPath(); let first = true;
+        for (let lat = -90; lat <= 90; lat += 2) {
+          const p = project(lat, lon);
+          if (!p) { first = true; continue; }
+          first ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]); first = false;
+        }
+        ctx.stroke();
+      }
+
+      // Continent outlines
+      ctx.strokeStyle = 'rgba(210,215,235,0.28)';
+      ctx.lineWidth = 0.8;
+      for (const poly of LANDS) {
+        const pts = poly.map(([lo, la]) => project(la, lo)).filter(Boolean);
+        if (pts.length < 2) continue;
+        ctx.beginPath();
+        ctx.moveTo(pts[0][0], pts[0][1]);
+        for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      ctx.restore();
+
+      // Globe rim
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, Math.PI, 0);
+      ctx.strokeStyle = 'rgba(180,185,210,0.12)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Tokyo marker
+      const tkp = project(35.7, 139.7);
+      if (tkp) {
+        const [tx, ty] = tkp;
+        ctx.beginPath();
+        ctx.arc(tx, ty, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#C2420D';
+        ctx.fill();
+        const label = 'Tokyo';
+        ctx.font = '600 11px Inter, sans-serif';
+        const lw = ctx.measureText(label).width + 14;
+        const lh = 20, lx = tx + 10, ly = ty - 10;
+        ctx.fillStyle = '#C2420D';
+        ctx.beginPath();
+        ctx.roundRect(lx, ly, lw, lh, 4);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.fillText(label, lx + 7, ly + 14);
+      }
+    }
+
+    function resize() {
+      W = document.querySelector('.globe-section').offsetWidth;
+      R = Math.min(W * 0.52, 700);
+      H = R;
+      canvas.width  = W;
+      canvas.height = H;
+      cx = W / 2;
+      cy = R;
+      draw();
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
   })();
   </script>
 </body>

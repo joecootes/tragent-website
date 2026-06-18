@@ -122,11 +122,11 @@ img, svg { display: block; }
 
 /* ============ Typography ============ */
 
-h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+h1, h2, h3 { font-weight: 400; letter-spacing: -0.02em; }
 
 .hero-title {
   font-size: clamp(33px, 3.3vw, 53px);
-  font-weight: 650;
+  font-weight: 400;
   line-height: 1.06;
   letter-spacing: -0.035em;
   color: var(--text);

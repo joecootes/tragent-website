@@ -791,8 +791,9 @@
       ctx.closePath();
     }
 
+    let rafId = null;
     function frame(ts) {
-      requestAnimationFrame(frame);
+      rafId = requestAnimationFrame(frame);
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       ctx.clearRect(0, 0, W, H);
 
@@ -833,7 +834,12 @@
 
     setup();
     new ResizeObserver(setup).observe(canvas.parentElement);
-    requestAnimationFrame(frame);
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !rafId) rafId = requestAnimationFrame(frame);
+        else if (!e.isIntersecting && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      });
+    }, { threshold: 0.1 }).observe(canvas.parentElement);
   })();
 
   </script>
@@ -843,7 +849,7 @@
     const fmt = n => n >= 1000 ? Math.floor(n / 1000) + ',' + String(n % 1000).padStart(3, '0') + '+' : n + '+';
     const animate = el => {
       const target = +el.dataset.target;
-      const duration = 2800;
+      const duration = 3640;
       const start = performance.now();
       const step = now => {
         const p = Math.min((now - start) / duration, 1);

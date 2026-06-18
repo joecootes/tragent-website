@@ -2879,18 +2879,26 @@ br.br-m { display: none; }
   top: 22px;
   width: 242px;
   animation: int-float-a 4s ease-in-out infinite;
+  animation-play-state: paused;
 }
 .int-card--o {
   right: 8px;
   top: 38px;
   width: 242px;
   animation: int-float-b 4.8s ease-in-out infinite;
+  animation-play-state: paused;
 }
 .int-card--t {
   left: 176px;
   top: 238px;
   width: 288px;
   animation: int-float-c 3.8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.how-works.anim-active .int-card--g,
+.how-works.anim-active .int-card--o,
+.how-works.anim-active .int-card--t {
+  animation-play-state: running;
 }
 @keyframes int-float-a {
   0%, 100% { transform: perspective(900px) rotateX(9deg) rotateY(-16deg) rotateZ(-1.5deg) translateY(0); }
@@ -3086,10 +3094,35 @@ br.br-m { display: none; }
 }
 
 @media (max-width: 860px) {
-  .biz-frame { grid-template-columns: 1fr; grid-template-rows: auto 1px auto auto; }
+  .biz-frame {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1px auto auto;
+  }
+  /* Hide the desktop decorative lines */
+  .biz-frame::before { display: none; }
+  .biz-rule { grid-column: 1; }
+
   .biz-pre-left { display: none; }
-  .biz-stats { padding: 32px 24px; }
-  .biz-col-right { padding: 32px 24px; }
-  .biz-illus { width: 65%; }
-  .biz-copy { padding: 40px 24px 48px var(--gutter); }
+
+  /* Stack: stats → rule → copy → image */
+  .biz-stats {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-start;
+    gap: 28px;
+    padding: 40px 24px 32px;
+  }
+  .biz-col-left {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .biz-copy {
+    padding: 32px 24px 40px 24px;
+  }
+  .biz-col-right {
+    grid-column: 1;
+    grid-row: 4;
+    padding: 24px 24px 48px;
+  }
+  .biz-illus { width: 60%; max-width: 280px; }
 }

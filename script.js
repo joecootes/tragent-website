@@ -57,6 +57,20 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
+// Activate CSS animations on sections when they scroll into view
+const animObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("anim-active");
+        animObserver.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+document.querySelectorAll(".how-works").forEach((el) => animObserver.observe(el));
+
 // Hero app frame: tilt settles flat as it scrolls into view
 const heroApp = document.getElementById("heroApp");
 if (heroApp) {

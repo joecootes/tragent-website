@@ -2987,11 +2987,11 @@ br.br-m { display: none; }
 .biz-frame::before {
   content: '';
   position: absolute;
-  left: 50%;
+  left: 62%;
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(180deg, var(--border-strong) 0%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--border-strong) 10%, var(--border-strong) 85%, transparent 100%);
   pointer-events: none;
 }
 .biz-pre-left {

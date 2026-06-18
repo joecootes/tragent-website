@@ -3183,9 +3183,9 @@ br.br-m { display: none; }
 }
 .globe-img {
   display: block;
-  width: 100vw;
-  max-width: 900px;
-  filter: invert(1);
-  /* show only top ~50% */
-  margin-bottom: min(-50vw, -450px);
+  width: 100%;
+  /* invert black→white, white→black; hue-rotate(180deg) restores orange hue */
+  filter: invert(1) hue-rotate(180deg);
+  /* hide the bottom half so the equator aligns with the section bottom edge */
+  margin-bottom: -50vw;
 }

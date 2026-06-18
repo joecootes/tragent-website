@@ -2982,6 +2982,21 @@ br.br-m { display: none; }
   grid-template-columns: 1fr 1fr;
   min-height: 540px;
 }
+.biz-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-strong) 25%, var(--border-strong) 75%, transparent 100%);
+  pointer-events: none;
+}
+.biz-rule--top {
+  grid-column: 1 / -1;
+}
+.biz-rule--mid {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  align-self: center;
+}
 .biz-col-left {
   display: flex;
   flex-direction: column;

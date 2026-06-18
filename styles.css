@@ -3092,6 +3092,7 @@ br.br-m { display: none; }
   max-width: 340px;
   height: auto;
 }
+.biz-illus-mobile { display: none; }
 
 @media (max-width: 860px) {
   .biz-frame {
@@ -3114,6 +3115,9 @@ br.br-m { display: none; }
     margin: 0;
   }
 
+  .biz-illus-desktop { display: none; }
+  .biz-illus-mobile { display: block; }
+
   /* Row 2, col 1: image starts at left gutter, overflows right */
   .biz-col-right {
     grid-column: 1;
@@ -3126,7 +3130,7 @@ br.br-m { display: none; }
     padding: 16px 0 24px var(--gutter);
   }
   .biz-illus {
-    width: 200%;
+    width: 100%;
     max-width: none;
     transform: none;
   }

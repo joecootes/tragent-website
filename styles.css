@@ -3114,19 +3114,19 @@ br.br-m { display: none; }
     margin: 0;
   }
 
-  /* Row 2, col 1: image clipped so only right portion peeks in */
+  /* Row 2, col 1: image starts at left gutter, overflows right */
   .biz-col-right {
     grid-column: 1;
     grid-row: 2;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
     overflow: hidden;
-    padding: 16px 0 24px 0;
+    padding: 16px 0 24px var(--gutter);
   }
   .biz-illus {
-    width: 260%;
+    width: 200%;
     max-width: none;
     transform: none;
   }
@@ -3173,7 +3173,7 @@ br.br-m { display: none; }
 }
 .globe-copy {
   text-align: center;
-  padding: clamp(60px, 7vw, 100px) var(--gutter) clamp(40px, 5vw, 64px);
+  padding: clamp(60px, 7vw, 100px) var(--gutter) clamp(64px, 8vw, 100px);
   max-width: 720px;
   flex-shrink: 0;
 }
@@ -3199,7 +3199,8 @@ br.br-m { display: none; }
   display: block;
   width: 70vw;
   /* invert black→white, white→black; hue-rotate(180deg) restores orange hue */
-  filter: none;
+  /* invert black→white, white→black; hue-rotate(180deg) restores orange hue; saturate+brightness makes orange pop */
+  filter: invert(1) hue-rotate(180deg) saturate(3) brightness(1.1);
   /* show ~35% of globe (30% less than before) */
   margin-bottom: -46vw;
 }

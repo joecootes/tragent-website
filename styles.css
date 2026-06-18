@@ -3041,6 +3041,17 @@ br.br-m { display: none; }
   align-items: center;
   justify-content: center;
   padding: 40px 40px;
+  position: relative;
+}
+.biz-col-right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--border-strong) 0%, transparent 100%);
+  pointer-events: none;
 }
 .biz-stat {
   display: flex;

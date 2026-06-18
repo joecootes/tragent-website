@@ -729,54 +729,51 @@
 
   <script src="script.js"></script>
   <script>
-  // Card 3: jobs-won canvas — staircase fill + smooth zoom-out via canvas transform
+  // Card 3: jobs-won canvas — staircase fill animation
   (function () {
     const canvas = document.querySelector('.gs-jobs-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const CELL_START = 22;
-    const EXTRA_COLS = 4;
-    const SQ_RATIO   = 16 / 22;
-    const R          = 3;
-    const CYCLE      = 24336;
-    const ZOOM_START = 0.50;
-    const ZOOM_END   = 0.78;
+    const COLS     = 14;
+    const ROWS     = 14;
+    const SQ_RATIO = 16 / 22;
+    const R        = 3;
+    const CYCLE    = 24336;
 
     const C_NEAR = [194, 66, 13];
     const C_FAR  = [228, 172, 150];
 
-    let W = 0, H = 0;
-    let squares = [], cellF = CELL_START, sqF = 0;
-    let gCols = 0, gRows = 0, gOx = 0, gOy = 0, s0 = 1;
+    let W = 0, H = 0, xStep = 22, yStep = 22, sq = 16;
+    let squares = [], ox = 0, oy = 0;
 
     function setup() {
       const p = canvas.parentElement;
       W = canvas.width  = Math.round(p.offsetWidth);
       H = canvas.height = Math.round(p.offsetHeight);
 
-      // Final (zoomed-out) cell size — gives exactly EXTRA_COLS more columns
-      const startCols = Math.floor((W - 2 * CELL_START) / CELL_START);
-      cellF = W / (startCols + EXTRA_COLS + 2);
-      sqF   = cellF * SQ_RATIO;
-      s0    = CELL_START / cellF; // initial canvas scale (appears zoomed in)
+      // Separate x/y spacing fills the canvas edge-to-edge with exactly COLS×ROWS
+      xStep = W / (COLS + 2);
+      yStep = H / (ROWS + 2);
+      sq    = Math.min(xStep, yStep) * SQ_RATIO;
 
-      gCols = Math.floor((W - 2 * cellF) / cellF);
-      gRows = Math.floor((H - 2 * cellF) / cellF);
-      gOx   = Math.round((W - gCols * cellF) / 2);
-      gOy   = Math.round((H - gRows * cellF) / 2);
+      ox = Math.round((W - COLS * xStep) / 2);
+      oy = Math.round((H - ROWS * yStep) / 2);
 
-      // Build squares once at final cell size — never rebuilt during animation
       const all = [];
-      for (let c = 0; c < gCols; c++) {
-        const minR = Math.max(0, gRows - (c + 1));
-        for (let r = minR; r < gRows; r++) {
-          const gx = gOx + c * cellF + cellF / 2;
-          const gy = gOy + r * cellF + cellF / 2;
-          all.push({ x: gx - sqF / 2, y: gy - sqF / 2, c, r });
+      for (let c = 0; c < COLS; c++) {
+        const minR = Math.max(0, ROWS - (c + 1));
+        for (let r = minR; r < ROWS; r++) {
+          const gx = ox + c * xStep + xStep / 2;
+          const gy = oy + r * yStep + yStep / 2;
+          all.push({ x: gx - sq / 2, y: gy - sq / 2, r });
         }
       }
-      all.sort((a, b) => a.c !== b.c ? a.c - b.c : b.r - a.r);
+      all.sort((a, b) => {
+        const ac = Math.round((a.x + sq / 2 - ox) / xStep);
+        const bc = Math.round((b.x + sq / 2 - ox) / xStep);
+        return ac !== bc ? ac - bc : b.r - a.r;
+      });
       squares = all;
     }
 
@@ -799,49 +796,39 @@
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       ctx.clearRect(0, 0, W, H);
 
-      const phase = (ts % CYCLE) / CYCLE;
+      const phase    = (ts % CYCLE) / CYCLE;
+      const FILL_END = 0.60;
 
-      // Zoom: scale from s0 (zoomed in) → 1.0 (full), pivoting from canvas centre
-      const zoomT = clamp((phase - ZOOM_START) / (ZOOM_END - ZOOM_START), 0, 1);
-      const scale = lerp(s0, 1.0, smoothstep(zoomT));
-
-      ctx.save();
-      ctx.setTransform(scale, 0, 0, scale, (W / 2) * (1 - scale), (H / 2) * (1 - scale));
-
-      // Dot grid (drawn in transformed space — scales with the zoom)
       ctx.fillStyle = dark ? 'rgba(90,85,80,0.65)' : 'rgba(195,188,183,0.65)';
-      for (let c = 0; c <= gCols; c++)
-        for (let r = 0; r <= gRows; r++) {
+      for (let c = 0; c <= COLS; c++)
+        for (let r = 0; r <= ROWS; r++) {
           ctx.beginPath();
-          ctx.arc(gOx + c * cellF, gOy + r * cellF, 1.2, 0, Math.PI * 2);
+          ctx.arc(ox + c * xStep, oy + r * yStep, 1.2, 0, Math.PI * 2);
           ctx.fill();
         }
 
-      // Fill sweeps at original speed; after fill=1 new cols slide in via the zoom transform
-      const fill = clamp(phase / 0.60, 0, 1);
-      const ga   = phase > ZOOM_END ? 1 - clamp((phase - ZOOM_END) / (1 - ZOOM_END), 0, 1) : 1;
+      const fill = clamp(phase / FILL_END, 0, 1);
+      const ga   = phase > FILL_END ? 1 - clamp((phase - FILL_END) / (1 - FILL_END), 0, 1) : 1;
 
       const n = squares.length;
-      if (!n) { ctx.restore(); return; }
-      const maxRow = gRows - 1 || 1;
+      if (!n) return;
+      const maxRow = ROWS - 1 || 1;
 
-      squares.forEach((sq, i) => {
+      squares.forEach((s, i) => {
         const age = fill - i / n;
         if (age < 0) return;
         const alpha = smoothstep(clamp(age * n, 0, 1)) * ga;
         if (alpha < 0.004) return;
 
-        const t  = clamp(1 - sq.r / maxRow, 0, 1);
+        const t  = clamp(1 - s.r / maxRow, 0, 1);
         const cr = Math.round(lerp(C_NEAR[0], C_FAR[0], t));
         const cg = Math.round(lerp(C_NEAR[1], C_FAR[1], t));
         const cb = Math.round(lerp(C_NEAR[2], C_FAR[2], t));
 
         ctx.fillStyle = `rgba(${cr},${cg},${cb},${alpha.toFixed(3)})`;
-        rr(sq.x, sq.y, sqF, sqF, R);
+        rr(s.x, s.y, sq, sq, R);
         ctx.fill();
       });
-
-      ctx.restore();
     }
 
     setup();

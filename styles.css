@@ -3170,13 +3170,12 @@ br.br-m { display: none; }
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  /* height = half the image width so exactly the top 50% of the globe shows */
+  height: min(50vw, 450px);
 }
 .globe-img {
   display: block;
   width: 100vw;
   max-width: 900px;
-  /* invert black dots → white on black background */
   filter: invert(1);
-  /* negative bottom margin hides the bottom half of the globe */
-  margin-bottom: -50vw;
 }

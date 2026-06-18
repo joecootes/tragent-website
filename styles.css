@@ -3044,9 +3044,12 @@ br.br-m { display: none; }
   letter-spacing: 0.08em;
   color: var(--text-secondary);
 }
+.biz-accent {
+  color: var(--accent);
+}
 .biz-illus {
-  width: 88%;
-  max-width: 420px;
+  width: 70%;
+  max-width: 340px;
   height: auto;
 }
 

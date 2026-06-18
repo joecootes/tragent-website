@@ -836,17 +836,16 @@
 
     setup();
     new ResizeObserver(setup).observe(canvas.parentElement);
-    new IntersectionObserver((entries) => {
+    const canvasObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting && !rafId) {
-          startTime = null; // reset so fill always starts from zero
+          startTime = null;
           rafId = requestAnimationFrame(frame);
-        } else if (!e.isIntersecting && rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
+          canvasObs.disconnect(); // start once, then run forever
         }
       });
-    }, { threshold: 0.1 }).observe(canvas.parentElement);
+    }, { threshold: 0.1 });
+    canvasObs.observe(canvas.parentElement);
   })();
 
   </script>

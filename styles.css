@@ -3175,6 +3175,116 @@ br.br-m { display: none; }
   }
 }
 
+/* ============ Feature cards ============ */
+.feature-cards-section {
+  padding: clamp(60px, 7vw, 100px) 0;
+}
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  padding: 0 var(--gutter);
+}
+.fcard {
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+/* Card 1 spans both columns */
+.fcard:first-child {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  min-height: 360px;
+}
+.fcard:first-child .fcard-copy {
+  flex: 0 0 45%;
+}
+.fcard:first-child .fcard-media {
+  flex: 1;
+  height: 100%;
+  min-height: 300px;
+}
+.fcard--dark {
+  background: #111;
+}
+.fcard--dark .fcard-heading,
+.fcard--dark .fcard-body { color: #fff; }
+.fcard--dark .fcard-body { color: rgba(255,255,255,0.6); }
+.fcard--light {
+  background: #f0ede8;
+}
+.fcard--accent {
+  background: #1a1209;
+  border: 1px solid rgba(194,66,13,0.25);
+}
+.fcard--accent .fcard-heading,
+.fcard--accent .fcard-body { color: #fff; }
+.fcard--accent .fcard-body { color: rgba(255,255,255,0.6); }
+.fcard-copy {
+  padding: clamp(28px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.fcard-heading {
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0;
+}
+.fcard--light .fcard-heading { color: #111; }
+.fcard--light .fcard-body { color: rgba(0,0,0,0.55); font-size: clamp(14px, 1.1vw, 17px); line-height: 1.6; margin: 0; }
+.fcard-body {
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.6;
+  margin: 0;
+}
+.fcard-media {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+.fcard-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.fcard-media--placeholder {
+  min-height: 180px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fcard--light .fcard-media--placeholder {
+  background: rgba(0,0,0,0.06);
+}
+.fcard-media--placeholder span {
+  font-size: 13px;
+  color: rgba(128,128,128,0.6);
+}
+@media (max-width: 700px) {
+  .feature-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .fcard:first-child {
+    grid-column: 1;
+    flex-direction: column;
+    min-height: auto;
+  }
+  .fcard:first-child .fcard-copy { flex: none; }
+  .fcard:first-child .fcard-media { min-height: 200px; width: 100%; }
+}
+
 /* ============ Globe section ============ */
 .globe-section {
   background: #000;

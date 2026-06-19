@@ -122,11 +122,11 @@ img, svg { display: block; }
 
 /* ============ Typography ============ */
 
-h1, h2, h3 { font-weight: 400; letter-spacing: -0.02em; }
+h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 
 .hero-title {
   font-size: clamp(33px, 3.3vw, 53px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.06;
   letter-spacing: -0.035em;
   color: var(--text);
@@ -3116,7 +3116,7 @@ br.br-m { display: none; }
     max-width: none;
     width: 100%;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
     font-family: var(--font);
     text-transform: none;
     font-size: clamp(26px, 6vw, 40px);
@@ -3190,12 +3190,16 @@ br.br-m { display: none; }
   flex-shrink: 0;
 }
 .globe-heading {
-  color: #fff;
-  font-size: clamp(28px, 3.8vw, 54px);
-  font-weight: 400;
+  font-size: clamp(18px, 3.2vw, 50px);
+  font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.1;
   margin: 0 0 20px;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .globe-subtitle {
   color: #fff;

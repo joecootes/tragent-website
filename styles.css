@@ -3216,7 +3216,7 @@ br.br-m { display: none; }
 .globe-img {
   display: block;
   width: 86vw;
-  filter: invert(1) hue-rotate(180deg) saturate(3) brightness(1.1);
+  filter: none;
   margin-top: 3vw;
   margin-bottom: -56vw;
 }

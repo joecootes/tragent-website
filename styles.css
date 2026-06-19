@@ -3186,11 +3186,11 @@ br.br-m { display: none; }
 .globe-copy {
   text-align: center;
   padding: clamp(80px, 9vw, 130px) var(--gutter) clamp(80px, 10vw, 130px);
-  max-width: 720px;
+  max-width: 1000px;
   flex-shrink: 0;
 }
 .globe-heading {
-  font-size: clamp(18px, 3.2vw, 50px);
+  font-size: clamp(18px, 2.8vw, 44px);
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.1;

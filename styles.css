@@ -3214,6 +3214,32 @@ br.br-m { display: none; }
 .fcard--dark .fcard-heading,
 .fcard--dark .fcard-body { color: #fff; }
 .fcard--dark .fcard-body { color: rgba(255,255,255,0.6); }
+.fcard--fullbleed {
+  position: relative;
+  min-height: 460px;
+}
+.fcard-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+}
+.fcard-copy--overlay {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  padding: clamp(28px, 3vw, 52px);
+  flex: 0 0 50%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  border-radius: 20px 0 0 20px;
+}
 .fcard--light {
   background: #f0ede8;
 }

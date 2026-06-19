@@ -147,7 +147,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 
 .section-head h2, .final-cta h2 {
-  font-size: clamp(32px, 4.5vw, 52px);
+  font-size: clamp(33px, 3.3vw, 53px);
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
@@ -1740,7 +1740,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   pointer-events: none;
 }
 .final-cta h2 {
-  font-size: clamp(28px, 3.1vw, 42px);
+  font-size: clamp(33px, 3.3vw, 53px);
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -2210,7 +2210,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 
 .demo-intro h1 {
-  font-size: clamp(31px, 3vw, 43px);
+  font-size: clamp(33px, 3.3vw, 53px);
   line-height: 1.02;
   letter-spacing: -0.035em;
   margin-bottom: 8px;
@@ -3036,7 +3036,7 @@ br.br-m { display: none; }
   justify-content: center;
 }
 .biz-headline {
-  font-size: clamp(26px, 3.2vw, 50px);
+  font-size: clamp(33px, 3.3vw, 53px);
   font-weight: 700;
   line-height: 1.07;
   letter-spacing: -0.02em;
@@ -3190,7 +3190,7 @@ br.br-m { display: none; }
   flex-shrink: 0;
 }
 .globe-heading {
-  font-size: clamp(18px, 2.8vw, 44px);
+  font-size: clamp(33px, 3.3vw, 53px);
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.1;

@@ -1718,8 +1718,8 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 
 .final-cta .hero-ctas { justify-content: center; }
 
-.final-cta {
-  padding: 38px 0 42px;
+section.final-cta {
+  padding: clamp(80px, 9vw, 130px) 0;
   text-align: center;
   border-top: 1px solid var(--border);
   overflow: hidden;
@@ -3236,7 +3236,7 @@ br.br-m { display: none; }
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 14px;
   border-radius: 20px 0 0 20px;
 }
@@ -3343,7 +3343,6 @@ br.br-m { display: none; }
   letter-spacing: -0.025em;
   line-height: 1.1;
   margin: 0 0 20px;
-  white-space: nowrap;
   background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.65) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB" data-theme="mono">
+<html lang="en-GB" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,28 +7,51 @@
   <meta name="description" content="What Tragent collects, why we collect it, and how we protect it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;510;600;650;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
 </head>
 <body>
-  <header class="nav-wrap scrolled">
+  <header class="nav-wrap" id="nav">
     <nav class="nav container">
       <a href="/" class="nav-logo" aria-label="Tragent home">
-        <img src="/assets/mark.svg" alt="" class="nav-logo-mark" />
-        <span class="nav-logo-text">Tragent</span>
+        <img src="/assets/UPDATED WORD MARK TRAGENT.png" alt="Tragent" class="nav-logo-wordmark" />
       </a>
+      <div class="nav-links">
+        <a href="/#proof">In practice</a>
+        <a href="/try">Try it live</a>
+        <a href="/#product">Product</a>
+        <a href="/#trust">Trust</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="nav-login">Log in</a>
+        <a href="/try" class="btn btn-primary btn-sm">Try it live</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
     </nav>
   </header>
+
+  <nav class="nav-drawer" id="navDrawer">
+    <a href="/#proof">In practice</a>
+    <a href="/try">Try it live</a>
+    <a href="/#product">Product</a>
+    <a href="/#trust">Trust</a>
+    <div class="nav-drawer-cta">
+      <a href="/try" class="btn btn-primary">Try it live</a>
+    </div>
+  </nav>
 
   <main class="legal">
     <a href="/" class="legal-back">
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Tragent
     </a>
-    <span class="legal-updated">Last updated 1 June 2026</span>
+    <span class="legal-updated">Last updated 4 July 2026</span>
     <h1>Privacy Policy</h1>
-    <p class="legal-intro">This policy explains what Tragent collects, why we collect it, and how we protect it. Tragent is built for tradespeople who connect Gmail so the app can help organise enquiries, draft replies, and keep job conversations moving.</p>
+    <p class="legal-intro">This policy explains what Tragent collects, why we collect it, and how we protect it. Tragent helps trade businesses reply to enquiries, follow up automatically, and keep more work moving.</p>
 
     <h2>Who we are</h2>
     <p>Tragent is operated from the United Kingdom. For privacy questions, account deletion, or data requests, contact us at <a href="mailto:hello@trytragent.com">hello@trytragent.com</a>.</p>
@@ -36,9 +59,10 @@
     <h2>Information we collect</h2>
     <p>When you use Tragent, we may collect your phone number, business profile details, app settings, connected Gmail address, customer/job information created from emails, and messages or attachments needed to provide the service.</p>
     <p>If you connect Gmail, Tragent requests access to read relevant email threads and send replies you choose to send. We store the Gmail tokens needed to keep your account connected until you disconnect Gmail or delete your account.</p>
+    <p>If you use Try It Live on the website, we may collect the name, email address, enquiry text, and beta interest preference you submit. We use this to generate the demo reply, send it to your inbox, prevent abuse, and follow up only if you ask to be kept posted.</p>
 
     <h2>How we use information</h2>
-    <p>We use your information to sign you in, connect your Gmail account, detect customer enquiries, create job records, draft replies, send replies when you approve them, show follow-up reminders, and provide account support.</p>
+    <p>We use your information to sign you in, connect your Gmail account, detect customer enquiries, create job records, draft replies, send replies when you approve them, show follow-up reminders, run the website demo, and provide account support.</p>
     <p>We do not sell your personal data. We do not use Gmail data for advertising.</p>
 
     <h2>AI processing</h2>
@@ -48,7 +72,7 @@
     <p>We use Sentry to collect crash reports, performance data, device information, app version, and diagnostic logs so we can find and fix bugs. This helps keep the app reliable during TestFlight and production use.</p>
 
     <h2>Sharing and processors</h2>
-    <p>We use trusted service providers to run Tragent, including hosting, authentication, Gmail OAuth, AI processing, analytics/crash diagnostics, and messaging infrastructure. These providers process data only as needed to operate the service.</p>
+    <p>We use trusted service providers to run Tragent, including hosting, authentication, Gmail OAuth, AI processing, analytics/crash diagnostics, email delivery, and messaging infrastructure. These providers process data only as needed to operate the service.</p>
 
     <h2>Retention and deletion</h2>
     <p>You can disconnect Gmail from the app to remove stored Gmail credentials while keeping your job history. You can delete your account from Settings; this removes your account, sessions, Gmail credentials, jobs, logs, profile, and automation settings from Tragent systems where practical.</p>
@@ -58,9 +82,38 @@
   </main>
 
   <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <img src="/assets/UPDATED WORD MARK TRAGENT.png" alt="Tragent" class="nav-logo-wordmark" />
+        </a>
+        <p>Replying, following up, and winning more jobs for trade businesses.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/try">Try it live</a>
+          <a href="/#proof">In practice</a>
+          <a href="/#product">Today screen</a>
+          <a href="/#product">Follow-ups</a>
+          <a href="/#trust">Trust and permissions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/">About</a>
+          <a href="mailto:hello@trytragent.com">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </div>
     <div class="container footer-base">
       <span>© 2026 Tragent. All rights reserved.</span>
     </div>
   </footer>
+  <script src="/script.js"></script>
 </body>
 </html>

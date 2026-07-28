@@ -2521,6 +2521,7 @@ section.final-cta {
   margin-bottom: 14px;
 }
 .legal ul {
+  list-style: disc outside;
   margin: 0 0 18px;
   padding-left: 20px;
 }

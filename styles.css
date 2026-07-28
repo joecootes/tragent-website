@@ -2520,6 +2520,16 @@ section.final-cta {
   line-height: 1.65;
   margin-bottom: 14px;
 }
+.legal ul {
+  margin: 0 0 18px;
+  padding-left: 20px;
+}
+.legal li {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 5px;
+}
 .legal a { color: var(--text-secondary); }
 .legal a:hover { text-decoration: underline; }
 

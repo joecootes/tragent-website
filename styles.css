@@ -3401,6 +3401,7 @@ br.br-m { display: none; }
 .fcard--accent {
   background: #1a1209;
   border: 1px solid rgba(194,66,13,0.25);
+  justify-content: center;
 }
 .fcard--accent .fcard-heading,
 .fcard--accent .fcard-body { color: #fff; }

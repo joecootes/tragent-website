@@ -48,172 +48,177 @@
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to Tragent
     </a>
-    <span class="legal-updated">Last updated: 28 July 2026</span>
+    <span class="legal-updated">Last updated: 12 August 2026</span>
     <h1>Privacy Policy</h1>
-    <p class="legal-intro">This Privacy Policy explains what information Tragent collects, how we use it, how we protect it, and your rights.</p>
-    <p>Tragent helps trade businesses automatically respond to customer enquiries, manage jobs and follow up with customers.</p>
+    <p class="legal-intro">This Privacy Policy explains what information Tragent collects, how we use it, where it is processed, how long it is retained, and your rights.</p>
+    <p>Tragent helps trade businesses respond to customer enquiries, manage jobs and follow up with customers. In providing these services, Tragent processes information about account users and their customers.</p>
 
     <h2>Who we are</h2>
     <p>Tragent is operated from the United Kingdom.</p>
-    <p>If you have any questions about this Privacy Policy or wish to exercise your privacy rights, contact us at <a href="mailto:hello@trytragent.com">hello@trytragent.com</a>.</p>
+    <p>If you have questions about this Privacy Policy or wish to exercise your privacy rights, contact <a href="mailto:hello@trytragent.com">hello@trytragent.com</a>.</p>
 
     <h2>Information we collect</h2>
-    <p>When you use Tragent we may collect:</p>
+    <p>When you use the Tragent app, we may collect and process:</p>
     <ul>
-      <li>Your phone number</li>
-      <li>Your business profile information</li>
-      <li>Your app settings</li>
-      <li>Your connected email account information</li>
-      <li>Customer and job information created from enquiries</li>
-      <li>Messages and attachments required to provide the service</li>
-      <li>Crash reports and diagnostic information</li>
+      <li>Your phone number and Tragent account identifier</li>
+      <li>Your business and owner name, trade, manually entered service area, working hours, availability, reply preferences and other business settings</li>
+      <li>Your notification and automation settings</li>
+      <li>Your connected Gmail or Microsoft Outlook account identity, provider and connection time</li>
+      <li>Encrypted authentication credentials needed to maintain the authorised mailbox connection</li>
+      <li>Sender and recipient addresses, subject lines, message bodies, snippets, thread and message identifiers, timestamps and other message metadata</li>
+      <li>Customer and job information derived from enquiries, including names, email addresses, phone numbers, postcodes or towns, work descriptions, timing, urgency and job status</li>
+      <li>Attachments that Tragent copies into protected storage for the relevant job conversation</li>
+      <li>Your Expo push token and notification preferences</li>
+      <li>Subscription and entitlement information, including product, plan, trial, renewal and expiry status</li>
+      <li>Minimised crash, diagnostic, device, operating-system, app-version and performance information</li>
     </ul>
-    <p>If you use Try It Live on our website we may collect:</p>
+    <p>Customer names, contact details, messages, job information and attachments are third-party personal information that Tragent processes on behalf of the trade business using the service.</p>
+
+    <p>If you use Try It Live on our website, we may collect and process:</p>
     <ul>
-      <li>Your name</li>
-      <li>Your email address</li>
+      <li>Your name and email address</li>
       <li>Your enquiry text</li>
-      <li>Whether you wish to join the beta or receive updates</li>
+      <li>An optional phone number or job type where supplied</li>
+      <li>Whether you ask to receive beta updates</li>
+      <li>The reply generated for your enquiry</li>
+      <li>Your IP address and technical request information used for abuse prevention and website delivery</li>
     </ul>
-    <p>This information is used only to provide the requested demonstration, prevent abuse and contact you if requested.</p>
+    <p>Try It Live does not create a Tragent app account or write this information to Tragent's application database. The submitted content is processed through Vercel, Anthropic and Resend to generate and deliver the demonstration. Resend stores the sent email content and associated delivery metadata for the retention period described below.</p>
+    <p>The public website is delivered through Vercel, which receives visitor IP addresses, user agents, requested URLs and related technical request information. Website fonts are served locally from the Tragent website and do not create a runtime request to Google Fonts.</p>
 
     <h2>Connected email accounts</h2>
-    <p>Tragent allows you to connect supported email providers, including Gmail and Microsoft Outlook.</p>
-    <p>Once you authorise access, Tragent may access information including:</p>
-    <ul>
-      <li>Sender and recipient email addresses</li>
-      <li>Subject lines</li>
-      <li>Email message content</li>
-      <li>Attachments where required</li>
-      <li>Email thread information</li>
-      <li>Message metadata necessary to provide the service</li>
-    </ul>
-    <p>This information is used only to:</p>
-    <ul>
-      <li>Detect genuine customer enquiries</li>
-      <li>Create and update job records</li>
-      <li>Detect customer replies</li>
-      <li>Generate AI-assisted responses</li>
-      <li>Send automatic acknowledgement emails</li>
-      <li>Send follow-up emails</li>
-      <li>Keep your job timeline up to date</li>
-      <li>Provide the Tragent features you enable</li>
-    </ul>
-    <p>Tragent stores the authentication tokens required to keep your email account connected.</p>
-    <p>These credentials remain stored until you disconnect the email account, revoke access through your email provider or delete your Tragent account.</p>
-    <p>Tragent never accesses your email account until you explicitly authorise access through the relevant provider's authentication process.</p>
+    <p>Tragent allows you to connect Gmail or Microsoft Outlook through the relevant provider's authorisation process.</p>
+    <p>For Gmail, Tragent requests the identity scopes <code>openid</code>, <code>email</code> and <code>profile</code>, together with <code>gmail.readonly</code> and <code>gmail.send</code>.</p>
+    <p>For Microsoft Outlook, Tragent requests <code>openid</code>, <code>email</code>, <code>profile</code>, <code>offline_access</code>, <code>Mail.Read</code>, <code>Mail.Send</code> and <code>User.Read</code>.</p>
+    <p>These permissions allow Tragent to identify the connected mailbox, read relevant post-connection messages, detect customer enquiries, create job and conversation records, send replies and follow-ups, and keep the job timeline current. Tragent applies the recorded connection time before retrieving message bodies for processing or storage.</p>
+    <p>Tragent does not access a mailbox until the account user explicitly authorises access. Authentication credentials are stored in encrypted form and are presented only to the selected mailbox provider when required.</p>
+    <p>Disconnecting a mailbox removes Tragent's stored connection credentials and stops future inbox access, automatic replies and follow-ups. Disconnecting is not the same as deleting the Tragent account. Jobs, conversations, messages and stored attachments already copied into Tragent remain while the Tragent account is active.</p>
+    <p>When an account is deleted, Tragent removes its stored mailbox credentials and makes a bounded attempt to revoke provider access where supported. Local credentials are removed regardless of whether provider-side revocation succeeds. You may also revoke Tragent directly through your Google or Microsoft account settings.</p>
 
     <h2>How we use your information</h2>
-    <p>We use your information to:</p>
+    <p>We use information to:</p>
     <ul>
-      <li>Create and manage your account</li>
-      <li>Connect your email account</li>
-      <li>Detect customer enquiries</li>
-      <li>Create and manage jobs</li>
-      <li>Generate AI-assisted responses</li>
-      <li>Automatically send replies and follow-ups according to your Tragent settings</li>
-      <li>Notify you about customer activity</li>
-      <li>Provide customer support</li>
-      <li>Improve reliability and fix bugs</li>
+      <li>Create, authenticate and manage Tragent accounts</li>
+      <li>Maintain authorised Gmail and Outlook connections</li>
+      <li>Detect and classify customer enquiries</li>
+      <li>Create and maintain jobs, customer records and conversation history</li>
+      <li>Generate AI-assisted replies and follow-ups</li>
+      <li>Send replies and follow-ups according to the account user's settings</li>
+      <li>Notify account users about enquiries, follow-ups and items requiring review</li>
+      <li>Manage subscription access and entitlements</li>
+      <li>Provide Try It Live and deliver the generated reply</li>
+      <li>Prevent abuse, provide support, secure the service, diagnose errors and improve reliability</li>
+      <li>Comply with legal obligations and resolve disputes</li>
     </ul>
-    <p>We do not use your information for advertising.</p>
+    <p>Tragent does not sell personal information, use it for advertising or use it to track people across other companies' apps or websites.</p>
 
     <h2>AI processing</h2>
-    <p>Tragent uses trusted AI service providers to:</p>
-    <ul>
-      <li>Understand customer enquiries</li>
-      <li>Extract job information</li>
-      <li>Generate responses</li>
-      <li>Generate follow-up messages</li>
-    </ul>
-    <p>Only the information necessary to provide these features is processed.</p>
-    <p>Google API data is not used to develop, improve or train general-purpose or shared artificial intelligence or machine learning models.</p>
-    <p>Tragent does not permit third-party AI providers to use Google API data to train their own general-purpose AI or machine learning models.</p>
+    <p>Tragent uses Anthropic to classify enquiries, extract job information and generate replies and follow-ups.</p>
+    <p>Depending on the requested feature and the information supplied, Tragent may send Anthropic the customer message or email subject and snippet, recent conversation text, customer and job details, business profile, availability and calendar-summary context. This may include names, phone numbers, postcodes or towns, job details, timing and urgency.</p>
+    <p>Tragent does not intentionally send stored attachment files, mailbox credentials, OAuth tokens or API keys to Anthropic.</p>
+    <p>Anthropic processes this information under its commercial terms and does not use commercial API inputs or outputs to train its models. Tragent's optional Anthropic feedback sharing is disabled and Tragent has not joined Anthropic's Development Partner Program.</p>
+    <p>Anthropic's standard API retention currently applies. API inputs and outputs are ordinarily deleted from Anthropic's backend within 30 days, subject to limited safety, security, usage-policy enforcement and legal exceptions. Zero Data Retention is not currently enabled for Tragent's Anthropic organisation.</p>
+    <p>Tragent uses limited Google-derived content with Anthropic only to provide the user-facing feature requested by the account user. Tragent does not use Google Workspace API user data to create, train or improve artificial-intelligence or machine-learning models.</p>
 
-    <h2>Sharing and processors</h2>
-    <p>To operate Tragent we use trusted service providers that provide services including:</p>
+    <h2>Push notifications</h2>
+    <p>If you enable push notifications, Tragent sends an Expo push token and notification payload through Expo Push Service and Apple Push Notification service.</p>
+    <p>A notification may contain a customer name or email address, up to 120 characters of an enquiry snippet or sent follow-up, a notification type and an opaque job identifier. Notification content may be visible on the device lock screen.</p>
+    <p>Tragent removes its stored push token when the account is deleted. Expo states that notification content remains in memory or queues until handoff and that push receipts are cleared after 24 hours. Expo does not publish a numeric provider-side deletion period for Expo push tokens. Because Tragent currently sets no notification expiry, Apple may retain one undelivered notification for the app and device for up to 30 days. An already queued notification cannot be recalled through Tragent account deletion.</p>
+
+    <h2>Subscriptions</h2>
+    <p>Tragent uses RevenueCat and Apple StoreKit to manage subscriptions. They may process an opaque Tragent app-user identifier, Apple transaction information, product and plan identifiers, entitlement status, trial status and renewal or expiry information.</p>
+    <p>Apple controls payment processing and Apple-account transaction records. Tragent does not collect payment-card details.</p>
+    <p>When a Tragent account is deleted, local subscription and RevenueCat event records are removed and Tragent queues deletion of the corresponding RevenueCat customer profile. The task retries until RevenueCat confirms deletion or reports that the profile is already absent. Later RevenueCat webhooks for that deleted Tragent account are ignored and cannot recreate local subscription or account state.</p>
+    <p>Deleting a Tragent or RevenueCat customer profile does not cancel or erase subscription and payment records controlled by Apple. You must manage or cancel an Apple subscription through your Apple account.</p>
+
+    <h2>Sharing and service providers</h2>
+    <p>Tragent uses the following service providers and external services:</p>
     <ul>
-      <li>Cloud hosting</li>
-      <li>Authentication</li>
-      <li>Email provider integrations</li>
-      <li>AI processing</li>
-      <li>Crash reporting</li>
-      <li>Email delivery</li>
-      <li>Messaging infrastructure</li>
+      <li><strong>Railway</strong> for the application backend, database, private attachment storage and operational logs</li>
+      <li><strong>Anthropic</strong> for the AI processing described above</li>
+      <li><strong>Sentry</strong> for minimised error, diagnostic and performance monitoring</li>
+      <li><strong>Cloudflare R2</strong> for the content-free account-deletion ledger described below</li>
+      <li><strong>Twilio Verify</strong> for phone-number verification and SMS delivery</li>
+      <li><strong>Expo Push Service and Apple Push Notification service</strong> for optional push notifications</li>
+      <li><strong>RevenueCat and Apple StoreKit</strong> for subscription and entitlement processing</li>
+      <li><strong>Resend</strong> for Try It Live and test-email delivery</li>
+      <li><strong>Vercel</strong> for public-website hosting and the Try It Live function</li>
     </ul>
-    <p>These providers process information only as necessary to operate Tragent and are not permitted to use your information for their own purposes.</p>
+    <p>These providers process information to provide and secure their services, subject to their contracts and applicable law. Some providers may separately process account, service-usage, security, fraud-prevention, support or legal-compliance information for their own lawful purposes.</p>
+    <p>Google and Microsoft are the mailbox providers selected by the account user. They receive authorised API requests and outbound messages and provide mailbox information under the user's relationship with that provider and the applicable API and account terms.</p>
     <p>Tragent does not:</p>
     <ul>
-      <li>Sell your personal information</li>
-      <li>Sell Google API data</li>
-      <li>Share Google API data with advertisers</li>
-      <li>Use Google API data for targeted advertising</li>
-      <li>Transfer Google API data to data brokers</li>
+      <li>Sell personal information or Google API data</li>
+      <li>Share Google API data with advertisers or data brokers</li>
+      <li>Use Google API data for advertising, marketing or creditworthiness decisions</li>
+      <li>Use Google Workspace API data to create, train or improve artificial-intelligence or machine-learning models</li>
     </ul>
 
     <h2>Crash and diagnostic data</h2>
-    <p>We use Sentry to collect:</p>
-    <ul>
-      <li>Crash reports</li>
-      <li>Diagnostic logs</li>
-      <li>Device information</li>
-      <li>App version</li>
-      <li>Performance information</li>
-    </ul>
-    <p>This information helps us identify bugs, improve reliability and maintain the security of Tragent.</p>
+    <p>Tragent uses Sentry for application error monitoring and diagnostics and is currently on Sentry's Developer plan. Diagnostic information may include crash or exception details, device and operating-system information, app version, performance traces and opaque account or job identifiers.</p>
+    <p>Tragent does not intentionally send customer email bodies, mailbox credentials, OAuth tokens or raw request objects to Sentry. Tragent disables default personal information, request data and console-log breadcrumbs and applies additional redaction and privacy controls.</p>
+    <p>Diagnostic event data follows Sentry's applicable plan and data-type retention period. At the end of that period, the event data becomes inaccessible through Sentry's active service. Sentry separately creates infrastructure backups and states that those backups are deleted 90 days after creation.</p>
 
     <h2>Data protection</h2>
-    <p>We use appropriate technical and organisational measures designed to protect your information.</p>
-    <p>These measures include:</p>
-    <ul>
-      <li>Encrypted network connections</li>
-      <li>Secure storage of authentication credentials</li>
-      <li>Access controls</li>
-      <li>Production system protections</li>
-      <li>Monitoring and logging</li>
-    </ul>
-    <p>While we take reasonable steps to protect your information, no method of electronic transmission or storage can be guaranteed to be completely secure.</p>
+    <p>We use technical and organisational measures designed to protect information, including encrypted network connections, encrypted credential storage, access controls, production-system protections, monitoring and logging.</p>
+    <p>Stored attachments are kept beneath Tragent's configured private storage root. Tragent uses mailbox-scoped access controls, opaque storage identifiers, validated paths and monitored background deletion retries designed to prevent one account from reading or deleting another account's files.</p>
+    <p>While we take reasonable steps to protect information, no method of electronic transmission or storage can be guaranteed to be completely secure.</p>
 
-    <h2>Data retention and deletion</h2>
-    <p>We retain your information only for as long as necessary to provide Tragent, comply with legal obligations, resolve disputes and maintain the security of the service.</p>
-    <p>Disconnecting an email account removes the stored authentication credentials and prevents Tragent from accessing that account in the future.</p>
-    <p>Deleting your Tragent account removes your:</p>
+    <h2>Data retention and account deletion</h2>
+    <p>We retain active-account information for as long as needed to provide Tragent, meet legal obligations, resolve disputes and protect the service.</p>
+    <p>Disconnecting a mailbox removes its stored connection credentials and prevents future access and sending. It does not remove jobs, conversations, messages or attachments already stored in the active Tragent account.</p>
+    <p>When you delete your Tragent account, account access ends immediately. Active account records, sessions, connected-mailbox credentials, jobs, customer information, messages, attachment records, push tokens and local subscription records are removed through the account-deletion process.</p>
+    <p>Tragent then begins monitored background deletion of the corresponding stored attachment files. If a temporary filesystem failure occurs, access remains revoked and secure retries continue until cleanup succeeds. Tragent does not promise that physical-file cleanup will finish within 24 hours.</p>
+    <p>Tragent retains deletion-processing metadata for 30 days. It contains only opaque identifiers, timestamps, attempt counts, controlled error codes and cleanup status. It does not contain email content, attachment names, mailbox addresses or reusable provider credentials.</p>
+    <p>Tragent also stores an independent deletion ledger in a private Cloudflare R2 bucket so that deletion can be reapplied following a controlled restore. The ledger contains opaque account and deletion identifiers and deletion-stage timestamps, but no mailbox addresses, message or attachment content or reusable provider credentials. The production lifecycle rule deletes these ledger objects after 90 days.</p>
+    <p>The R2 bucket uses Cloudflare's Western Europe location hint. This is a placement hint and is not a guarantee of EU-only storage or processing.</p>
+    <p>Railway may retain operational application and deployment logs for up to 30 days. Tragent does not currently maintain Railway volume backups of its production database or attachment storage.</p>
+    <p>If production backup functionality is enabled in future, deleted-account data may remain in a backup for the applicable backup-retention period. Before a restored system returns to service, Tragent's controlled restore process reapplies the independent deletion ledger so that accounts deleted after the backup was created are removed again.</p>
+    <p>Tragent queues deletion of the corresponding RevenueCat customer profile and retries until RevenueCat confirms deletion or reports that the profile is already absent. Apple-controlled subscription and payment records are not deleted through this process.</p>
+
+    <h3>Other service-provider retention</h3>
     <ul>
-      <li>Account</li>
-      <li>Profile</li>
-      <li>Authentication credentials</li>
-      <li>Connected email accounts</li>
-      <li>Jobs</li>
-      <li>Automation settings</li>
-      <li>Associated customer information</li>
+      <li><strong>Anthropic:</strong> commercial API inputs and outputs are ordinarily deleted from its backend within 30 days, subject to limited safety, security, usage-policy enforcement and legal exceptions.</li>
+      <li><strong>Sentry:</strong> diagnostic events follow the applicable Developer-plan and data-type retention period; separate infrastructure backups are deleted 90 days after creation.</li>
+      <li><strong>Twilio Verify:</strong> phone-number and verification-attempt information follows its documented maximum 30-day Verify retention.</li>
+      <li><strong>Expo and Apple:</strong> Expo receipts clear after 24 hours; Expo publishes no numeric token-deletion period; Apple may retain one undelivered notification for up to 30 days under the current no-expiry configuration.</li>
+      <li><strong>Resend:</strong> full sent-email content and delivery metadata are retained for its documented 30-day email-data period. Resend separately documents seven-day backup retention.</li>
+      <li><strong>Vercel:</strong> production runtime logs follow the current Pro-plan period of one day. Web Analytics, Speed Insights, Observability Plus and log drains are not enabled.</li>
     </ul>
-    <p>from active Tragent systems where reasonably practical.</p>
-    <p>Limited information may temporarily remain in secure backups until those backups are overwritten or expire.</p>
-    <p>Users may also revoke Tragent's access directly from their email provider's account settings.</p>
+
+    <h2>International processing and transfers</h2>
+    <p>Some service providers process information outside the United Kingdom or European Economic Area, including in the United States.</p>
+    <p>Where Tragent makes a restricted international transfer through a processor relationship, the applicable provider terms use safeguards such as the European Commission's Standard Contractual Clauses, the UK International Data Transfer Addendum or other recognised transfer mechanisms where applicable.</p>
+    <p>Anthropic states that stored API data is held in the United States and that processing may occur in the United States, Europe, Asia and Australia. RevenueCat, Resend and Vercel also identify United States processing in their published terms.</p>
+    <p>Vercel's production function is currently configured for London, Cloudflare R2 uses a Western Europe location hint and Resend uses an Ireland sending region. These settings do not guarantee that all storage, logging, support, security or subprocessor activity remains in the United Kingdom or European Economic Area.</p>
+    <p>Service providers may use subprocessors. Their current published subprocessor registers provide the authoritative list of those organisations and processing locations.</p>
 
     <h2>Your rights</h2>
-    <p>If you are located in the United Kingdom or European Economic Area you may have the right to:</p>
+    <p>If you are located in the United Kingdom or European Economic Area, you may have the right to:</p>
     <ul>
       <li>Access your personal information</li>
-      <li>Correct inaccurate information</li>
-      <li>Request deletion</li>
-      <li>Restrict processing</li>
-      <li>Receive a copy of your personal information</li>
+      <li>Correct inaccurate or incomplete information</li>
+      <li>Request deletion of your information</li>
+      <li>Restrict or object to processing</li>
+      <li>Receive a portable copy of certain information</li>
+      <li>Withdraw consent where processing relies on consent</li>
+      <li>Complain to the relevant data-protection authority</li>
     </ul>
-    <p>To exercise these rights, contact <a href="mailto:hello@trytragent.com">hello@trytragent.com</a>.</p>
+    <p>To exercise these rights, request account deletion information or ask for the status of a background attachment-cleanup retry, contact <a href="mailto:hello@trytragent.com">hello@trytragent.com</a>. A pending physical-file retry does not restore access to a deleted account.</p>
 
     <h2>Google API Services User Data Policy</h2>
-    <p>Tragent's use and transfer of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements.</p>
-    <p>Information received from Google APIs is used only to provide and improve Tragent's user-facing features.</p>
+    <p>Tragent's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p>Information received from Google APIs is used only to provide and maintain the user-facing Gmail features authorised by the account user.</p>
     <p>Google API data is not:</p>
     <ul>
       <li>Sold</li>
-      <li>Used for advertising or marketing</li>
-      <li>Shared with data brokers</li>
-      <li>Used for creditworthiness decisions</li>
-      <li>Used to develop, improve or train general-purpose artificial intelligence or machine learning models</li>
-      <li>Transferred to third parties except where necessary to provide the services requested by the user</li>
+      <li>Used for advertising, marketing or creditworthiness decisions</li>
+      <li>Shared with advertisers or data brokers</li>
+      <li>Used to create, train or improve artificial-intelligence or machine-learning models</li>
+      <li>Transferred except where necessary to provide or secure the features requested by the account user, comply with applicable law or as part of a user-directed provider interaction</li>
     </ul>
+    <p>Limited Google-derived content may be processed by Anthropic for user-facing inference, by Railway for Tragent's active application storage and processing, and by the other providers identified above where necessary to operate and secure the authorised feature. Those transfers are limited to providing or securing Tragent and do not permit model training on Google Workspace API user data.</p>
+    <p>Disconnecting Gmail removes Tragent's stored Google credentials and stops future mailbox access and sending but does not remove existing Tragent jobs, conversations or attachments. Deleting the Tragent account removes Google-derived information from active Tragent systems and starts monitored physical attachment cleanup under the retention and deletion process described above.</p>
   </main>
 
   <footer class="footer">

@@ -4,6 +4,14 @@
    Two themes: [data-theme="dark"] (default) | [data-theme="light"]
    ============================================================ */
 
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/assets/fonts/inter-tight-latin.woff2") format("woff2");
+}
+
 :root {
   /* Shared tokens — never change between themes */
   --green: #4cb782;

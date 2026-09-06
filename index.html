@@ -591,7 +591,7 @@
                   <span class="perf-name">Average reply time</span>
                   <span class="perf-sub">Based on <span data-perf="replies">42</span> replies</span>
                 </span>
-                <span class="perf-value perf-value--good" data-perf="avg">7 sec</span>
+                <span class="perf-value perf-value--good" data-perf="avg">12 sec</span>
               </div>
               <div class="perf-row">
                 <span class="perf-name">New enquiries</span>
@@ -743,9 +743,9 @@
     const card = document.querySelector('.perf-card');
     if (!card) return;
     const DATA = {
-      week:  { enquiries: '13',  replies: '11',  followups: '5',   avg: '6 sec' },
-      month: { enquiries: '47',  replies: '42',  followups: '18',  avg: '7 sec' },
-      max:   { enquiries: '291', replies: '268', followups: '106', avg: '7 sec' }
+      week:  { enquiries: '13',  replies: '11',  followups: '5',   avg: '11 sec' },
+      month: { enquiries: '47',  replies: '42',  followups: '18',  avg: '12 sec' },
+      max:   { enquiries: '291', replies: '268', followups: '106', avg: '12 sec' }
     };
     const buttons = card.querySelectorAll('.perf-seg-btn');
     function show(range) {

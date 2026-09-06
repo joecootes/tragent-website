@@ -1172,6 +1172,58 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   min-width: 0;
 }
 
+/* ── Feature: performance card ── */
+.perf-icon { color: var(--text-secondary); flex: none; }
+.perf-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  margin-bottom: 6px;
+}
+.perf-seg-btn {
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: 100px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.perf-seg-btn:hover { color: var(--text); }
+.perf-seg-btn.is-on {
+  background: rgba(var(--accent-rgb), 0.10);
+  color: var(--accent);
+}
+.perf-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 2px;
+  border-bottom: 1px solid var(--border);
+}
+.perf-row--last { border-bottom: 0; padding-bottom: 2px; }
+.perf-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.perf-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.perf-sub { font-size: 11.5px; color: var(--text-secondary); }
+.perf-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.perf-value--big { font-size: 17px; font-weight: 650; }
+/* Reply time green is taken from the app's own metricValueHighlight style,
+   which is theme-dependent there: #1A6B40 on light, #5FBF8F on dark. This is
+   deliberately not var(--green), which is the site's lighter state colour. */
+.perf-value--good { color: #1A6B40; }
+[data-theme="dark"] .perf-value--good { color: #5FBF8F; }
 .feature-tag {
   display: inline-block;
   font-size: 12.5px;
@@ -1580,10 +1632,111 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 [data-theme="dark"] .gs-visual--jobs {
   background: #2a2a2a;
 }
-.gs-jobs-canvas {
+.gs-jobs-svg {
   display: block;
   width: 100%;
   height: 100%;
+}
+/* Axes stay put while the series animates, so the chart frame reads as fixed */
+.gs-jobs-axis {
+  stroke: rgba(150, 144, 138, 0.28);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-theme="dark"] .gs-jobs-axis { stroke: rgba(140, 133, 126, 0.32); }
+.gs-jobs-line {
+  stroke: #C2420D;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* dasharray is the measured path length, in viewBox units */
+  stroke-dasharray: 336;
+  stroke-dashoffset: 336;
+}
+/* The arrow rides the same curve as the series, so it sits on the leading tip
+   the whole way. offset-distance and stroke-dashoffset are both linear in path
+   length, so identical keyframe stops keep the head exactly on the line end. */
+.gs-jobs-arrow {
+  fill: #C2420D;
+  offset-path: path("M 26,206 C 33,200.2 54.7,175.8 68,171 C 81.3,166.2 93.3,180.8 106,177 C 118.7,173.2 131.3,155.7 144,148 C 156.7,140.3 169.3,132.8 182,131 C 194.7,129.2 207.3,143 220,137 C 232.7,131 246,109.2 258,95 C 270,80.8 286.3,59.2 292,52");
+  offset-rotate: auto;
+  offset-distance: 0%;
+}
+.gs-jobs-area { opacity: 0; }
+/* Clips the fill to the drawn part of the curve, so it grows behind the line
+   rather than appearing ahead of it. */
+.gs-jobs-reveal {
+  transform-box: view-box;
+  transform-origin: 0px 0px;
+  transform: scaleX(0.0813);
+}
+/* Held until the card scrolls into view, so the line is seen drawing from the
+   start rather than part-way through. index.html adds .is-live.
+   Timing is linear because the easing is baked into the keyframe values: the
+   series, the arrow and the fill clip all advance on the same eased progress,
+   which is what keeps the arrow exactly on the line's tip. Stops map arc
+   length to the curve's x, so the clip edge tracks the tip rather than
+   sliding linearly across. */
+.gs-visual--jobs.is-live .gs-jobs-line { animation: gsJobsDraw 14s linear infinite; }
+.gs-visual--jobs.is-live .gs-jobs-area { animation: gsJobsArea 14s linear infinite; }
+.gs-visual--jobs.is-live .gs-jobs-arrow { animation: gsJobsArrow 14s linear infinite; }
+.gs-visual--jobs.is-live .gs-jobs-reveal { animation: gsJobsReveal 14s linear infinite; }
+@keyframes gsJobsDraw {
+  0%      { stroke-dashoffset: 336;   opacity: 1; }
+  2.92%   { stroke-dashoffset: 329.4; }
+  5.83%   { stroke-dashoffset: 311.1; }
+  8.75%   { stroke-dashoffset: 283.5; }
+  11.67%  { stroke-dashoffset: 248.9; }
+  14.58%  { stroke-dashoffset: 209.6; }
+  17.5%   { stroke-dashoffset: 168; }
+  20.42%  { stroke-dashoffset: 126.4; }
+  23.33%  { stroke-dashoffset: 87.1; }
+  26.25%  { stroke-dashoffset: 52.5; }
+  29.17%  { stroke-dashoffset: 24.9; }
+  32.08%  { stroke-dashoffset: 6.6; }
+  35%     { stroke-dashoffset: 0; }
+  86%     { stroke-dashoffset: 0; opacity: 1; }
+  94%     { opacity: 0; }
+  100%    { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes gsJobsArea {
+  0%, 6%    { opacity: 0; }
+  20%, 86%  { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+@keyframes gsJobsArrow {
+  0%      { offset-distance: 0%;      opacity: 1; }
+  2.92%   { offset-distance: 1.97%; }
+  5.83%   { offset-distance: 7.41%; }
+  8.75%   { offset-distance: 15.62%; }
+  11.67%  { offset-distance: 25.93%; }
+  14.58%  { offset-distance: 37.62%; }
+  17.5%   { offset-distance: 50%; }
+  20.42%  { offset-distance: 62.38%; }
+  23.33%  { offset-distance: 74.07%; }
+  26.25%  { offset-distance: 84.38%; }
+  29.17%  { offset-distance: 92.59%; }
+  32.08%  { offset-distance: 98.03%; }
+  35%     { offset-distance: 100%; }
+  86%     { offset-distance: 100%; opacity: 1; }
+  94%     { opacity: 0; }
+  100%    { offset-distance: 100%; opacity: 0; }
+}
+@keyframes gsJobsReveal {
+  0%      { transform: scaleX(0.0813); }
+  2.92%   { transform: scaleX(0.0966); }
+  5.83%   { transform: scaleX(0.1376); }
+  8.75%   { transform: scaleX(0.2054); }
+  11.67%  { transform: scaleX(0.3086); }
+  14.58%  { transform: scaleX(0.4105); }
+  17.5%   { transform: scaleX(0.5198); }
+  20.42%  { transform: scaleX(0.6439); }
+  23.33%  { transform: scaleX(0.7446); }
+  26.25%  { transform: scaleX(0.8111); }
+  29.17%  { transform: scaleX(0.865); }
+  32.08%  { transform: scaleX(0.9); }
+  35%, 100% { transform: scaleX(0.9125); }
 }
 .gs-eq-card {
   position: absolute;
@@ -2736,6 +2889,13 @@ section.final-cta {
   .reveal { opacity: 1; transform: none; transition: none; }
   .app-frame { transform: none; transition: none; }
   .hv-pulse { animation: none; }
+  .gs-visual--jobs.is-live .gs-jobs-line,
+  .gs-visual--jobs.is-live .gs-jobs-area,
+  .gs-visual--jobs.is-live .gs-jobs-arrow { animation: none; }
+  .gs-jobs-line { stroke-dashoffset: 0; }
+  .gs-jobs-area, .gs-jobs-arrow { opacity: 1; }
+  .gs-jobs-arrow { offset-distance: 100%; }
+  .gs-jobs-reveal { transform: scaleX(1); }
 }
 
 /* ============ Responsive ============ */

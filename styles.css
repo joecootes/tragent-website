@@ -961,8 +961,10 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 .section-head.split .section-sub { margin-top: 0; justify-self: end; }
 
-.problem { }
-.problem .section-head { max-width: 648px; }
+.problem { overflow: hidden; }
+.problem .section-head { max-width: none; }
+.problem .section-head h2 { max-width: 620px; }
+.problem .section-head .section-sub { max-width: 520px; }
 
 /* ============ Cards / glow effect ============ */
 
@@ -986,29 +988,54 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .problem-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 0;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.14);
 }
 .problem-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 35px 31px;
-  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+  position: relative;
+  min-height: 340px;
+  padding: clamp(34px, 3.2vw, 52px) clamp(28px, 2.8vw, 46px);
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  transition: background-color 0.25s var(--ease);
 }
-.problem-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.problem-card + .problem-card { border-left: 1px solid rgba(255, 255, 255, 0.11); }
+.problem-card:hover {
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.025));
+  transform: none;
+}
 .problem-card .stat {
   display: block;
-  font-size: 48px;
+  font-size: clamp(54px, 5vw, 74px);
   font-weight: 650;
-  letter-spacing: -0.03em;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.65) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 15px;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: #E8541A;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  margin-bottom: auto;
 }
-.problem-card h3 { font-size: 18px; line-height: 1.35; margin-bottom: 11px; }
-.problem-card p { font-size: 15.5px; color: var(--text-secondary); }
+.problem-card h3 {
+  max-width: 310px;
+  color: #fff;
+  font-size: clamp(19px, 1.55vw, 23px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 42px 0 13px;
+}
+.problem-card p {
+  max-width: 330px;
+  color: rgba(255, 255, 255, 0.57);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
 
 /* ============ How it works ============ */
 
@@ -2977,6 +3004,35 @@ br.br-m { display: none; }
   .trades-strip { padding-bottom: 32px; }
   .section { padding: 72px 0; }
   .section-head { margin-bottom: 48px; }
+  .problem .section-head { margin-bottom: 36px; }
+  .problem-grid { border-radius: 20px; }
+  .problem-card {
+    min-height: 0;
+    padding: 30px 26px;
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 16px 18px;
+    align-items: start;
+  }
+  .problem-card + .problem-card {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+  }
+  .problem-card .stat {
+    grid-column: 1;
+    margin: 1px 0 0;
+    font-size: 44px;
+  }
+  .problem-card h3 {
+    grid-column: 2;
+    margin: 0;
+    font-size: 19px;
+  }
+  .problem-card p {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 15px;
+  }
   .quote-grid { grid-template-columns: 1fr; }
   .gs-grid { grid-template-columns: 1fr; }
   .demo-main { padding-top: 64px; }
@@ -3035,10 +3091,9 @@ br.br-m { display: none; }
 
 /* Gradient text: hero title, stat numbers, final CTA */
 [data-theme="light"] .problem-card .stat {
-  background: linear-gradient(180deg, #0D0D0D 0%, rgba(13, 13, 13, 0.70) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #E8541A;
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 [data-theme="light"] .final-cta h2 {
   background: linear-gradient(180deg, #0D0D0D 0%, rgba(13, 13, 13, 0.78) 100%);
@@ -3688,6 +3743,7 @@ br.br-m { display: none; }
   .feature-cards-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+    padding-inline: 0;
   }
   .fcard:first-child {
     grid-column: 1;

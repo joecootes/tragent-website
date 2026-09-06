@@ -1455,6 +1455,61 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .gs-visual--icon {
   background: transparent;
 }
+/* ── Card 1: Tragent connector tile ── */
+.gs-visual--connect {
+  position: relative;
+}
+/* Isometric projection measured from the Microsoft tile in the artwork:
+   edge vectors U = (123, -71), V = (112, 82), normalised by |U| = 142. */
+.gs-connect-tile {
+  position: absolute;
+  left: 49.6%;
+  top: 46.5%;
+  width: 16%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%) matrix(0.866, -0.5, 0.789, 0.577, 0, 0);
+}
+/* Measured off the Google and Microsoft tiles: a 13px edge band and a 3px
+   darker bottom rim, with no soft drop shadow. Their raw values (#FAFAFA face,
+   #E5E5E5 edge, ~#BABABA rim) are pre-multiplied by the card background here,
+   because those tiles are painted with mix-blend-mode: multiply and this one
+   is not. Each offset is the inverse matrix applied to (0, depth) so the layers
+   fall straight down on screen. Depths are a share of the tile edge, so they
+   assume width:16%. Recompute 13px/3px against the width if it changes. */
+.gs-connect-tile::before,
+.gs-connect-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 23%;
+}
+.gs-connect-tile::before {
+  background: #DADADA;
+  transform: translate(-5.51%, 6.05%);
+}
+.gs-connect-tile::after {
+  background: #B0B0B0;
+  transform: translate(-6.79%, 7.45%);
+  z-index: -1;
+}
+.gs-connect-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 23%;
+  background: #EEEEEE;
+  overflow: hidden;
+}
+/* Reproduces the app icon's own composition: the wordmark is drawn at 248.5%
+   of the tile width from (9.6%, 23.9%), so the face crops it to "tra". */
+.gs-connect-icon {
+  position: absolute;
+  left: 9.6%;
+  top: 23.9%;
+  width: 248.5%;
+  height: auto;
+  display: block;
+}
 /* ── Card 2: fingerprint scanner ── */
 .gs-visual--scanner {
   position: relative;

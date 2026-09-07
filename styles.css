@@ -254,7 +254,6 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   display: flex;
   align-items: baseline;
   gap: 10px;
-  flex: 1;
   font-weight: 650;
   font-size: 27px;
   letter-spacing: -0.02em;
@@ -284,6 +283,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .nav-links {
   display: flex;
   gap: 16px;
+  flex: 1;
   justify-content: center;
 }
 .nav-links a {
@@ -296,7 +296,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 .nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
 
-.nav-actions { display: flex; align-items: center; justify-content: flex-end; flex: 1; gap: 12px; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
 /* Nav buttons sized to match the Superside header: ~50px pill, 14px label */
 .nav-actions .btn {
   font-size: 14px;

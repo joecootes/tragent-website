@@ -1359,6 +1359,8 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 .fu-when.done { color: var(--green); }
 .fu-row .mini-text { flex: 1; color: var(--text-secondary); }
+/* Contacts mockup: stack the customer detail under the name */
+.fu-row .mini-text em { display: block; margin-top: 3px; }
 .fu-status {
   font-size: 11px;
   font-weight: 600;

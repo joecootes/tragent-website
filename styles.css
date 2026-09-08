@@ -4058,12 +4058,12 @@ br.br-m { display: none; }
 .vcard-cap--light h3,
 .vcard-cap--light .vcard-desc { color: #141414; }
 @media (max-width: 860px) {
+  .cards-section { padding-bottom: 0; }
   .cards-row {
     display: block;
     max-width: 460px;
     margin: 0 auto;
-    padding-bottom: 180px;
-    padding-bottom: min(28svh, 240px);
+    padding-bottom: 320px;
   }
   .vcard,
   .vcard:hover,

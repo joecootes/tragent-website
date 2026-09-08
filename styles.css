@@ -4059,6 +4059,7 @@ br.br-m { display: none; }
 .vcard-cap--light .vcard-desc { color: #141414; }
 @media (max-width: 860px) {
   .cards-section { padding-bottom: 0; }
+  .cards-section + .getting-started { margin-top: -256px; }
   .cards-row {
     display: block;
     max-width: 460px;

@@ -3198,7 +3198,25 @@ br.br-m { display: none; }
   .section { padding: 72px 0; }
   .section-head { margin-bottom: 48px; }
   .quote-grid { grid-template-columns: 1fr; }
-  .gs-grid { grid-template-columns: 1fr; }
+  /* Getting started cards scroll sideways on mobile, bleeding to the screen
+     edges with a peek of the next card. */
+  .gs-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    padding: 4px var(--gutter);
+  }
+  .gs-grid::-webkit-scrollbar { display: none; }
+  .gs-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
   .demo-main { padding-top: 64px; }
   .demo-hero {
     min-height: 0;

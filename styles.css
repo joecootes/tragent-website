@@ -1610,8 +1610,8 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 .comparison-row {
   display: grid;
-  grid-template-columns: minmax(220px, 1.65fr) repeat(3, minmax(110px, 0.7fr));
-  min-height: 72px;
+  grid-template-columns: minmax(200px, 1.35fr) repeat(3, minmax(120px, 1fr));
+  min-height: 64px;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1647,8 +1647,15 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   font-weight: 600;
   letter-spacing: -0.025em;
 }
+/* White Tragent wordmark in the highlighted row (like Superside's logo). */
+.comparison-logo {
+  height: 22px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
 .comparison-mark {
-  font-size: 27px;
+  font-size: 23px;
   font-weight: 350;
   line-height: 1;
 }
@@ -1664,7 +1671,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   }
   .comparison-head {
     margin-bottom: 52px;
-    text-align: left;
+    text-align: center;
   }
   .comparison-eyebrow {
     font-size: 11px;
@@ -1681,11 +1688,11 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
     border-radius: 0;
   }
   .comparison-row {
-    grid-template-columns: minmax(145px, 1.5fr) repeat(3, minmax(58px, 0.62fr));
-    min-height: 68px;
+    grid-template-columns: minmax(110px, 1.3fr) repeat(3, minmax(70px, 1fr));
+    min-height: 52px;
   }
   .comparison-row > * {
-    padding: 15px 8px;
+    padding: 13px 8px;
   }
   .comparison-row > :first-child {
     padding-left: 20px;
@@ -1693,13 +1700,13 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
     line-height: 1.25;
   }
   .comparison-labels > * {
-    font-size: 10px;
+    font-size: 11px;
   }
-  .comparison-row--tragent > :first-child {
-    font-size: 19px;
+  .comparison-logo {
+    height: 19px;
   }
   .comparison-mark {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 .gs-visual {

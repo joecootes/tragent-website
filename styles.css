@@ -4061,7 +4061,7 @@ br.br-m { display: none; }
   .cards-section { padding-bottom: 0; }
   .cards-section + .getting-started {
     z-index: 4;
-    margin-top: -256px;
+    margin-top: -232px;
     background: var(--bg);
   }
   .cards-row {

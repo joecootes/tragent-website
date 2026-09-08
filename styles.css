@@ -4072,9 +4072,9 @@ br.br-m { display: none; }
     margin-bottom: 24px;
     transform: none;
   }
-  .vcard:nth-child(1) { z-index: 1; }
-  .vcard:nth-child(2) { z-index: 2; }
-  .vcard:nth-child(3) { z-index: 3; }
+  .vcard:nth-child(1) { top: 88px; z-index: 1; }
+  .vcard:nth-child(2) { top: 110px; z-index: 2; }
+  .vcard:nth-child(3) { top: 132px; z-index: 3; }
   .vcard-desc {
     opacity: 1;
     transform: none;

@@ -3873,9 +3873,24 @@ br.br-m { display: none; }
 /* ============ Superside-style story section ============ */
 .ss-grid {
   display: grid;
-  grid-template-columns: 1fr 1.12fr;
+  grid-template-columns: 1fr 1fr;
   gap: 72px;
   align-items: stretch;
+}
+/* Mirrored: image on the left, copy on the right. Same 1:1 split so the
+   central divide lines up with the other section. */
+.ss-grid--reverse { grid-template-columns: 1fr 1fr; }
+/* Pull the two consecutive story sections closer together. */
+.ss-section:has(+ .ss-section) { padding-bottom: 80px; }
+.ss-section + .ss-section { padding-top: 80px; }
+/* A bit more breathing room before the dark cards section. */
+.ss-section:has(+ .cards-section) { padding-bottom: 180px; }
+/* Image spans the headline top to the last paragraph bottom (like Superside):
+   72px clears the eyebrow + rule above, 82px clears the button below. */
+.ss-grid--reverse .ss-media img {
+  top: 72px;
+  bottom: auto;
+  height: calc(100% - 154px);
 }
 .ss-eyebrow {
   display: block;
@@ -3912,15 +3927,15 @@ br.br-m { display: none; }
   max-width: 52ch;
 }
 .ss-cta { margin-top: 34px; }
-/* The copy defines the row height; the image is pinned absolutely so it
-   overhangs ~30px above the eyebrow and ~30px below the button. */
+/* The copy defines the row height; the image spans it exactly, top at the
+   eyebrow and bottom at the button. */
 .ss-media { position: relative; }
 .ss-media img {
   position: absolute;
-  top: -30px;
+  top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% + 60px);
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
   display: block;
@@ -3929,4 +3944,120 @@ br.br-m { display: none; }
   .ss-grid { grid-template-columns: 1fr; gap: 40px; }
   .ss-media { order: -1; }
   .ss-media img { position: static; height: auto; aspect-ratio: 16 / 11; }
+}
+
+/* ============ Cards row section (Superside-style, app background) ============ */
+.cards-section {
+  background: #121212;   /* Tragent app dark background */
+}
+.cards-head { text-align: center; max-width: 820px; margin: 0 auto 56px; }
+.cards-eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
+}
+.cards-title {
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: #F7F8F8;
+}
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1258px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.vcard {
+  display: grid;
+  grid-template-rows: 383px 125px;
+  height: 508px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(20, 24, 40, 0.06), 0 12px 30px rgba(20, 24, 40, 0.06);
+  outline: none;
+  transition: grid-template-rows 480ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.vcard:hover,
+.vcard:focus {
+  grid-template-rows: 285px 223px;
+  transform: translateY(-4px);
+}
+.vcard:focus-visible { box-shadow: 0 0 0 3px rgba(211, 68, 13, 0.55); }
+.vcard-media { min-height: 0; overflow: hidden; }
+.vcard-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.vcard:hover .vcard-media img,
+.vcard:focus .vcard-media img { transform: scale(1.025); }
+.vcard-cap {
+  padding: 20px 22px 22px;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+.vcard-cap h3 {
+  font-size: clamp(18px, 1.3vw, 21px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.vcard-desc {
+  max-width: 31ch;
+  margin-top: 22px;
+  font-size: 16px;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 240ms ease 100ms, transform 380ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
+}
+.vcard:hover .vcard-desc,
+.vcard:focus .vcard-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+.vcard-cap--accent { background: #C15A32; }
+.vcard-cap--accent h3,
+.vcard-cap--accent .vcard-desc { color: #fff; }
+.vcard-cap--dark { background: #8A5B43; }
+.vcard-cap--dark h3,
+.vcard-cap--dark .vcard-desc { color: #fff; }
+.vcard-cap--light { background: #C7CDD2; }
+.vcard-cap--light h3,
+.vcard-cap--light .vcard-desc { color: #141414; }
+@media (max-width: 860px) {
+  .cards-row { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .vcard,
+  .vcard:hover,
+  .vcard:focus {
+    height: auto;
+    grid-template-rows: minmax(300px, 62vw) auto;
+    transform: none;
+  }
+  .vcard-desc {
+    opacity: 1;
+    transform: none;
+    margin-bottom: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vcard,
+  .vcard-media img,
+  .vcard-desc { transition: none; }
 }

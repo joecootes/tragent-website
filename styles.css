@@ -3198,8 +3198,8 @@ br.br-m { display: none; }
   .section { padding: 72px 0; }
   .section-head { margin-bottom: 48px; }
   .quote-grid { grid-template-columns: 1fr; }
-  /* Getting started cards scroll sideways on mobile, bleeding to the screen
-     edges with a peek of the next card. */
+  /* Getting started cards scroll sideways on mobile. Cards snap to centre so
+     the first one is centred on load, with a peek of the next either side. */
   .gs-grid {
     display: flex;
     grid-template-columns: none;
@@ -3210,12 +3210,12 @@ br.br-m { display: none; }
     scrollbar-width: none;
     margin-left: calc(-1 * var(--gutter));
     margin-right: calc(-1 * var(--gutter));
-    padding: 4px var(--gutter);
+    padding: 4px 9vw;
   }
   .gs-grid::-webkit-scrollbar { display: none; }
   .gs-card {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
+    flex: 0 0 82vw;
+    scroll-snap-align: center;
   }
   .demo-main { padding-top: 64px; }
   .demo-hero {
@@ -4268,3 +4268,20 @@ br.br-m { display: none; }
   .vcard-media img,
   .vcard-desc { transition: none; }
 }
+
+/* Getting started scroll indicator (mobile only) */
+.gs-dots {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+.gs-dot {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.14);
+  transition: background 0.2s var(--ease);
+}
+.gs-dot.is-active { background: var(--accent); }
+@media (max-width: 720px) { .gs-dots { display: flex; } }

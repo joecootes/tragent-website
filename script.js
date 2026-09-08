@@ -242,3 +242,24 @@ if (demoForm) {
     }
   });
 }
+
+/* Getting started carousel: sync the scroll-indicator dashes on mobile. */
+(function () {
+  const grid = document.querySelector('.gs-grid');
+  const dots = [...document.querySelectorAll('.gs-dots .gs-dot')];
+  if (!grid || !dots.length) return;
+  const cards = [...grid.querySelectorAll('.gs-card')];
+  let raf = null;
+  function update() {
+    raf = null;
+    const mid = grid.scrollLeft + grid.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const center = c.offsetLeft + c.offsetWidth / 2;
+      const d = Math.abs(center - mid);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === best));
+  }
+  grid.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+})();

@@ -69,7 +69,7 @@
   --btn-primary-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   --btn-ghost-hover-bg: rgba(0, 0, 0, 0.04);
   --btn-ghost-hover-border: rgba(0, 0, 0, 0.2);
-  --shadow-conv: 0 24px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-conv: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 30px 60px rgba(0, 0, 0, 0.20), 0 8px 20px rgba(0, 0, 0, 0.10), 0 0 26px 10px rgba(255, 255, 255, 0.7);
   --selection-bg: rgba(194, 66, 13, 0.15);
 }
 
@@ -200,6 +200,13 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   color: var(--btn-primary-text);
   box-shadow: var(--btn-primary-shadow);
 }
+/* Download now: the orange primary action */
+.btn-download {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: none;
+}
+.btn-download:hover { background: var(--accent-hover); }
 .btn-primary:hover {
   background: var(--btn-primary-bg-hover, var(--accent-hover));
   transform: translateY(0);
@@ -302,6 +309,14 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   font-size: 14px;
   padding: 15px 24px;
 }
+.nav-actions .nav-download {
+  background: var(--accent-bright);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.24);
+}
+.nav-actions .nav-download:hover {
+  background: var(--accent-hover);
+}
 .nav-login {
   font-size: 13.5px;
   font-weight: 510;
@@ -376,6 +391,84 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   padding: 130px 0 80px;
   overflow: hidden;
 }
+/* Isolated browser sketch above the automation card. Its centre sits in the
+   navigation gap between the Trust link and the Download now button. */
+.hero-sketch-p1 {
+  position: absolute;
+  top: 98px;
+  left: 65.6%;
+  width: 280px;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Lead-handling branch emerging from behind the card's lower-left edge. */
+.hero-sketch-p2 {
+  position: absolute;
+  top: 175px;
+  left: 50.5%;
+  width: 400px;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Inbox integration branch emerging below the card's lower-right edge. */
+.hero-sketch-p3 {
+  position: absolute;
+  top: 475px;
+  left: 84%;
+  width: 380px;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Automated-workflow note to the right of p1, above the automation card. */
+.hero-sketch-p4 {
+  position: absolute;
+  top: 116px;
+  left: calc(77.5% + 2px);
+  width: 72px;
+  height: auto;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+/* Black drafting sketch kept visible but light enough not to fight the card. */
+.hero-sketch-p1,
+.hero-sketch-p2,
+.hero-sketch-p3,
+.hero-sketch-p4 { opacity: 0.6; }
+/* Subtle film grain over the hero background and sketch (kept below the card
+   and headline, at z-index 0, so those stay crisp on top). */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+}
+.hero-sketch-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-inner { z-index: 1; }
+.hero-right { position: relative; }
 
 .hero-grid {
   display: grid;
@@ -909,7 +1002,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 
 .trades-strip-label {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 550;
   color: var(--text-tertiary);
   opacity: 0.5;
@@ -2934,6 +3027,7 @@ br.br-m { display: none; }
 
 @media (max-width: 720px) {
   .nav-links, .nav-login, .theme-toggle { display: none; }
+  .hero-sketch-p1, .hero-sketch-p2, .hero-sketch-p3, .hero-sketch-p4 { display: none; }
   /* On mobile the burger holds the links, so keep only the primary action
      visible; "Try it live" also lives in the drawer. */
   .nav-actions .btn-ghost { display: none; }
@@ -3774,4 +3868,65 @@ br.br-m { display: none; }
   filter: none;
   margin-top: 3vw;
   margin-bottom: -56vw;
+}
+
+/* ============ Superside-style story section ============ */
+.ss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 72px;
+  align-items: stretch;
+}
+.ss-eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.ss-rule {
+  height: 1px;
+  background: var(--border-strong);
+  margin: 20px 0 30px;
+}
+.ss-title {
+  font-size: clamp(33px, 3.3vw, 53px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.ss-question {
+  font-size: clamp(18px, 1.6vw, 21px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-top: 24px;
+  color: var(--text);
+}
+.ss-body {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-top: 18px;
+  max-width: 52ch;
+}
+.ss-cta { margin-top: 34px; }
+/* The copy defines the row height; the image is pinned absolutely so it
+   overhangs ~30px above the eyebrow and ~30px below the button. */
+.ss-media { position: relative; }
+.ss-media img {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 60px);
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+@media (max-width: 860px) {
+  .ss-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ss-media { order: -1; }
+  .ss-media img { position: static; height: auto; aspect-ratio: 16 / 11; }
 }

@@ -3944,6 +3944,7 @@ br.br-m { display: none; }
   .ss-grid { grid-template-columns: 1fr; gap: 40px; }
   .ss-section:has(+ .ss-section) { padding-bottom: 24px; }
   .ss-section + .ss-section { padding-top: 24px; }
+  .ss-section:has(+ .cards-section) { padding-bottom: 64px; }
   .ss-media {
     order: -1;
     width: 100%;

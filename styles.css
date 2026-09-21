@@ -1242,8 +1242,14 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 /* ── Performance section ── */
 /* Standalone rather than one of the product features, so the section supplies
    its own vertical rhythm and the feature block does not add its own on top. */
-.performance-section { border-top: 1px solid var(--border); }
+.performance-section { border-top: 0; }
 .performance-section .feature { padding: 0; }
+.performance-section .mini-app {
+  box-shadow: 0 8px 24px rgba(20, 24, 40, 0.08), 0 1px 3px rgba(20, 24, 40, 0.05);
+}
+.performance-section .mini-app:hover {
+  box-shadow: 0 12px 32px rgba(20, 24, 40, 0.1);
+}
 /* ── Feature: performance card ── */
 .perf-icon { color: var(--text-secondary); flex: none; }
 .perf-seg {

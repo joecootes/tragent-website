@@ -1253,7 +1253,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .performance-section .feature-list li::before {
   content: "✓";
   color: #1A6B40;
-  background: rgba(26, 107, 64, 0.1);
+  background: transparent;
   font-size: 11px;
   font-weight: 700;
   line-height: 15px;
@@ -1261,7 +1261,7 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 }
 [data-theme="dark"] .performance-section .feature-list li::before {
   color: #5FBF8F;
-  background: rgba(95, 191, 143, 0.12);
+  background: transparent;
 }
 .performance-cta { margin-top: 24px; }
 /* ── Feature: performance card ── */

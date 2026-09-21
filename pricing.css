@@ -69,7 +69,7 @@
   font-size: clamp(54px, 7.2vw, 104px);
   font-weight: 470;
   line-height: 0.94;
-  letter-spacing: -0.052em;
+  letter-spacing: -0.032em;
 }
 .pricing-hero h1 em,
 .pricing-intro h2 em,
@@ -78,7 +78,7 @@
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   font-style: italic;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.018em;
 }
 .pricing-hero h1 em { font-size: 0.86em; }
 .pricing-hero-copy > p {
@@ -126,7 +126,7 @@
   color: rgba(13, 13, 13, 0.68);
   font-size: clamp(22px, 2.2vw, 34px);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.018em;
 }
 
 .pricing-plans {
@@ -141,7 +141,7 @@
   font-size: clamp(48px, 6.5vw, 88px);
   font-weight: 480;
   line-height: 0.97;
-  letter-spacing: -0.052em;
+  letter-spacing: -0.032em;
 }
 .pricing-intro > p {
   max-width: 650px;
@@ -186,7 +186,7 @@
   margin-bottom: 18px;
   font-size: clamp(28px, 2.6vw, 40px);
   line-height: 1.05;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 .pricing-plan-price {
   display: flex;
@@ -198,7 +198,7 @@
   font-size: clamp(42px, 4vw, 58px);
   font-weight: 560;
   line-height: 0.95;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.032em;
 }
 .pricing-plan-price span {
   font-size: 14px;
@@ -317,12 +317,12 @@
   align-items: end;
   margin-bottom: 80px;
 }
-.pricing-proof-head h2 { font-size: clamp(45px, 6vw, 82px); line-height: 0.98; letter-spacing: -0.052em; }
+.pricing-proof-head h2 { font-size: clamp(45px, 6vw, 82px); line-height: 0.98; letter-spacing: -0.032em; }
 .pricing-proof-head p { color: rgba(255, 255, 255, 0.75); font-size: 17px; line-height: 1.6; }
 .pricing-proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255, 255, 255, 0.3); }
 .pricing-proof-stat { padding: 42px 28px 8px 0; }
 .pricing-proof-stat + .pricing-proof-stat { padding-left: 28px; border-left: 1px solid rgba(255, 255, 255, 0.26); }
-.pricing-proof-stat strong { display: block; margin-bottom: 16px; font-size: clamp(38px, 4.3vw, 64px); line-height: 1; letter-spacing: -0.05em; }
+.pricing-proof-stat strong { display: block; margin-bottom: 16px; font-size: clamp(38px, 4.3vw, 64px); line-height: 1; letter-spacing: -0.025em; }
 .pricing-proof-stat span { display: block; max-width: 190px; color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.5; }
 
 .pricing-faq {
@@ -370,7 +370,7 @@
   background: #111;
 }
 .pricing-closing-inner { max-width: 920px; }
-.pricing-closing h2 { font-size: clamp(54px, 8vw, 112px); line-height: 0.94; letter-spacing: -0.058em; }
+.pricing-closing h2 { font-size: clamp(54px, 8vw, 112px); line-height: 0.94; letter-spacing: -0.036em; }
 .pricing-closing p { max-width: 620px; margin: 30px auto 36px; color: rgba(255, 255, 255, 0.66); font-size: 18px; line-height: 1.58; }
 .pricing-closing-actions { display: flex; justify-content: center; gap: 12px; }
 

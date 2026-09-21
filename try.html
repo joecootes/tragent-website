@@ -9,7 +9,7 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <script>document.documentElement.setAttribute('data-theme','light');</script>
 </head>
-<body>
+<body class="try-page-shell">
 
   <header class="nav-wrap" id="nav">
     <nav class="nav container">
@@ -44,19 +44,52 @@
 
   <main>
 
+    <section class="try-hero-new">
+      <div class="container try-hero-new-inner">
+        <div class="try-hero-copy reveal">
+          <span class="try-eyebrow">Live product demo</span>
+          <h1>Send the enquiry.<br /><em>Watch Tragent take it from there.</em></h1>
+          <p>Use your own details and a real job enquiry. Tragent will recognise it, create the job and write the reply while you watch.</p>
+          <a href="#demo" class="btn btn-primary btn-lg try-hero-cta">Try it now</a>
+        </div>
+        <div class="try-hero-flow reveal d-1" aria-label="How the live demo works">
+          <div class="try-flow-top">
+            <span class="try-live-dot"></span>
+            <span>Live workflow</span>
+            <strong>Nothing pre-recorded</strong>
+          </div>
+          <div class="try-flow-step">
+            <span>01</span>
+            <div><strong>A new enquiry arrives</strong><small>Just like one from your website</small></div>
+          </div>
+          <div class="try-flow-step">
+            <span>02</span>
+            <div><strong>Tragent gets to work</strong><small>Recognises the job and drafts the response</small></div>
+          </div>
+          <div class="try-flow-step">
+            <span>03</span>
+            <div><strong>The reply reaches you</strong><small>See exactly what your customer would receive</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ======================= DEMO ======================= -->
     <section class="section demo-section demo-first" id="demo">
       <div class="container-wide">
         <div class="demo-intro reveal">
-          <h1>See Tragent reply to a <span class="accent-text">real enquiry.</span></h1>
-          <p>Fill in the enquiry. Tragent writes the reply.</p>
+          <div>
+            <span class="try-section-kicker">Your turn</span>
+            <h2>Send a real test enquiry.</h2>
+          </div>
+          <p>Fill in the form as if you were a customer. The activity panel shows each step as Tragent handles it.</p>
         </div>
 
         <div class="demo-grid">
 
           <!-- The "customer" side: a tradesperson's website contact form -->
           <div class="demo-pane reveal">
-            <span class="demo-pane-label">Customer enquiry</span>
+            <span class="demo-pane-label">01 · Customer enquiry</span>
             <div class="app-frame demo-frame">
               <div class="app-titlebar">
                 <span class="tb-dot"></span><span class="tb-dot"></span><span class="tb-dot"></span>
@@ -97,7 +130,7 @@
 
           <!-- The "tradesperson" side: Tragent working -->
           <div class="demo-pane reveal d-1">
-            <span class="demo-pane-label">Tragent is working</span>
+            <span class="demo-pane-label">02 · Live activity</span>
             <div class="tragent-panel" id="tragentPanel">
 
               <div class="panel-idle" id="panelIdle">
@@ -171,11 +204,12 @@
     <section class="section final-cta" id="cta">
       <div class="cta-glow" aria-hidden="true"></div>
       <div class="container reveal">
-        <h2>Now imagine every enquiry<br />getting that treatment.</h2>
-        <p>While you're on site. While you're driving. While you're asleep. Tragent is still replying, following up, and keeping work moving.</p>
+        <span class="try-section-kicker">Ready for the real thing?</span>
+        <h2>Every enquiry handled.<br />Even when you’re busy.</h2>
+        <p>Put Tragent to work while you stay on the tools. Set up takes about two minutes.</p>
         <div class="hero-ctas">
-          <a href="mailto:hello@trytragent.com?subject=Tragent%20beta%20access" class="btn btn-primary btn-lg">Join the Beta</a>
-          <a href="mailto:hello@trytragent.com?subject=Tragent%20demo" class="btn btn-ghost btn-lg">Book a Demo</a>
+          <a href="/#cta" class="btn btn-primary btn-lg btn-download">Download now</a>
+          <a href="/pricing" class="btn btn-ghost btn-lg">See pricing</a>
         </div>
         <span class="cta-note">Gmail and Outlook · WhatsApp Business coming soon</span>
       </div>

@@ -56,19 +56,20 @@
   display: block;
   margin-bottom: 28px;
   color: #666;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.18em;
-  line-height: 1.2;
+  line-height: 21.6px;
   text-transform: uppercase;
 }
 .pricing-kicker--light { color: rgba(255, 255, 255, 0.7); }
+.pricing-hero .pricing-kicker { font-size: 16px; line-height: 24px; }
 .pricing-hero h1 {
   max-width: 930px;
   color: #fff;
-  font-size: clamp(54px, 7.2vw, 104px);
+  font-size: 72px;
   font-weight: 470;
-  line-height: 0.94;
+  line-height: 80px;
   letter-spacing: 0;
 }
 .pricing-hero h1 em,
@@ -80,22 +81,25 @@
   font-style: italic;
   letter-spacing: 0;
 }
-.pricing-hero h1 em { font-size: 0.86em; }
+.pricing-hero h1 em,
+.pricing-intro h2 em,
+.pricing-value-head h2 em,
+.pricing-faq-title h2 em { font-size: calc(1em + 4px); }
 .pricing-hero-copy > p {
   max-width: 650px;
   margin: 38px 0 34px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: clamp(17px, 1.5vw, 22px);
-  line-height: 1.52;
+  font-size: 18px;
+  line-height: 26px;
 }
 .pricing-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 58px;
+  min-height: 52px;
   padding: 15px 28px;
   border-radius: 999px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 650;
   transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
@@ -138,9 +142,9 @@
 .pricing-intro h2,
 .pricing-value-head h2,
 .pricing-faq-title h2 {
-  font-size: clamp(48px, 6.5vw, 88px);
+  font-size: 60px;
   font-weight: 480;
-  line-height: 0.97;
+  line-height: 72px;
   letter-spacing: 0;
 }
 .pricing-intro > p {
@@ -148,7 +152,7 @@
   margin-top: 32px;
   color: #5f5f5f;
   font-size: 18px;
-  line-height: 1.58;
+  line-height: 26px;
 }
 .pricing-plan-grid {
   display: grid;
@@ -184,8 +188,8 @@
 }
 .pricing-plan-card h3 {
   margin-bottom: 18px;
-  font-size: clamp(28px, 2.6vw, 40px);
-  line-height: 1.05;
+  font-size: 28px;
+  line-height: 36px;
   letter-spacing: 0;
 }
 .pricing-plan-price {
@@ -207,8 +211,8 @@
 }
 .pricing-plan-card > div > p {
   color: rgba(13, 13, 13, 0.68);
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 26px;
 }
 .pricing-plan-card > div > .pricing-plan-saving {
   display: flex;
@@ -253,9 +257,10 @@
 .pricing-includes h3 {
   margin-bottom: 36px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(26px, 3vw, 42px);
+  font-size: 28px;
   font-weight: 400;
   font-style: italic;
+  line-height: 36px;
 }
 .pricing-includes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 30px; }
 .pricing-includes-grid span {
@@ -286,7 +291,7 @@
   margin-top: 30px;
   color: rgba(255, 255, 255, 0.67);
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 26px;
 }
 .pricing-value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .pricing-value-card {
@@ -324,8 +329,8 @@
   letter-spacing: 0.13em;
 }
 .pricing-value-card-copy { padding: 28px 30px 32px; }
-.pricing-value-card h3 { margin-bottom: 14px; font-size: 27px; line-height: 1.08; }
-.pricing-value-card p { color: rgba(255, 255, 255, 0.62); font-size: 15.5px; line-height: 1.55; }
+.pricing-value-card h3 { margin-bottom: 14px; font-size: 28px; line-height: 36px; }
+.pricing-value-card p { color: rgba(255, 255, 255, 0.62); font-size: 18px; line-height: 26px; }
 
 .pricing-proof {
   padding: clamp(96px, 11vw, 160px) 0;
@@ -342,8 +347,8 @@
   align-items: end;
   margin-bottom: 80px;
 }
-.pricing-proof-head h2 { font-size: clamp(45px, 6vw, 82px); line-height: 0.98; letter-spacing: 0; }
-.pricing-proof-head p { color: rgba(255, 255, 255, 0.75); font-size: 17px; line-height: 1.6; }
+.pricing-proof-head h2 { font-size: 48px; line-height: 56px; letter-spacing: 0; }
+.pricing-proof-head p { color: rgba(255, 255, 255, 0.75); font-size: 18px; line-height: 26px; }
 .pricing-proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255, 255, 255, 0.3); }
 .pricing-proof-stat { padding: 42px 28px 8px 0; }
 .pricing-proof-stat + .pricing-proof-stat { padding-left: 28px; border-left: 1px solid rgba(255, 255, 255, 0.26); }
@@ -386,7 +391,7 @@
 }
 .pricing-faq-list summary span::after { transform: rotate(90deg); }
 .pricing-faq-list details[open] summary span::after { transform: rotate(0); }
-.pricing-faq-list details p { max-width: 680px; padding: 0 52px 30px 0; color: #5a5a5a; font-size: 16px; line-height: 1.68; }
+.pricing-faq-list details p { max-width: 680px; padding: 0 52px 30px 0; color: #5a5a5a; font-size: 18px; line-height: 26px; }
 
 .pricing-closing {
   padding: clamp(100px, 13vw, 190px) 0;
@@ -395,8 +400,8 @@
   background: #111;
 }
 .pricing-closing-inner { max-width: 920px; }
-.pricing-closing h2 { font-size: clamp(54px, 8vw, 112px); line-height: 0.94; letter-spacing: 0; }
-.pricing-closing p { max-width: 620px; margin: 30px auto 36px; color: rgba(255, 255, 255, 0.66); font-size: 18px; line-height: 1.58; }
+.pricing-closing h2 { font-size: 72px; line-height: 72px; letter-spacing: 0; }
+.pricing-closing p { max-width: 620px; margin: 30px auto 36px; color: rgba(255, 255, 255, 0.66); font-size: 18px; line-height: 26px; }
 .pricing-closing-actions { display: flex; justify-content: center; gap: 12px; }
 
 .pricing-footer { background: #ececea; }
@@ -422,8 +427,9 @@
     background: linear-gradient(180deg, rgba(10, 11, 10, 0.16) 0%, rgba(10, 11, 10, 0.2) 28%, rgba(10, 11, 10, 0.9) 74%, rgba(10, 11, 10, 0.96) 100%);
   }
   .pricing-hero-inner { min-height: 790px; padding-bottom: 52px; }
-  .pricing-hero h1 { font-size: clamp(43px, 13vw, 62px); }
-  .pricing-hero-copy > p { margin: 26px 0 28px; font-size: 16.5px; }
+  .pricing-hero h1 { font-size: 36px; line-height: 44px; }
+  .pricing-hero-copy > p { margin: 26px 0 28px; font-size: 16px; line-height: 24px; }
+  .pricing-hero .pricing-kicker { font-size: 14px; line-height: 21.6px; }
   .pricing-kicker { margin-bottom: 20px; }
   .pricing-trades { padding: 40px 0 48px; }
   .pricing-trades > p { margin-bottom: 30px; padding: 0 24px; }
@@ -435,14 +441,19 @@
   .pricing-intro { margin-bottom: 50px; }
   .pricing-intro h2,
   .pricing-value-head h2,
-  .pricing-faq-title h2 { font-size: clamp(42px, 13vw, 60px); }
+  .pricing-faq-title h2 { font-size: 32px; line-height: 40px; }
   .pricing-intro > p,
-  .pricing-value-head > p { margin-top: 24px; font-size: 16px; }
+  .pricing-value-head > p { margin-top: 24px; font-size: 16px; line-height: 24px; }
+  .pricing-plan-card > div > p,
+  .pricing-value-card p,
+  .pricing-proof-head p,
+  .pricing-faq-list details p { font-size: 16px; line-height: 24px; }
   .pricing-plan-card { min-height: 430px; padding: 28px 24px; }
   .pricing-plan-best { min-height: 0; }
   .pricing-includes { margin-top: 66px; }
   .pricing-includes-grid { grid-template-columns: 1fr; gap: 18px; }
   .pricing-value-head { margin-bottom: 48px; }
+  .pricing-proof-head h2 { font-size: 32px; line-height: 40px; }
   .pricing-proof-head { margin-bottom: 50px; }
   .pricing-proof-grid { grid-template-columns: 1fr; }
   .pricing-proof-stat,
@@ -452,7 +463,7 @@
   .pricing-faq-list summary { padding: 24px 0; }
   .pricing-faq-list details p { padding-right: 26px; }
   .pricing-closing { padding: 94px 0; }
-  .pricing-closing h2 { font-size: clamp(48px, 15vw, 68px); }
+  .pricing-closing h2 { font-size: 36px; line-height: 44px; }
   .pricing-closing-actions { flex-direction: column; }
   .pricing-closing-actions .pricing-pill { width: 100%; }
 }

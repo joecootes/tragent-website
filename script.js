@@ -32,12 +32,16 @@ if (burger && navDrawer) {
   burger.addEventListener("click", () => {
     const open = burger.classList.toggle("open");
     navDrawer.classList.toggle("open", open);
+    nav.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", String(open));
     document.body.style.overflow = open ? "hidden" : "";
   });
   navDrawer.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       burger.classList.remove("open");
       navDrawer.classList.remove("open");
+      nav.classList.remove("menu-open");
+      burger.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     });
   });

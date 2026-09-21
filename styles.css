@@ -4339,6 +4339,35 @@ br.br-m { display: none; }
 .gs-dot.is-active { background: var(--accent); }
 @media (max-width: 720px) { .gs-dots { display: flex; } }
 
+/* Mobile navigation: keep the open drawer and its header visually continuous. */
+[data-theme="light"] .nav-wrap.menu-open {
+  background: #f8f7f7;
+  border-bottom-color: var(--border);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+.pricing-page-shell .pricing-nav-wrap.menu-open:not(.scrolled) .pricing-logo img,
+.try-page-shell .nav-wrap.menu-open:not(.scrolled) .nav-logo-wordmark {
+  filter: none;
+}
+.pricing-page-shell .pricing-nav-wrap.menu-open:not(.scrolled) .nav-burger,
+.try-page-shell .nav-wrap.menu-open:not(.scrolled) .nav-burger {
+  border-color: var(--border-strong);
+}
+.pricing-page-shell .pricing-nav-wrap.menu-open:not(.scrolled) .nav-burger span,
+.try-page-shell .nav-wrap.menu-open:not(.scrolled) .nav-burger span {
+  background: var(--text);
+}
+.nav-drawer-cta .btn.btn-download {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.24);
+}
+.nav-drawer-cta .btn.btn-download:hover {
+  color: #fff;
+  background: var(--accent-hover);
+}
+
 /* ============================================================
    Try it live — editorial product demo
    ============================================================ */

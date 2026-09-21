@@ -122,15 +122,21 @@
   font-weight: 650;
   letter-spacing: 0.17em;
 }
+.pricing-trades-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
 .pricing-trades-track {
-  display: flex;
-  width: max-content;
-  gap: clamp(48px, 7vw, 110px);
-  padding: 0 5vw;
+  animation-duration: 55s;
   color: rgba(13, 13, 13, 0.68);
+}
+.pricing-trades-track span {
+  color: inherit;
+  opacity: 1;
   font-size: clamp(22px, 2.2vw, 34px);
   font-weight: 600;
   letter-spacing: 0;
+  padding: 0 clamp(24px, 3.5vw, 55px);
 }
 
 .pricing-plans {
@@ -433,7 +439,7 @@
   .pricing-kicker { margin-bottom: 20px; }
   .pricing-trades { padding: 40px 0 48px; }
   .pricing-trades > p { margin-bottom: 30px; padding: 0 24px; }
-  .pricing-trades-track { gap: 42px; font-size: 23px; }
+  .pricing-trades-track span { font-size: 23px; padding: 0 21px; }
   .pricing-plans,
   .pricing-value,
   .pricing-proof,

@@ -1,0 +1,214 @@
+/* Tragent How it works page — builds on the pricing page's editorial system (pricing.css). */
+
+.hiw-hero-image { object-position: center 38%; }
+.hiw-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.hiw-control-copy h2 em,
+.hiw-timeline-head h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: calc(1em + 4px);
+  letter-spacing: 0;
+}
+
+/* Workflow steps */
+.hiw-steps {
+  padding: clamp(92px, 11vw, 160px) 0;
+  color: #0d0d0d;
+  background: #fbfaf7;
+}
+.hiw-step-list {
+  list-style: none;
+  border-top: 1px solid rgba(13, 13, 13, 0.2);
+}
+.hiw-step {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 220px;
+  gap: 40px;
+  align-items: start;
+  padding: 44px 0;
+  border-bottom: 1px solid rgba(13, 13, 13, 0.14);
+}
+.hiw-step-num {
+  color: #c2420d;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 36px;
+}
+.hiw-step-copy h3 {
+  margin-bottom: 14px;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+.hiw-step-copy p {
+  max-width: 640px;
+  color: #5f5f5f;
+  font-size: 18px;
+  line-height: 26px;
+}
+.hiw-step-tag {
+  justify-self: end;
+  margin-top: 4px;
+  padding: 7px 12px;
+  border: 1px solid rgba(13, 13, 13, 0.16);
+  border-radius: 999px;
+  color: #454545;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Control */
+.hiw-control {
+  padding: clamp(96px, 11vw, 160px) 0;
+  color: #fff;
+  background: #151515;
+}
+.hiw-control-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(48px, 7vw, 110px);
+  align-items: center;
+}
+.hiw-control-media {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+}
+.hiw-control-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 40% 45%;
+}
+.hiw-control-copy h2,
+.hiw-timeline-head h2 {
+  font-size: 60px;
+  font-weight: 480;
+  line-height: 72px;
+  letter-spacing: 0;
+}
+.hiw-control-copy > p {
+  max-width: 560px;
+  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.67);
+  font-size: 18px;
+  line-height: 26px;
+}
+.hiw-control-list {
+  list-style: none;
+  margin-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.hiw-control-list li {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hiw-control-list strong { font-size: 16px; font-weight: 620; line-height: 24px; }
+.hiw-control-list span { color: rgba(255, 255, 255, 0.62); font-size: 16px; line-height: 24px; }
+
+/* Timeline */
+.hiw-timeline {
+  padding: clamp(96px, 11vw, 160px) 0;
+  color: #0d0d0d;
+  background: #fbfaf7;
+}
+.hiw-timeline-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+  gap: 9vw;
+}
+.hiw-timeline-head { position: sticky; top: 128px; align-self: start; }
+.hiw-timeline-head > p {
+  max-width: 420px;
+  margin-top: 30px;
+  color: #5f5f5f;
+  font-size: 18px;
+  line-height: 26px;
+}
+.hiw-timeline-list { list-style: none; position: relative; }
+.hiw-timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 5px;
+  width: 1px;
+  background: rgba(13, 13, 13, 0.18);
+}
+.hiw-timeline-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 24px;
+  padding: 0 0 48px 40px;
+}
+.hiw-timeline-list li:last-child { padding-bottom: 0; }
+.hiw-timeline-list li::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgba(13, 13, 13, 0.4);
+  border-radius: 50%;
+  background: #fbfaf7;
+}
+.hiw-timeline-list li.hiw-timeline-final::before { border-color: #c2420d; background: #c2420d; }
+.hiw-timeline-list time {
+  color: #c2420d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+.hiw-timeline-list h3 { margin-bottom: 8px; font-size: 22px; line-height: 28px; letter-spacing: 0; }
+.hiw-timeline-list p { color: #5a5a5a; font-size: 17px; line-height: 25px; }
+
+.hiw-faq { background: #ececea; }
+
+@media (max-width: 960px) {
+  .hiw-step { grid-template-columns: 80px minmax(0, 1fr); gap: 16px 24px; }
+  .hiw-step-tag { grid-column: 2; justify-self: start; margin-top: 4px; }
+  .hiw-control-layout { grid-template-columns: 1fr; }
+  .hiw-control-media { max-width: 560px; }
+  .hiw-timeline-layout { grid-template-columns: 1fr; gap: 56px; }
+  .hiw-timeline-head { position: static; }
+}
+
+@media (max-width: 720px) {
+  .hiw-hero-image { object-position: 52% center; }
+  .hiw-hero-actions { flex-direction: column; }
+  .hiw-hero-actions .pricing-pill { width: 100%; }
+  .hiw-steps,
+  .hiw-control,
+  .hiw-timeline { padding: 84px 0; }
+  .hiw-step { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+  .hiw-step-num { line-height: 20px; }
+  .hiw-step-tag { grid-column: 1; }
+  .hiw-step-copy h3 { font-size: 24px; line-height: 32px; }
+  .hiw-step-copy p,
+  .hiw-control-copy > p,
+  .hiw-timeline-head > p { font-size: 16px; line-height: 24px; }
+  .hiw-control-copy > p,
+  .hiw-timeline-head > p { margin-top: 24px; }
+  .hiw-control-copy h2,
+  .hiw-timeline-head h2 { font-size: 32px; line-height: 40px; }
+  .hiw-control-list { margin-top: 36px; }
+  .hiw-control-list li { grid-template-columns: 1fr; gap: 4px; padding: 18px 0; }
+  .hiw-timeline-layout { gap: 44px; }
+  .hiw-timeline-list li { grid-template-columns: 1fr; gap: 6px; padding: 0 0 36px 32px; }
+  .hiw-timeline-list h3 { font-size: 20px; line-height: 26px; }
+  .hiw-timeline-list p { font-size: 16px; line-height: 24px; }
+}

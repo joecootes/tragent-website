@@ -347,6 +347,11 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   border-radius: 2px;
   transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
+.nav-burger.open {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
 .nav-burger.open span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { transform: translateY(-3.75px) rotate(-45deg); }
 
@@ -382,7 +387,13 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
-.nav-drawer-cta .btn { width: 100%; justify-content: center; font-size: 15px; padding: 12px; }
+.nav-drawer-cta .btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 999px;
+}
 
 /* ============ Hero ============ */
 
@@ -3268,6 +3279,15 @@ br.br-m { display: none; }
   .trades-strip { padding-bottom: 32px; }
   .section { padding: 72px 0; }
   .section-head { margin-bottom: 48px; }
+  .performance-section .feature-copy { text-align: center; }
+  .performance-section .feature-list {
+    display: inline-block;
+    text-align: left;
+  }
+  .performance-section .performance-cta {
+    display: flex;
+    justify-content: center;
+  }
   .quote-grid { grid-template-columns: 1fr; }
   /* Getting started cards scroll sideways on mobile. Cards snap to centre so
      the first one is centred on load, with a peek of the next either side. */
@@ -4722,7 +4742,11 @@ br.br-m { display: none; }
   .try-flow-step > span { width: 36px; height: 36px; }
   .try-flow-step strong { font-size: 15px; }
   .try-page-shell .demo-first { padding: 94px 0 110px; }
-  .try-page-shell .demo-intro { margin-bottom: 56px; }
+  .try-page-shell .demo-intro {
+    margin-bottom: 56px;
+    text-align: center;
+  }
+  .try-page-shell .demo-intro > p { margin-inline: auto; }
   .try-page-shell .demo-intro h2 { font-size: 32px; line-height: 40px; }
   .try-page-shell .demo-intro h2 em { font-size: 36px; line-height: 40px; }
   .try-page-shell .demo-intro > p { font-size: 16px; }

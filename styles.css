@@ -4383,6 +4383,9 @@ br.br-m { display: none; }
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
 }
+[data-theme="light"] .nav-drawer {
+  background: #f8f7f7;
+}
 .pricing-page-shell .pricing-nav-wrap.menu-open:not(.scrolled) .pricing-logo img,
 .try-page-shell .nav-wrap.menu-open:not(.scrolled) .nav-logo-wordmark {
   filter: none;

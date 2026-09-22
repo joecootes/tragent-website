@@ -4379,6 +4379,18 @@ br.br-m { display: none; }
 .try-page-shell .nav-wrap:not(.scrolled) .nav-logo-wordmark {
   filter: brightness(0) invert(1);
 }
+.try-page-shell .nav-wrap .nav-logo {
+  position: relative;
+}
+.try-page-shell .nav-wrap .nav-logo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: #c2420d;
+}
 .try-page-shell .nav-wrap:not(.scrolled) .nav-links a {
   color: rgba(255, 255, 255, 0.72);
 }

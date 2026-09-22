@@ -4622,6 +4622,7 @@ br.br-m { display: none; }
   font-size: 18px;
   line-height: 1.55;
 }
+.try-page-shell .demo-intro .nowrap { white-space: nowrap; }
 .try-page-shell .demo-grid { gap: clamp(36px, 4.5vw, 76px); }
 .try-page-shell .demo-pane-label {
   min-height: 0;
@@ -4751,8 +4752,12 @@ br.br-m { display: none; }
     text-align: center;
   }
   .try-page-shell .demo-intro > p { margin-inline: auto; }
-  .try-page-shell .demo-intro h2 { font-size: 32px; line-height: 40px; }
-  .try-page-shell .demo-intro h2 em { font-size: 36px; line-height: 40px; }
+  .try-page-shell .demo-intro h2 {
+    font-size: min(30px, 7.6vw);
+    line-height: 40px;
+    white-space: nowrap;
+  }
+  .try-page-shell .demo-intro h2 em { font-size: 1.125em; line-height: 40px; }
   .try-page-shell .demo-intro > p { font-size: 16px; }
   .try-page-shell .demo-grid { gap: 54px; }
   .try-page-shell .demo-pane-label { margin-bottom: 16px; }

@@ -70,7 +70,7 @@
           </div>
           <div class="try-flow-step">
             <span>03</span>
-            <div><strong>The reply reaches you</strong><small>See exactly what your customer would receive</small></div>
+            <div><strong>The reply appears here</strong><small>See exactly what your customer would receive</small></div>
           </div>
         </div>
       </div>
@@ -106,11 +106,6 @@
                 </label>
 
                 <label class="field">
-                  <span>Email <em>reply lands here</em></span>
-                  <input type="email" name="email" id="fEmail" placeholder="you@example.com" maxlength="120" required />
-                </label>
-
-                <label class="field">
                   <span>Job enquiry</span>
                   <textarea name="message" id="fMessage" rows="3" maxlength="1000" placeholder="e.g. Hi, I need a quote for a full rewire on a 3-bed house. What are the next steps?" required></textarea>
                 </label>
@@ -118,13 +113,8 @@
                 <!-- Honeypot: hidden from humans -->
                 <label class="hp-field" aria-hidden="true">Company<input type="text" name="company" id="fCompany" tabindex="-1" autocomplete="off" /></label>
 
-                <label class="consent">
-                  <input type="checkbox" id="fConsent" />
-                  <span>Keep me posted about the Tragent beta</span>
-                </label>
-
                 <button type="submit" class="btn btn-primary btn-block" id="sendBtn">Send test enquiry</button>
-                <span class="demo-form-note">Replies in under 60 seconds. No signup required.</span>
+                <span class="demo-form-note">Your reply appears here. No signup or email address required.</span>
                 <p class="demo-error" id="demoError" hidden></p>
               </form>
             </div>
@@ -137,7 +127,7 @@
 
               <div class="panel-idle" id="panelIdle">
                 <span class="idle-dot"></span>
-                <p>Watching the inbox.<br />Send a test enquiry to see Tragent work.</p>
+                <p>Waiting for an enquiry.<br />Send a test enquiry to see Tragent work.</p>
               </div>
 
               <ol class="timeline" id="timeline" hidden>
@@ -145,10 +135,11 @@
                 <li data-stage="2"><span class="tl-dot"></span><span class="tl-text">Tragent detected enquiry</span><span class="tl-time"></span></li>
                 <li data-stage="3"><span class="tl-dot"></span><span class="tl-text">Job created</span><span class="tl-time"></span></li>
                 <li data-stage="4"><span class="tl-dot"></span><span class="tl-text">Draft generated</span><span class="tl-time"></span></li>
-                <li data-stage="5"><span class="tl-dot"></span><span class="tl-text">Reply sent</span><span class="tl-time"></span></li>
+                <li data-stage="5"><span class="tl-dot"></span><span class="tl-text">Reply ready</span><span class="tl-time"></span></li>
               </ol>
 
               <div class="email-card" id="emailCard" hidden>
+                <div class="reply-result-label">Tragent's reply <span>This is what your customer would receive</span></div>
                 <div class="email-head">
                   <div class="email-meta">
                     <span class="eq-avatar a1">YT</span>
@@ -162,10 +153,6 @@
                 <div class="email-body" id="emailBody"></div>
               </div>
 
-              <div class="inbox-note" id="inboxNote" hidden>
-                <strong>We've also sent this reply to your inbox.</strong>
-                <span>Check your email to experience exactly what your customer would receive.</span>
-              </div>
             </div>
           </div>
         </div>
@@ -193,7 +180,7 @@
           <div class="trust-card glowable">
             <h3><span class="trust-icon can"><svg viewBox="0 0 16 16" width="12" height="12" fill="none"><path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Hands free</h3>
             <ul class="trust-list">
-              <li>The response was sent automatically</li>
+              <li>The response was generated automatically</li>
               <li>No human intervention required</li>
               <li>The business owner never touched a phone</li>
             </ul>
@@ -222,12 +209,12 @@
             <p>No. The live demo only uses the information you enter into this form. It does not connect to Gmail or Outlook, and it cannot read any other messages.</p>
           </details>
           <details>
-            <summary>Why do you need my email address?<span></span></summary>
-            <p>We use it to send you a copy of the generated reply, so you can experience exactly what a customer would receive when Tragent responds.</p>
+            <summary>Will you send the reply to my inbox?<span></span></summary>
+            <p>No. The demo is completely self-contained. The generated reply appears here on the page so you can see exactly what your customer would receive without checking your inbox.</p>
           </details>
           <details>
             <summary>How quickly should the reply arrive?<span></span></summary>
-            <p>Most test replies arrive in under 60 seconds. Occasionally it can take a little longer depending on email delivery times.</p>
+            <p>Most test replies appear on the page in under 60 seconds. The exact timing depends on the live reply-generation service.</p>
           </details>
           <details>
             <summary>Can I try it more than once?<span></span></summary>
@@ -294,7 +281,6 @@
     const idle = document.getElementById('panelIdle');
     const timeline = document.getElementById('timeline');
     const emailCard = document.getElementById('emailCard');
-    const inboxNote = document.getElementById('inboxNote');
     const whatHappened = document.getElementById('whatHappened');
     const stages = Array.from(timeline.querySelectorAll('li'));
 
@@ -312,7 +298,6 @@
     function resetPanel() {
       stages.forEach((li) => { li.classList.remove('done', 'active'); li.querySelector('.tl-time').textContent = ''; });
       emailCard.hidden = true;
-      inboxNote.hidden = true;
       errEl.hidden = true;
     }
 
@@ -328,9 +313,7 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const email = document.getElementById('fEmail').value.trim();
       const message = document.getElementById('fMessage').value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Add your email address so we can send you the reply.'); return; }
       if (message.length < 10) { showError('Write a short message describing the job.'); return; }
 
       resetPanel();
@@ -343,11 +326,9 @@
       // Fire the real pipeline immediately; pace the early stages alongside it
       const payload = {
         name: document.getElementById('fName').value.trim(),
-        email,
         phone: '',
         jobType: '',
         message,
-        betaConsent: document.getElementById('fConsent').checked,
         company: document.getElementById('fCompany').value,
       };
 
@@ -370,14 +351,13 @@
         await sleep(400); completeStage(3);
         await sleep(800); completeStage(4);
 
-        // Reveal the email
+        // Reveal the generated reply on the page
         document.getElementById('emailSubject').textContent = data.subject || 'Re: Your enquiry';
         document.getElementById('emailFrom').textContent = (data.from || 'Your Trade Business').replace(/<.*>/, '').trim();
         document.getElementById('emailTime').textContent = now().slice(0, 5);
         document.getElementById('emailBody').textContent = data.reply;
         await sleep(500);
         emailCard.hidden = false;
-        if (data.emailSent) inboxNote.hidden = false;
         whatHappened.hidden = false;
 
         sendBtn.disabled = false;

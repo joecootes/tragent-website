@@ -3,16 +3,11 @@
  *
  * Runs a demo enquiry through the real Tragent reply pipeline:
  * identical system prompt, model and constraints to the production
- * server's replyAgent.ts. Fully sandboxed: replies only ever go back
- * to the person who submitted the test enquiry. No real tradesperson
- * inboxes are involved.
+ * server's replyAgent.ts. Fully sandboxed: the generated reply is returned
+ * to the page only. No email is sent and no real inboxes are involved.
  *
  * Env vars (set in Vercel project settings):
  *   ANTHROPIC_API_KEY  required — powers the reply generation
- *   RESEND_API_KEY     optional — sends the reply to the visitor's inbox
- *   DEMO_FROM_EMAIL    optional — verified sender, e.g. "Tragent <test@trytragent.com>"
- *   DEMO_REPLY_TO_EMAIL optional — reply destination, e.g. "test@trytragent.com"
- *   LEAD_NOTIFY_EMAIL  optional — where beta-interest leads are forwarded
  */
 
 // ── Demo business (the "tradesperson" answering the test enquiry) ────────────
@@ -201,27 +196,6 @@ function rateLimited(ip) {
   return entry.count > MAX_PER_IP;
 }
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// ── Email delivery (Resend) ───────────────────────────────────────────────────
-
-async function sendEmail({ to, subject, text, replyHtml }) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return false;
-  const from = process.env.DEMO_FROM_EMAIL || 'Tragent <test@trytragent.com>';
-  const replyTo = process.env.DEMO_REPLY_TO_EMAIL || 'test@trytragent.com';
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to, subject, text, html: replyHtml, reply_to: replyTo }),
-  });
-  return r.ok;
-}
-
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
 // ── Handler ───────────────────────────────────────────────────────────────────
 
 module.exports = async (req, res) => {
@@ -238,20 +212,16 @@ module.exports = async (req, res) => {
   }
 
   const body = req.body || {};
-  const { name, email, phone, jobType, message, betaConsent, company } = body;
+  const { name, phone, jobType, message, company } = body;
 
   // Honeypot: real users never fill this hidden field
   if (company) {
-    res.status(200).json({ ok: true, reply: '', emailSent: false });
+    res.status(200).json({ ok: true, reply: '' });
     return;
   }
 
   if (!name || typeof name !== 'string' || name.length > 80) {
     res.status(400).json({ error: 'Please add your name.' });
-    return;
-  }
-  if (!email || !EMAIL_RE.test(email) || email.length > 120) {
-    res.status(400).json({ error: 'Please add a valid email address.' });
     return;
   }
   if (!message || typeof message !== 'string' || message.length < 10 || message.length > 1000) {
@@ -302,36 +272,12 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // ── Send the reply to the visitor's own inbox (demo stays sandboxed) ───────
   const subject = `Re: ${jobType ? String(jobType).slice(0, 60) : 'Your enquiry'}`;
-  let emailSent = false;
-  try {
-    emailSent = await sendEmail({
-      to: email,
-      subject: `${subject} (Tragent demo)`,
-      text: `${reply}\n\n---\nThis is a Tragent demo. The reply above was generated and sent automatically, exactly as it would be for your own customers. https://www.trytragent.com`,
-      replyHtml: `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#111">${escapeHtml(reply).replace(/\n/g, '<br>')}<br><br><hr style="border:none;border-top:1px solid #ddd"><p style="color:#888;font-size:12px">This is a Tragent demo. The reply above was generated and sent automatically, exactly as it would be for your own customers. <a href="https://www.trytragent.com">trytragent.com</a></p></div>`,
-    });
-  } catch (err) {
-    console.error('[demo] email send failed:', err.message);
-  }
-
-  // ── Beta interest capture (consent only) ────────────────────────────────────
-  if (betaConsent) {
-    const notify = process.env.LEAD_NOTIFY_EMAIL || 'hello@trytragent.com';
-    sendEmail({
-      to: notify,
-      subject: 'New beta interest from Try Tragent Live',
-      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'n/a'}\nJob type: ${jobType || 'n/a'}\nMessage: ${message}`,
-      replyHtml: undefined,
-    }).catch(() => {});
-  }
 
   res.status(200).json({
     ok: true,
     reply,
     subject,
-    from: `${DEMO_PROFILE.businessName} <hello@yourtradebusiness.co.uk>`,
-    emailSent,
+    from: DEMO_PROFILE.businessName,
   });
 };

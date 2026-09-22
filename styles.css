@@ -4722,8 +4722,8 @@ br.br-m { display: none; }
   .try-hero-image { object-position: 54% center; }
   .try-hero-new::before {
     background:
-      linear-gradient(180deg, rgba(17,17,17,.72) 0%, rgba(17,17,17,.82) 44%, rgba(17,17,17,.94) 100%),
-      linear-gradient(90deg, rgba(17,17,17,.78), rgba(17,17,17,.58));
+      linear-gradient(180deg, rgba(17,17,17,.55) 0%, rgba(17,17,17,.68) 44%, rgba(17,17,17,.84) 100%),
+      linear-gradient(90deg, rgba(17,17,17,.58), rgba(17,17,17,.38));
   }
   .try-hero-copy h1 { font-size: 36px; line-height: 44px; }
   .try-hero-copy h1 em { font-size: 40px; line-height: 44px; }

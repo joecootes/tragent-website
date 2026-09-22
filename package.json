@@ -3,6 +3,6 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cp -r index.html how-it-works.html try.html pricing.html faq.html privacy.html terms.html styles.css pricing.css how-it-works.css script.js assets dist/"
+    "build": "rm -rf dist && mkdir dist && cp -r index.html how-it-works.html why-us.html try.html pricing.html faq.html privacy.html terms.html styles.css pricing.css how-it-works.css why-us.css script.js assets dist/"
   }
 }

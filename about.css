@@ -165,3 +165,44 @@
 @media (max-width: 720px) {
   .ab-page .pricing-closing h2 { font-size: 36px; line-height: 44px; }
 }
+
+/* Founder card */
+.ab-founder {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 40px 0 0;
+  padding: 20px 24px 20px 20px;
+  border: 1px solid rgba(13, 13, 13, 0.12);
+  border-radius: 999px;
+  background: #fff;
+}
+.ab-founder img {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 4px rgba(194, 66, 13, 0.55);
+}
+.ab-founder figcaption { display: flex; flex-direction: column; gap: 4px; }
+.ab-founder strong { font-size: 17px; font-weight: 650; line-height: 24px; color: #0d0d0d; }
+.ab-founder strong span { font-weight: 450; color: #6a6a6a; }
+.ab-dash { font-style: normal; }
+.ab-founder em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 24px;
+  color: #454545;
+}
+@media (max-width: 720px) {
+  .ab-founder { gap: 16px; margin-top: 32px; padding: 16px 20px 16px 16px; border-radius: 20px; }
+  .ab-founder img { flex-basis: 64px; width: 64px; height: 64px; }
+  .ab-founder strong { font-size: 16px; }
+  .ab-founder strong span { display: block; font-size: 14px; line-height: 20px; }
+  .ab-dash { display: none; }
+  .ab-founder em { font-size: 15px; line-height: 21px; }
+}

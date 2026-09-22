@@ -9,8 +9,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
-  height: 4px;
+  width: 3.4px;
+  height: 3.4px;
   background: #c2420d;
 }
 .pricing-nav-wrap:not(.scrolled) .pricing-logo img { filter: brightness(0) invert(1); }
